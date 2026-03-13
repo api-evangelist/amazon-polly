@@ -1,0 +1,244 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.apievangelist.com/amazon-polly/speech-synthesis-definition",
+  "title": "Amazon Polly Speech Synthesis Definition",
+  "description": "Schema defining the structure of Amazon Polly speech synthesis resources, including voice configurations, lexicons, and synthesis task parameters for converting text to lifelike speech.",
+  "type": "object",
+  "required": [
+    "OutputFormat",
+    "Text",
+    "VoiceId"
+  ],
+  "properties": {
+    "Engine": {
+      "type": "string",
+      "enum": [
+        "standard",
+        "neural",
+        "long-form",
+        "generative"
+      ],
+      "description": "Specifies the engine for Amazon Polly to use when processing input text."
+    },
+    "LanguageCode": {
+      "type": "string",
+      "description": "The language identification tag for the voice."
+    },
+    "LexiconNames": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[0-9A-Za-z]{1,20}$"
+      },
+      "maxItems": 5,
+      "description": "List of one or more pronunciation lexicon names to apply during synthesis."
+    },
+    "OutputFormat": {
+      "type": "string",
+      "enum": [
+        "json",
+        "mp3",
+        "ogg_vorbis",
+        "pcm"
+      ],
+      "description": "The format in which the returned output will be encoded."
+    },
+    "SampleRate": {
+      "type": "string",
+      "description": "The audio frequency specified in Hz.",
+      "enum": [
+        "8000",
+        "16000",
+        "22050",
+        "24000"
+      ]
+    },
+    "SpeechMarkTypes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "sentence",
+          "ssml",
+          "viseme",
+          "word"
+        ]
+      },
+      "description": "The type of speech marks returned for the input text."
+    },
+    "Text": {
+      "type": "string",
+      "description": "The input text to synthesize.",
+      "maxLength": 3000
+    },
+    "TextType": {
+      "type": "string",
+      "enum": [
+        "ssml",
+        "text"
+      ],
+      "description": "Specifies whether the input text is plain text or SSML."
+    },
+    "VoiceId": {
+      "type": "string",
+      "description": "The voice ID to use for the synthesis."
+    }
+  },
+  "$defs": {
+    "Voice": {
+      "type": "object",
+      "description": "Description of an Amazon Polly voice.",
+      "properties": {
+        "Gender": {
+          "type": "string",
+          "enum": [
+            "Female",
+            "Male"
+          ],
+          "description": "Gender of the voice."
+        },
+        "Id": {
+          "type": "string",
+          "description": "Amazon Polly assigned voice ID."
+        },
+        "LanguageCode": {
+          "type": "string",
+          "description": "Language code of the voice."
+        },
+        "LanguageName": {
+          "type": "string",
+          "description": "Human-readable name of the language."
+        },
+        "Name": {
+          "type": "string",
+          "description": "Name of the voice."
+        },
+        "AdditionalLanguageCodes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Additional language codes the voice supports."
+        },
+        "SupportedEngines": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "standard",
+              "neural",
+              "long-form",
+              "generative"
+            ]
+          },
+          "description": "Specifies which engines are supported by the voice."
+        }
+      }
+    },
+    "Lexicon": {
+      "type": "object",
+      "description": "A pronunciation lexicon stored in an AWS Region.",
+      "properties": {
+        "Name": {
+          "type": "string",
+          "description": "Name of the lexicon.",
+          "pattern": "^[0-9A-Za-z]{1,20}$"
+        },
+        "Content": {
+          "type": "string",
+          "description": "Lexicon content in PLS format."
+        },
+        "LexiconArn": {
+          "type": "string",
+          "description": "The ARN of the lexicon."
+        },
+        "LexemesCount": {
+          "type": "integer",
+          "description": "Number of lexemes in the lexicon."
+        },
+        "Size": {
+          "type": "integer",
+          "description": "Total size of the lexicon in characters."
+        },
+        "Alphabet": {
+          "type": "string",
+          "description": "Phonetic alphabet used in the lexicon.",
+          "enum": [
+            "ipa",
+            "x-sampa"
+          ]
+        },
+        "LanguageCode": {
+          "type": "string",
+          "description": "Language code the lexicon applies to."
+        },
+        "LastModified": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the lexicon was last modified."
+        }
+      }
+    },
+    "SynthesisTask": {
+      "type": "object",
+      "description": "An asynchronous speech synthesis task.",
+      "properties": {
+        "TaskId": {
+          "type": "string",
+          "description": "The unique identifier of the synthesis task."
+        },
+        "TaskStatus": {
+          "type": "string",
+          "enum": [
+            "scheduled",
+            "inProgress",
+            "completed",
+            "failed"
+          ],
+          "description": "Current status of the synthesis task."
+        },
+        "TaskStatusReason": {
+          "type": "string",
+          "description": "Reason for the current status of the task."
+        },
+        "OutputUri": {
+          "type": "string",
+          "format": "uri",
+          "description": "Pathway for the output speech file."
+        },
+        "OutputFormat": {
+          "type": "string",
+          "enum": [
+            "json",
+            "mp3",
+            "ogg_vorbis",
+            "pcm"
+          ]
+        },
+        "Engine": {
+          "type": "string",
+          "enum": [
+            "standard",
+            "neural",
+            "long-form",
+            "generative"
+          ]
+        },
+        "VoiceId": {
+          "type": "string"
+        },
+        "LanguageCode": {
+          "type": "string"
+        },
+        "CreationTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "RequestCharacters": {
+          "type": "integer",
+          "description": "Number of billable characters in the request."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "polly": "https://docs.aws.amazon.com/polly/latest/dg/",
+    "aws": "https://aws.amazon.com/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "SynthesizeSpeechInput": {
+      "@id": "polly:API_SynthesizeSpeech",
+      "@context": {
+        "Engine": {
+          "@id": "polly:engine",
+          "@type": "xsd:string"
+        },
+        "LanguageCode": {
+          "@id": "schema:inLanguage",
+          "@type": "xsd:string"
+        },
+        "LexiconNames": {
+          "@id": "polly:lexiconNames",
+          "@container": "@list"
+        },
+        "OutputFormat": {
+          "@id": "schema:encodingFormat",
+          "@type": "xsd:string"
+        },
+        "SampleRate": {
+          "@id": "polly:sampleRate",
+          "@type": "xsd:string"
+        },
+        "SpeechMarkTypes": {
+          "@id": "polly:speechMarkTypes",
+          "@container": "@list"
+        },
+        "Text": {
+          "@id": "schema:text",
+          "@type": "xsd:string"
+        },
+        "TextType": {
+          "@id": "polly:textType",
+          "@type": "xsd:string"
+        },
+        "VoiceId": {
+          "@id": "polly:voiceId",
+          "@type": "xsd:string"
+        }
+      }
+    },
+
+    "Voice": {
+      "@id": "polly:API_DescribeVoices",
+      "@context": {
+        "Gender": {
+          "@id": "schema:gender",
+          "@type": "xsd:string"
+        },
+        "Id": {
+          "@id": "schema:identifier",
+          "@type": "xsd:string"
+        },
+        "LanguageCode": {
+          "@id": "schema:inLanguage",
+          "@type": "xsd:string"
+        },
+        "LanguageName": {
+          "@id": "polly:languageName",
+          "@type": "xsd:string"
+        },
+        "Name": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "AdditionalLanguageCodes": {
+          "@id": "polly:additionalLanguageCodes",
+          "@container": "@list"
+        },
+        "SupportedEngines": {
+          "@id": "polly:supportedEngines",
+          "@container": "@list"
+        }
+      }
+    },
+
+    "Lexicon": {
+      "@id": "polly:API_GetLexicon",
+      "@context": {
+        "Name": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "Content": {
+          "@id": "polly:lexiconContent",
+          "@type": "xsd:string"
+        },
+        "LexiconArn": {
+          "@id": "schema:identifier",
+          "@type": "xsd:string"
+        },
+        "LexemesCount": {
+          "@id": "polly:lexemesCount",
+          "@type": "xsd:integer"
+        },
+        "Size": {
+          "@id": "polly:lexiconSize",
+          "@type": "xsd:integer"
+        },
+        "Alphabet": {
+          "@id": "polly:alphabet",
+          "@type": "xsd:string"
+        },
+        "LanguageCode": {
+          "@id": "schema:inLanguage",
+          "@type": "xsd:string"
+        },
+        "LastModified": {
+          "@id": "schema:dateModified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "SynthesisTask": {
+      "@id": "polly:API_GetSpeechSynthesisTask",
+      "@context": {
+        "TaskId": {
+          "@id": "schema:identifier",
+          "@type": "xsd:string"
+        },
+        "TaskStatus": {
+          "@id": "polly:taskStatus",
+          "@type": "xsd:string"
+        },
+        "TaskStatusReason": {
+          "@id": "polly:taskStatusReason",
+          "@type": "xsd:string"
+        },
+        "OutputUri": {
+          "@id": "schema:url",
+          "@type": "@id"
+        },
+        "OutputFormat": {
+          "@id": "schema:encodingFormat",
+          "@type": "xsd:string"
+        },
+        "Engine": {
+          "@id": "polly:engine",
+          "@type": "xsd:string"
+        },
+        "VoiceId": {
+          "@id": "polly:voiceId",
+          "@type": "xsd:string"
+        },
+        "LanguageCode": {
+          "@id": "schema:inLanguage",
+          "@type": "xsd:string"
+        },
+        "CreationTime": {
+          "@id": "schema:dateCreated",
+          "@type": "xsd:dateTime"
+        },
+        "RequestCharacters": {
+          "@id": "polly:requestCharacters",
+          "@type": "xsd:integer"
+        }
+      }
+    }
+  }
+}
