@@ -41,10 +41,10 @@ servers:
 security:
   - sigv4: []
 tags:
-  - name: Speech Synthesis
-    description: Operations for synthesizing speech from text
   - name: Lexicons
     description: Operations for managing pronunciation lexicons
+  - name: Speech Synthesis
+    description: Operations for synthesizing speech from text
   - name: Voices
     description: Operations for listing available voices
 paths:
