@@ -1,7 +1,7 @@
-# Amazon Polly (amazon-polly)
+# Amazon Polly
 Amazon Polly is a cloud service that converts text into lifelike speech, enabling you to create applications that talk and build entirely new categories of speech-enabled products. Polly supports multiple voices, languages, and audio output formats including neural and generative engines for natural-sounding speech.
 
-**URL:** [https://aws.amazon.com/polly/](https://aws.amazon.com/polly/)
+**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/amazon-polly/refs/heads/main/apis.yml)
 
 **Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
 
@@ -61,6 +61,72 @@ The Amazon Polly API enables you to synthesize speech from text (plain text or S
 - [SpectralRules](rules/amazon-polly-spectral-rules.yml)
 - [NaftikoCapability](capabilities/text-to-speech.yaml)
 - [Vocabulary](vocabulary/amazon-polly-vocabulary.yaml)
+- [JSON-LD](json-ld/amazon-polly-context.jsonld)
+- [JSONSchema](json-schema/amazon-polly-describe-voices-output-schema.json)
+- [JSONSchema](json-schema/amazon-polly-engine-schema.json)
+- [JSONSchema](json-schema/amazon-polly-gender-schema.json)
+- [JSONSchema](json-schema/amazon-polly-get-lexicon-output-schema.json)
+- [JSONSchema](json-schema/amazon-polly-get-speech-synthesis-task-output-schema.json)
+- [JSONSchema](json-schema/amazon-polly-language-code-schema.json)
+- [JSONSchema](json-schema/amazon-polly-lexicon-attributes-schema.json)
+- [JSONSchema](json-schema/amazon-polly-lexicon-description-schema.json)
+- [JSONSchema](json-schema/amazon-polly-lexicon-schema.json)
+- [JSONSchema](json-schema/amazon-polly-list-lexicons-output-schema.json)
+- [JSONSchema](json-schema/amazon-polly-list-speech-synthesis-tasks-output-schema.json)
+- [JSONSchema](json-schema/amazon-polly-output-format-schema.json)
+- [JSONSchema](json-schema/amazon-polly-put-lexicon-input-schema.json)
+- [JSONSchema](json-schema/amazon-polly-schema.json)
+- [JSONSchema](json-schema/amazon-polly-speech-mark-type-schema.json)
+- [JSONSchema](json-schema/amazon-polly-start-speech-synthesis-task-input-schema.json)
+- [JSONSchema](json-schema/amazon-polly-start-speech-synthesis-task-output-schema.json)
+- [JSONSchema](json-schema/amazon-polly-synthesis-task-schema.json)
+- [JSONSchema](json-schema/amazon-polly-synthesize-speech-input-schema.json)
+- [JSONSchema](json-schema/amazon-polly-synthesize-speech-output-schema.json)
+- [JSONSchema](json-schema/amazon-polly-task-status-schema.json)
+- [JSONSchema](json-schema/amazon-polly-text-type-schema.json)
+- [JSONSchema](json-schema/amazon-polly-voice-id-schema.json)
+- [JSONSchema](json-schema/amazon-polly-voice-schema.json)
+- [JSONStructure](json-structure/amazon-polly-describe-voices-output-structure.json)
+- [JSONStructure](json-structure/amazon-polly-engine-structure.json)
+- [JSONStructure](json-structure/amazon-polly-gender-structure.json)
+- [JSONStructure](json-structure/amazon-polly-get-lexicon-output-structure.json)
+- [JSONStructure](json-structure/amazon-polly-get-speech-synthesis-task-output-structure.json)
+- [JSONStructure](json-structure/amazon-polly-language-code-structure.json)
+- [JSONStructure](json-structure/amazon-polly-lexicon-attributes-structure.json)
+- [JSONStructure](json-structure/amazon-polly-lexicon-description-structure.json)
+- [JSONStructure](json-structure/amazon-polly-lexicon-structure.json)
+- [JSONStructure](json-structure/amazon-polly-list-lexicons-output-structure.json)
+- [JSONStructure](json-structure/amazon-polly-list-speech-synthesis-tasks-output-structure.json)
+- [JSONStructure](json-structure/amazon-polly-output-format-structure.json)
+- [JSONStructure](json-structure/amazon-polly-put-lexicon-input-structure.json)
+- [JSONStructure](json-structure/amazon-polly-speech-mark-type-structure.json)
+- [JSONStructure](json-structure/amazon-polly-start-speech-synthesis-task-input-structure.json)
+- [JSONStructure](json-structure/amazon-polly-start-speech-synthesis-task-output-structure.json)
+- [JSONStructure](json-structure/amazon-polly-structure.json)
+- [JSONStructure](json-structure/amazon-polly-synthesis-task-structure.json)
+- [JSONStructure](json-structure/amazon-polly-synthesize-speech-input-structure.json)
+- [JSONStructure](json-structure/amazon-polly-synthesize-speech-output-structure.json)
+- [JSONStructure](json-structure/amazon-polly-task-status-structure.json)
+- [JSONStructure](json-structure/amazon-polly-text-type-structure.json)
+- [JSONStructure](json-structure/amazon-polly-voice-id-structure.json)
+- [JSONStructure](json-structure/amazon-polly-voice-structure.json)
+- [Example](examples/amazon-polly-describe-voices-output-example.json)
+- [Example](examples/amazon-polly-example.json)
+- [Example](examples/amazon-polly-get-lexicon-output-example.json)
+- [Example](examples/amazon-polly-get-speech-synthesis-task-output-example.json)
+- [Example](examples/amazon-polly-lexicon-attributes-example.json)
+- [Example](examples/amazon-polly-lexicon-description-example.json)
+- [Example](examples/amazon-polly-lexicon-example.json)
+- [Example](examples/amazon-polly-list-lexicons-output-example.json)
+- [Example](examples/amazon-polly-list-speech-synthesis-tasks-output-example.json)
+- [Example](examples/amazon-polly-put-lexicon-input-example.json)
+- [Example](examples/amazon-polly-start-speech-synthesis-task-input-example.json)
+- [Example](examples/amazon-polly-start-speech-synthesis-task-output-example.json)
+- [Example](examples/amazon-polly-synthesis-task-example.json)
+- [Example](examples/amazon-polly-synthesize-speech-input-example.json)
+- [Example](examples/amazon-polly-synthesize-speech-output-example.json)
+- [Example](examples/amazon-polly-voice-example.json)
+- [NaftikoCapability](capabilities/shared/amazon-polly.yaml)
 
 ## Features
 
@@ -102,24 +168,54 @@ Machine-readable API specifications organized by format.
 
 ### OpenAPI
 
-- [Amazon Polly OpenAPI (simple)](openapi/amazon-polly-openapi.yml)
-- [Amazon Polly OpenAPI (full - 9 operations)](openapi/amazon-polly-openapi-original.yaml)
+- [amazon-polly-openapi-original.yaml](openapi/amazon-polly-openapi-original.yaml)
+- [amazon-polly-openapi.yml](openapi/amazon-polly-openapi.yml)
 
 ### JSON Schema
 
-23 schema files covering Amazon Polly API resource types including voices, lexicons, and synthesis tasks.
+- [amazon-polly-describe-voices-output-schema.json](json-schema/amazon-polly-describe-voices-output-schema.json)
+- [amazon-polly-engine-schema.json](json-schema/amazon-polly-engine-schema.json)
+- [amazon-polly-gender-schema.json](json-schema/amazon-polly-gender-schema.json)
+- [amazon-polly-get-lexicon-output-schema.json](json-schema/amazon-polly-get-lexicon-output-schema.json)
+- [amazon-polly-get-speech-synthesis-task-output-schema.json](json-schema/amazon-polly-get-speech-synthesis-task-output-schema.json)
+- [amazon-polly-language-code-schema.json](json-schema/amazon-polly-language-code-schema.json)
+- [amazon-polly-lexicon-attributes-schema.json](json-schema/amazon-polly-lexicon-attributes-schema.json)
+- [amazon-polly-lexicon-description-schema.json](json-schema/amazon-polly-lexicon-description-schema.json)
+- [amazon-polly-lexicon-schema.json](json-schema/amazon-polly-lexicon-schema.json)
+- [amazon-polly-list-lexicons-output-schema.json](json-schema/amazon-polly-list-lexicons-output-schema.json)
+- ...and 14 more
 
 ### JSON Structure
 
-24 JSON Structure files converted from JSON Schema with strict typing.
+- [amazon-polly-describe-voices-output-structure.json](json-structure/amazon-polly-describe-voices-output-structure.json)
+- [amazon-polly-engine-structure.json](json-structure/amazon-polly-engine-structure.json)
+- [amazon-polly-gender-structure.json](json-structure/amazon-polly-gender-structure.json)
+- [amazon-polly-get-lexicon-output-structure.json](json-structure/amazon-polly-get-lexicon-output-structure.json)
+- [amazon-polly-get-speech-synthesis-task-output-structure.json](json-structure/amazon-polly-get-speech-synthesis-task-output-structure.json)
+- [amazon-polly-language-code-structure.json](json-structure/amazon-polly-language-code-structure.json)
+- [amazon-polly-lexicon-attributes-structure.json](json-structure/amazon-polly-lexicon-attributes-structure.json)
+- [amazon-polly-lexicon-description-structure.json](json-structure/amazon-polly-lexicon-description-structure.json)
+- [amazon-polly-lexicon-structure.json](json-structure/amazon-polly-lexicon-structure.json)
+- [amazon-polly-list-lexicons-output-structure.json](json-structure/amazon-polly-list-lexicons-output-structure.json)
+- ...and 14 more
 
 ### JSON-LD
 
-- [Amazon Polly Context](json-ld/amazon-polly-context.jsonld)
+- [amazon-polly-context.jsonld](json-ld/amazon-polly-context.jsonld)
 
 ### Examples
 
-16 example JSON files generated from JSON Schema definitions.
+- [amazon-polly-describe-voices-output-example.json](examples/amazon-polly-describe-voices-output-example.json)
+- [amazon-polly-example.json](examples/amazon-polly-example.json)
+- [amazon-polly-get-lexicon-output-example.json](examples/amazon-polly-get-lexicon-output-example.json)
+- [amazon-polly-get-speech-synthesis-task-output-example.json](examples/amazon-polly-get-speech-synthesis-task-output-example.json)
+- [amazon-polly-lexicon-attributes-example.json](examples/amazon-polly-lexicon-attributes-example.json)
+- [amazon-polly-lexicon-description-example.json](examples/amazon-polly-lexicon-description-example.json)
+- [amazon-polly-lexicon-example.json](examples/amazon-polly-lexicon-example.json)
+- [amazon-polly-list-lexicons-output-example.json](examples/amazon-polly-list-lexicons-output-example.json)
+- [amazon-polly-list-speech-synthesis-tasks-output-example.json](examples/amazon-polly-list-speech-synthesis-tasks-output-example.json)
+- [amazon-polly-put-lexicon-input-example.json](examples/amazon-polly-put-lexicon-input-example.json)
+- ...and 6 more
 
 ## Capabilities
 
@@ -127,24 +223,23 @@ Naftiko capabilities organized as shared per-API definitions composed into custo
 
 ### Shared Per-API Definitions
 
-- [Amazon Polly API](capabilities/shared/amazon-polly.yaml) — 7 operations for text-to-speech synthesis
+- [amazon-polly.yaml](capabilities/shared/amazon-polly.yaml)
 
 ### Workflow Capabilities
 
-| Workflow | APIs Combined | Tools | Persona |
-|----------|--------------|-------|---------|
-| [Text-to-Speech](capabilities/text-to-speech.yaml) | Amazon Polly API | 7 | Application Developer, Content Creator |
+- [text-to-speech.yaml](capabilities/text-to-speech.yaml)
 
 ## Vocabulary
 
-- [Amazon Polly Vocabulary](vocabulary/amazon-polly-vocabulary.yaml) — Unified taxonomy mapping resources, actions, workflows, and personas across operational (OpenAPI) and capability (Naftiko) dimensions
+- [amazon-polly-vocabulary.yaml](vocabulary/amazon-polly-vocabulary.yaml)
 
 ## Rules
 
-- [Amazon Polly Spectral Rules](rules/amazon-polly-spectral-rules.yml) — 22 rules across 10 categories enforcing Amazon Polly API conventions
+- [amazon-polly-spectral-rules.yml](rules/amazon-polly-spectral-rules.yml)
 
 ## Maintainers
 
 **FN:** Kin Lane
 
 **Email:** kin@apievangelist.com
+
