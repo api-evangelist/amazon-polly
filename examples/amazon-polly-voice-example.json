@@ -1,0 +1,9 @@
+{
+  "Gender": "example-Gender",
+  "Id": "voice-620",
+  "LanguageCode": "en-US",
+  "LanguageName": "Joanna",
+  "Name": "Joanna",
+  "AdditionalLanguageCodes": "en-US",
+  "SupportedEngines": "neural"
+}

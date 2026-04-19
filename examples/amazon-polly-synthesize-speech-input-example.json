@@ -1,0 +1,11 @@
+{
+  "Engine": "neural",
+  "LanguageCode": "en-US",
+  "LexiconNames": "Joanna",
+  "OutputFormat": "mp3",
+  "SampleRate": "example-SampleRate",
+  "SpeechMarkTypes": "example-SpeechMarkTypes",
+  "Text": "Hello, this is a sample text for speech synthesis.",
+  "TextType": "Hello, this is a sample text for speech synthesis.",
+  "VoiceId": "voice-304"
+}

@@ -1,0 +1,186 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: Amazon Polly Text-to-Speech
+  description: Workflow capability for converting text to lifelike speech using Amazon Polly. Combines speech synthesis, voice discovery, and lexicon management for developers building voice-enabled applications.
+  tags:
+    - Amazon
+    - AWS
+    - Text-To-Speech
+    - Speech Synthesis
+    - AI
+    - Voice Applications
+    - Machine Learning
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      AWS_ACCESS_KEY_ID: AWS_ACCESS_KEY_ID
+      AWS_SECRET_ACCESS_KEY: AWS_SECRET_ACCESS_KEY
+      AWS_REGION: AWS_REGION
+
+capability:
+  consumes:
+    - import: amazon-polly
+      location: ./shared/amazon-polly.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: text-to-speech-api
+      description: Unified REST API for Amazon Polly text-to-speech workflows.
+      resources:
+        - path: /v1/speech
+          name: speech
+          description: Speech synthesis from text
+          operations:
+            - method: POST
+              name: synthesize-speech
+              description: Convert text to speech audio
+              call: "amazon-polly.synthesize-speech"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/voices
+          name: voices
+          description: Available synthesis voices
+          operations:
+            - method: GET
+              name: list-voices
+              description: List available voices by language and engine
+              call: "amazon-polly.describe-voices"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/lexicons
+          name: lexicons
+          description: Custom pronunciation lexicons
+          operations:
+            - method: GET
+              name: list-lexicons
+              description: List pronunciation lexicons
+              call: "amazon-polly.list-lexicons"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: PUT
+              name: create-lexicon
+              description: Create or update a pronunciation lexicon
+              call: "amazon-polly.put-lexicon"
+              with:
+                LexiconName: "rest.lexicon_name"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/tasks
+          name: tasks
+          description: Asynchronous synthesis tasks
+          operations:
+            - method: POST
+              name: start-task
+              description: Start an asynchronous speech synthesis task
+              call: "amazon-polly.start-speech-synthesis-task"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: GET
+              name: list-tasks
+              description: List synthesis tasks
+              call: "amazon-polly.list-speech-synthesis-tasks"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: text-to-speech-mcp
+      transport: http
+      description: MCP server for AI-assisted text-to-speech workflows with Amazon Polly.
+      tools:
+        - name: synthesize-speech
+          description: Convert text to lifelike speech audio using Amazon Polly
+          hints:
+            readOnly: false
+            destructive: false
+          call: "amazon-polly.synthesize-speech"
+          with:
+            text: "tools.text"
+            voice_id: "tools.voice_id"
+            output_format: "tools.output_format"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-voices
+          description: List available Amazon Polly voices filterable by language and engine type
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "amazon-polly.describe-voices"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-lexicons
+          description: List custom pronunciation lexicons for controlling how words are spoken
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "amazon-polly.list-lexicons"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-lexicon
+          description: Get the content of a pronunciation lexicon
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "amazon-polly.get-lexicon"
+          with:
+            LexiconName: "tools.lexicon_name"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: create-lexicon
+          description: Create or update a custom pronunciation lexicon
+          hints:
+            readOnly: false
+            destructive: false
+          call: "amazon-polly.put-lexicon"
+          with:
+            LexiconName: "tools.lexicon_name"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: start-synthesis-task
+          description: Start an asynchronous synthesis task for long text with S3 output
+          hints:
+            readOnly: false
+            destructive: false
+          call: "amazon-polly.start-speech-synthesis-task"
+          with:
+            text: "tools.text"
+            voice_id: "tools.voice_id"
+            output_format: "tools.output_format"
+            bucket: "tools.bucket"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-synthesis-tasks
+          description: List and monitor asynchronous speech synthesis tasks
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "amazon-polly.list-speech-synthesis-tasks"
+          outputParameters:
+            - type: object
+              mapping: "$."

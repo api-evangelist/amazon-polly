@@ -1,0 +1,14 @@
+{
+  "Engine": "neural",
+  "LanguageCode": "en-US",
+  "LexiconNames": "Joanna",
+  "OutputFormat": "mp3",
+  "OutputS3BucketName": "Joanna",
+  "OutputS3KeyPrefix": "mp3",
+  "SampleRate": "example-SampleRate",
+  "SnsTopicArn": "example-SnsTopicArn",
+  "SpeechMarkTypes": "example-SpeechMarkTypes",
+  "Text": "Hello, this is a sample text for speech synthesis.",
+  "TextType": "Hello, this is a sample text for speech synthesis.",
+  "VoiceId": "voice-709"
+}

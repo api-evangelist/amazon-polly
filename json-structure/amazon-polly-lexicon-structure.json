@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-polly/refs/heads/main/json-structure/amazon-polly-lexicon-structure.json",
+  "name": "Lexicon",
+  "description": "Provides lexicon name and lexicon content in string format. For more information, see <a href=\"https://www.w3.org/TR/pronunciation-lexicon/\">Pronunciation Lexicon Specification (PLS) Version 1.0</a>.",
+  "type": "object",
+  "properties": {
+    "Content": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/LexiconContent"
+        },
+        {
+          "description": "Lexicon content in string format. The content of a lexicon must be in PLS format."
+        }
+      ]
+    },
+    "Name": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/LexiconName"
+        },
+        {
+          "description": "Name of the lexicon."
+        }
+      ]
+    }
+  }
+}

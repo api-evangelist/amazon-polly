@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-polly/refs/heads/main/json-schema/amazon-polly-put-lexicon-input-schema.json",
+  "title": "PutLexiconInput",
+  "description": "PutLexiconInput schema from Amazon Polly API",
+  "type": "object",
+  "properties": {
+    "Content": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/LexiconContent"
+        },
+        {
+          "description": "Content of the PLS lexicon as string data."
+        }
+      ]
+    }
+  },
+  "required": [
+    "Content"
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-polly/refs/heads/main/json-structure/amazon-polly-lexicon-attributes-structure.json",
+  "name": "LexiconAttributes",
+  "description": "Contains metadata describing the lexicon such as the number of lexemes, language code, and so on. For more information, see <a href=\"https://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html\">Managing Lexicons</a>.",
+  "type": "object",
+  "properties": {
+    "Alphabet": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/Alphabet"
+        },
+        {
+          "description": "Phonetic alphabet used in the lexicon. Valid values are <code>ipa</code> and <code>x-sampa</code>."
+        }
+      ]
+    },
+    "LanguageCode": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/LanguageCode"
+        },
+        {
+          "description": "Language code that the lexicon applies to. A lexicon with a language code such as \"en\" would be applied to all English languages (en-GB, en-US, en-AUS, en-WLS, and so on."
+        }
+      ]
+    },
+    "LastModified": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/LastModified"
+        },
+        {
+          "description": "Date lexicon was last modified (a timestamp value)."
+        }
+      ]
+    },
+    "LexiconArn": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/LexiconArn"
+        },
+        {
+          "description": "Amazon Resource Name (ARN) of the lexicon."
+        }
+      ]
+    },
+    "LexemesCount": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/LexemesCount"
+        },
+        {
+          "description": "Number of lexemes in the lexicon."
+        }
+      ]
+    },
+    "Size": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/Size"
+        },
+        {
+          "description": "Total size of the lexicon, in characters."
+        }
+      ]
+    }
+  }
+}

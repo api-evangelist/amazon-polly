@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-polly/refs/heads/main/json-structure/amazon-polly-lexicon-description-structure.json",
+  "name": "LexiconDescription",
+  "description": "Describes the content of the lexicon.",
+  "type": "object",
+  "properties": {
+    "Name": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/LexiconName"
+        },
+        {
+          "description": "Name of the lexicon."
+        }
+      ]
+    },
+    "Attributes": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/LexiconAttributes"
+        },
+        {
+          "description": "Provides lexicon metadata."
+        }
+      ]
+    }
+  }
+}

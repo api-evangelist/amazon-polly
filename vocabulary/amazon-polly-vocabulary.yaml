@@ -1,0 +1,191 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: Amazon Polly
+  description: Vocabulary for Amazon Polly text-to-speech API covering voices, lexicons, synthesis tasks, and audio output formats.
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+operational:
+  apis:
+    - namespace: amazon-polly
+      version: "2016-06-10"
+      baseUrl: https://polly.{region}.amazonaws.com
+      status: active
+      description: Amazon Polly text-to-speech synthesis API
+
+  resources:
+    - name: speech
+      api: amazon-polly
+      operations: [SynthesizeSpeech]
+    - name: voices
+      api: amazon-polly
+      operations: [DescribeVoices]
+    - name: lexicons
+      api: amazon-polly
+      operations: [ListLexicons, GetLexicon, PutLexicon, DeleteLexicon]
+    - name: synthesis-tasks
+      api: amazon-polly
+      operations: [StartSpeechSynthesisTask, ListSpeechSynthesisTasks, GetSpeechSynthesisTask]
+
+  actions:
+    - verb: synthesize
+      httpMethod: POST
+      pattern: write
+      count: 1
+    - verb: describe
+      httpMethod: GET
+      pattern: read
+      count: 1
+    - verb: list
+      httpMethod: GET
+      pattern: read
+      count: 2
+    - verb: get
+      httpMethod: GET
+      pattern: read
+      count: 2
+    - verb: put
+      httpMethod: PUT
+      pattern: write
+      count: 1
+    - verb: delete
+      httpMethod: DELETE
+      pattern: destructive
+      count: 1
+    - verb: start
+      httpMethod: POST
+      pattern: write
+      count: 1
+
+  schemas:
+    core:
+      - SynthesisTask
+      - Voice
+      - Lexicon
+      - LexiconAttributes
+    audio:
+      - OutputFormat
+      - SpeechMarkType
+      - TextType
+    engines:
+      - Engine
+      - LanguageCode
+
+  parameters:
+    pagination:
+      - NextToken
+      - MaxResults
+    filters:
+      - LanguageCode
+      - Engine
+      - Status
+    identifiers:
+      - LexiconName
+      - TaskId
+      - VoiceId
+
+  enums:
+    output-formats:
+      - json
+      - mp3
+      - ogg_vorbis
+      - pcm
+    engines:
+      - standard
+      - neural
+      - long-form
+      - generative
+    text-types:
+      - ssml
+      - text
+    task-status:
+      - scheduled
+      - inProgress
+      - completed
+      - failed
+
+  authentication:
+    schemes:
+      - AWS Signature Version 4 (SigV4)
+    description: All requests must be signed with AWS SigV4 using polly signing name
+
+capability:
+  workflows:
+    - name: Text-to-Speech
+      file: capabilities/text-to-speech.yaml
+      description: Multi-channel text-to-speech synthesis workflow
+      apisUsed:
+        - Amazon Polly API
+      personas:
+        - Application Developer
+        - Content Creator
+
+  personas:
+    - id: application-developer
+      name: Application Developer
+      description: Builds voice-enabled applications using Polly speech synthesis
+      workflows:
+        - Text-to-Speech
+    - id: content-creator
+      name: Content Creator
+      description: Creates audio content from written text using Polly
+      workflows:
+        - Text-to-Speech
+
+  domains:
+    - Text-to-Speech
+    - Voice Applications
+    - AI
+    - Machine Learning
+
+  namespaces:
+    - name: amazon-polly
+      type: consumed
+      baseUri: https://polly.{region}.amazonaws.com
+    - name: text-to-speech-api
+      type: rest
+      port: 8080
+    - name: text-to-speech-mcp
+      type: mcp
+      port: 9090
+
+  binds:
+    - AWS_ACCESS_KEY_ID
+    - AWS_SECRET_ACCESS_KEY
+    - AWS_REGION
+
+crossReference:
+  - resource: speech
+    operations:
+      - SynthesizeSpeech
+    workflows:
+      - Text-to-Speech
+    personas:
+      - Application Developer
+      - Content Creator
+  - resource: voices
+    operations:
+      - DescribeVoices
+    workflows:
+      - Text-to-Speech
+    personas:
+      - Application Developer
+  - resource: lexicons
+    operations:
+      - ListLexicons
+      - GetLexicon
+      - PutLexicon
+    workflows:
+      - Text-to-Speech
+    personas:
+      - Application Developer
+  - resource: synthesis-tasks
+    operations:
+      - StartSpeechSynthesisTask
+      - ListSpeechSynthesisTasks
+    workflows:
+      - Text-to-Speech
+    personas:
+      - Application Developer
+      - Content Creator

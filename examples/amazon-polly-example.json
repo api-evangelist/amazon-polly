@@ -1,0 +1,15 @@
+{
+  "Engine": "generative",
+  "LanguageCode": "en-US",
+  "LexiconNames": [
+    "Joanna"
+  ],
+  "OutputFormat": "mp3",
+  "SampleRate": "24000",
+  "SpeechMarkTypes": [
+    "viseme"
+  ],
+  "Text": "Hello, this is a sample text for speech synthesis.",
+  "TextType": "ssml",
+  "VoiceId": "voice-292"
+}

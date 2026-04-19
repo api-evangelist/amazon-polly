@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-polly/refs/heads/main/json-schema/amazon-polly-start-speech-synthesis-task-output-schema.json",
+  "title": "StartSpeechSynthesisTaskOutput",
+  "description": "StartSpeechSynthesisTaskOutput schema from Amazon Polly API",
+  "type": "object",
+  "properties": {
+    "SynthesisTask": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/SynthesisTask"
+        },
+        {
+          "description": "SynthesisTask object that provides information and attributes about a newly submitted speech synthesis task."
+        }
+      ]
+    }
+  }
+}

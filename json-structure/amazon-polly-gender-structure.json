@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-polly/refs/heads/main/json-structure/amazon-polly-gender-structure.json",
+  "name": "Gender",
+  "description": "Gender schema from Amazon Polly API",
+  "type": "string",
+  "enum": [
+    "Female",
+    "Male"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-polly/refs/heads/main/json-schema/amazon-polly-list-lexicons-output-schema.json",
+  "title": "ListLexiconsOutput",
+  "description": "ListLexiconsOutput schema from Amazon Polly API",
+  "type": "object",
+  "properties": {
+    "Lexicons": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/LexiconDescriptionList"
+        },
+        {
+          "description": "A list of lexicon names and attributes."
+        }
+      ]
+    },
+    "NextToken": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/NextToken"
+        },
+        {
+          "description": "The pagination token to use in the next request to continue the listing of lexicons. <code>NextToken</code> is returned only if the response is truncated."
+        }
+      ]
+    }
+  },
+  "example": {
+    "Lexicons": [
+      {
+        "Attributes": {
+          "Alphabet": "ipa",
+          "LanguageCode": "en-US",
+          "LastModified": 1478542980.117,
+          "LexemesCount": 1,
+          "LexiconArn": "arn:aws:polly:us-east-1:123456789012:lexicon/example",
+          "Size": 503
+        },
+        "Name": "example"
+      }
+    ]
+  }
+}

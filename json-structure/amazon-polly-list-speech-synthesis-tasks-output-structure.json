@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-polly/refs/heads/main/json-structure/amazon-polly-list-speech-synthesis-tasks-output-structure.json",
+  "name": "ListSpeechSynthesisTasksOutput",
+  "description": "ListSpeechSynthesisTasksOutput schema from Amazon Polly API",
+  "type": "object",
+  "properties": {
+    "NextToken": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/NextToken"
+        },
+        {
+          "description": "An opaque pagination token returned from the previous List operation in this request. If present, this indicates where to continue the listing."
+        }
+      ]
+    },
+    "SynthesisTasks": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/SynthesisTasks"
+        },
+        {
+          "description": "List of SynthesisTask objects that provides information from the specified task in the list request, including output format, creation time, task status, and so on."
+        }
+      ]
+    }
+  }
+}

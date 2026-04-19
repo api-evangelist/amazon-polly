@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-polly/refs/heads/main/json-structure/amazon-polly-get-lexicon-output-structure.json",
+  "name": "GetLexiconOutput",
+  "description": "GetLexiconOutput schema from Amazon Polly API",
+  "type": "object",
+  "properties": {
+    "Lexicon": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/Lexicon"
+        },
+        {
+          "description": "Lexicon object that provides name and the string content of the lexicon. "
+        }
+      ]
+    },
+    "LexiconAttributes": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/LexiconAttributes"
+        },
+        {
+          "description": "Metadata of the lexicon, including phonetic alphabetic used, language code, lexicon ARN, number of lexemes defined in the lexicon, and size of lexicon in bytes."
+        }
+      ]
+    }
+  },
+  "example": {
+    "Lexicon": {
+      "Content": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<lexicon version=\"1.0\" \r\n      xmlns=\"http://www.w3.org/2005/01/pronunciation-lexicon\"\r\n      xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" \r\n      xsi:schemaLocation=\"http://www.w3.org/2005/01/pronunciation-lexicon \r\n        http://www.w3.org/TR/2007/CR-pronunciation-lexicon-20071212/pls.xsd\"\r\n      alphabet=\"ipa\" \r\n      xml:lang=\"en-US\">\r\n  <lexeme>\r\n    <grapheme>W3C</grapheme>\r\n    <alias>World Wide Web Consortium</alias>\r\n  </lexeme>\r\n</lexicon>",
+      "Name": "example"
+    },
+    "LexiconAttributes": {
+      "Alphabet": "ipa",
+      "LanguageCode": "en-US",
+      "LastModified": 1478542980.117,
+      "LexemesCount": 1,
+      "LexiconArn": "arn:aws:polly:us-east-1:123456789012:lexicon/example",
+      "Size": 503
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-polly/refs/heads/main/json-structure/amazon-polly-output-format-structure.json",
+  "name": "OutputFormat",
+  "description": "OutputFormat schema from Amazon Polly API",
+  "type": "string",
+  "enum": [
+    "json",
+    "mp3",
+    "ogg_vorbis",
+    "pcm"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-polly/refs/heads/main/json-structure/amazon-polly-get-speech-synthesis-task-output-structure.json",
+  "name": "GetSpeechSynthesisTaskOutput",
+  "description": "GetSpeechSynthesisTaskOutput schema from Amazon Polly API",
+  "type": "object",
+  "properties": {
+    "SynthesisTask": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/SynthesisTask"
+        },
+        {
+          "description": "SynthesisTask object that provides information from the requested task, including output format, creation time, task status, and so on."
+        }
+      ]
+    }
+  }
+}

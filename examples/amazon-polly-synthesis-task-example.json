@@ -1,0 +1,17 @@
+{
+  "Engine": "neural",
+  "TaskId": "voice-382",
+  "TaskStatus": "example-TaskStatus",
+  "TaskStatusReason": "example-TaskStatusReason",
+  "OutputUri": "mp3",
+  "CreationTime": "example-CreationTime",
+  "RequestCharacters": "example-RequestCharacters",
+  "SnsTopicArn": "example-SnsTopicArn",
+  "LexiconNames": "Joanna",
+  "OutputFormat": "mp3",
+  "SampleRate": "example-SampleRate",
+  "SpeechMarkTypes": "example-SpeechMarkTypes",
+  "TextType": "Hello, this is a sample text for speech synthesis.",
+  "VoiceId": "voice-393",
+  "LanguageCode": "en-US"
+}

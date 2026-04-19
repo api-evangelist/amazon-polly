@@ -1,0 +1,276 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: Amazon Polly API
+  description: Text-to-speech synthesis API supporting multiple voices, languages, and output formats.
+  tags:
+    - Amazon
+    - AWS
+    - Text-To-Speech
+    - Speech Synthesis
+    - AI
+    - Machine Learning
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      AWS_ACCESS_KEY_ID: AWS_ACCESS_KEY_ID
+      AWS_SECRET_ACCESS_KEY: AWS_SECRET_ACCESS_KEY
+      AWS_REGION: AWS_REGION
+
+capability:
+  consumes:
+    - type: http
+      namespace: amazon-polly
+      baseUri: https://polly.{region}.amazonaws.com
+      description: Amazon Polly text-to-speech API
+      authentication:
+        type: apikey
+        key: Authorization
+        value: "{{AWS_ACCESS_KEY_ID}}"
+        placement: header
+      resources:
+        - name: speech
+          path: /v1/speech
+          description: Synthesize speech from text
+          operations:
+            - name: synthesize-speech
+              method: POST
+              description: Synthesizes UTF-8 input, plain text or SSML, to a stream of bytes
+              outputRawFormat: binary
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  Text: "{{tools.text}}"
+                  VoiceId: "{{tools.voice_id}}"
+                  OutputFormat: "{{tools.output_format}}"
+
+        - name: voices
+          path: /v1/voices
+          description: List available voices
+          operations:
+            - name: describe-voices
+              method: GET
+              description: Returns the list of voices that are available for use when requesting speech synthesis
+              inputParameters:
+                - name: Engine
+                  in: query
+                  type: string
+                  required: false
+                  description: Specifies the engine for Amazon Polly to use (standard, neural, long-form, generative)
+                - name: LanguageCode
+                  in: query
+                  type: string
+                  required: false
+                  description: The language identification tag for filtering voices
+                - name: NextToken
+                  in: query
+                  type: string
+                  required: false
+                  description: Pagination token
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: lexicons
+          path: /v1/lexicons
+          description: Manage pronunciation lexicons
+          operations:
+            - name: list-lexicons
+              method: GET
+              description: Returns a list of pronunciation lexicons stored in an AWS Region
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: lexicon
+          path: /v1/lexicons/{LexiconName}
+          description: Get or manage a specific lexicon
+          operations:
+            - name: get-lexicon
+              method: GET
+              description: Returns the content of the specified pronunciation lexicon
+              inputParameters:
+                - name: LexiconName
+                  in: path
+                  type: string
+                  required: true
+                  description: Name of the lexicon
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: put-lexicon
+              method: PUT
+              description: Stores a pronunciation lexicon in an AWS Region
+              inputParameters:
+                - name: LexiconName
+                  in: path
+                  type: string
+                  required: true
+                  description: Name of the lexicon
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  Content: "{{tools.content}}"
+
+        - name: synthesis-tasks
+          path: /v1/synthesisTasks
+          description: Manage asynchronous speech synthesis tasks
+          operations:
+            - name: start-speech-synthesis-task
+              method: POST
+              description: Allows the creation of an asynchronous synthesis task
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  Text: "{{tools.text}}"
+                  VoiceId: "{{tools.voice_id}}"
+                  OutputFormat: "{{tools.output_format}}"
+                  OutputS3BucketName: "{{tools.bucket}}"
+            - name: list-speech-synthesis-tasks
+              method: GET
+              description: Returns a list of SpeechSynthesisTask objects ordered by creation date
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: amazon-polly-rest
+      resources:
+        - path: /v1/speech
+          name: speech
+          description: Speech synthesis
+          operations:
+            - method: POST
+              name: synthesize-speech
+              description: Synthesize speech from text
+              call: "amazon-polly.synthesize-speech"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/voices
+          name: voices
+          description: Available voices
+          operations:
+            - method: GET
+              name: list-voices
+              description: List available voices
+              call: "amazon-polly.describe-voices"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/lexicons
+          name: lexicons
+          description: Pronunciation lexicons
+          operations:
+            - method: GET
+              name: list-lexicons
+              description: List lexicons
+              call: "amazon-polly.list-lexicons"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: amazon-polly-mcp
+      transport: http
+      tools:
+        - name: synthesize-speech
+          description: Convert text to speech audio
+          hints:
+            readOnly: false
+            destructive: false
+          call: "amazon-polly.synthesize-speech"
+          with:
+            text: "tools.text"
+            voice_id: "tools.voice_id"
+            output_format: "tools.output_format"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-voices
+          description: List available Amazon Polly voices for speech synthesis
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "amazon-polly.describe-voices"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-lexicons
+          description: List pronunciation lexicons stored in the AWS Region
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "amazon-polly.list-lexicons"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-lexicon
+          description: Get the content of a pronunciation lexicon
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "amazon-polly.get-lexicon"
+          with:
+            LexiconName: "tools.lexicon_name"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: start-synthesis-task
+          description: Start an asynchronous speech synthesis task for long text
+          hints:
+            readOnly: false
+            destructive: false
+          call: "amazon-polly.start-speech-synthesis-task"
+          with:
+            text: "tools.text"
+            voice_id: "tools.voice_id"
+            output_format: "tools.output_format"
+            bucket: "tools.bucket"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-synthesis-tasks
+          description: List asynchronous speech synthesis tasks
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "amazon-polly.list-speech-synthesis-tasks"
+          outputParameters:
+            - type: object
+              mapping: "$."

@@ -1,0 +1,217 @@
+rules:
+
+  # INFO / METADATA
+  info-title-contains-amazon-polly:
+    description: API title must reference Amazon Polly
+    message: Info title should contain 'Amazon Polly'
+    severity: warn
+    given: $.info.title
+    then:
+      function: pattern
+      functionOptions:
+        match: "Amazon Polly"
+
+  info-description-required:
+    description: API must have a description
+    message: Info object must have a description
+    severity: error
+    given: $.info
+    then:
+      field: description
+      function: truthy
+
+  info-version-required:
+    description: API version must be defined
+    message: Info object must have a version
+    severity: error
+    given: $.info
+    then:
+      field: version
+      function: truthy
+
+  # OPENAPI VERSION
+  openapi-version-3:
+    description: API should use OpenAPI 3.x
+    message: Spec must use OpenAPI 3.0 or higher
+    severity: error
+    given: $.openapi
+    then:
+      function: pattern
+      functionOptions:
+        match: "^3\\."
+
+  # SERVERS
+  servers-defined:
+    description: Servers must be defined
+    message: At least one server must be defined
+    severity: error
+    given: $
+    then:
+      field: servers
+      function: truthy
+
+  servers-https:
+    description: All server URLs must use HTTPS
+    message: Server URL must use HTTPS
+    severity: warn
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https"
+
+  # PATHS
+  paths-kebab-case:
+    description: Path segments must use kebab-case or camelCase
+    message: Path segments must use lowercase characters
+    severity: info
+    given: $.paths
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        match: "^(/[a-zA-Z0-9{}_/-]+)+$"
+
+  paths-v1-prefix:
+    description: All paths should start with /v1/
+    message: Paths should be prefixed with /v1/
+    severity: info
+    given: $.paths
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        match: "^/v1/"
+
+  # OPERATIONS
+  operation-summary-required:
+    description: All operations must have a summary
+    message: Operation must have a summary
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: summary
+      function: truthy
+
+  operation-summary-amazon-polly-prefix:
+    description: Summaries must begin with 'Amazon Polly'
+    message: Operation summary must start with 'Amazon Polly'
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].summary
+    then:
+      function: pattern
+      functionOptions:
+        match: "^Amazon Polly"
+
+  operation-description-required:
+    description: All operations must have a description
+    message: Operation must have a description
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: description
+      function: truthy
+
+  operation-id-required:
+    description: All operations must have an operationId
+    message: Operation must have an operationId
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: operationId
+      function: truthy
+
+  operation-tags-required:
+    description: All operations must have tags
+    message: Operation must have at least one tag
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: tags
+      function: truthy
+
+  # PARAMETERS
+  parameter-description-required:
+    description: All parameters must have descriptions
+    message: Parameter must have a description
+    severity: error
+    given: $.paths[*][*].parameters[*]
+    then:
+      field: description
+      function: truthy
+
+  # RESPONSES
+  response-success-required:
+    description: All operations must have a success response
+    message: Operation must define at least one 2xx response
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: responses
+      function: truthy
+
+  response-description-required:
+    description: All responses must have descriptions
+    message: Response must have a description
+    severity: error
+    given: $.paths[*][*].responses[*]
+    then:
+      field: description
+      function: truthy
+
+  # SCHEMAS
+  schema-type-defined:
+    description: Schemas must define a type
+    message: Schema must have a type defined
+    severity: warn
+    given: $.components.schemas[*]
+    then:
+      field: type
+      function: truthy
+
+  # SECURITY
+  security-schemes-defined:
+    description: Security schemes must be defined
+    message: Components must define securitySchemes
+    severity: error
+    given: $.components
+    then:
+      field: securitySchemes
+      function: truthy
+
+  security-global-defined:
+    description: Global security must be defined
+    message: Global security requirements should be defined
+    severity: warn
+    given: $
+    then:
+      field: security
+      function: truthy
+
+  # HTTP METHOD CONVENTIONS
+  get-no-request-body:
+    description: GET operations must not have a request body
+    message: GET operations must not have a request body
+    severity: error
+    given: $.paths[*].get
+    then:
+      field: requestBody
+      function: falsy
+
+  # GENERAL QUALITY
+  no-empty-descriptions:
+    description: Descriptions must not be empty strings
+    message: Description must not be empty
+    severity: warn
+    given: $..description
+    then:
+      function: truthy
+
+  operation-examples-encouraged:
+    description: Operations should provide examples
+    message: Consider adding examples to operation responses
+    severity: info
+    given: $.paths[*][*].responses[*].content[*]
+    then:
+      field: examples
+      function: truthy

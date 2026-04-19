@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-polly/refs/heads/main/json-structure/amazon-polly-speech-mark-type-structure.json",
+  "name": "SpeechMarkType",
+  "description": "SpeechMarkType schema from Amazon Polly API",
+  "type": "string",
+  "enum": [
+    "sentence",
+    "ssml",
+    "viseme",
+    "word"
+  ]
+}

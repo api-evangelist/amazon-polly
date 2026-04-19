@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-polly/refs/heads/main/json-structure/amazon-polly-text-type-structure.json",
+  "name": "TextType",
+  "description": "TextType schema from Amazon Polly API",
+  "type": "string",
+  "enum": [
+    "ssml",
+    "text"
+  ]
+}

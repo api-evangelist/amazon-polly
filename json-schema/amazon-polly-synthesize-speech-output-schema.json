@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-polly/refs/heads/main/json-schema/amazon-polly-synthesize-speech-output-schema.json",
+  "title": "SynthesizeSpeechOutput",
+  "description": "SynthesizeSpeechOutput schema from Amazon Polly API",
+  "type": "object",
+  "properties": {
+    "AudioStream": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/AudioStream"
+        },
+        {
+          "description": " Stream containing the synthesized speech. "
+        }
+      ]
+    }
+  },
+  "example": {
+    "AudioStream": "TEXT",
+    "ContentType": "audio/mpeg",
+    "RequestCharacters": 37
+  }
+}

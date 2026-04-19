@@ -16,45 +16,45 @@ info:
   x-logo:
     url: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
 servers:
-  - url: https://polly.{region}.amazonaws.com
-    description: Amazon Polly regional endpoint
-    variables:
-      region:
-        default: us-east-1
-        description: AWS region
-        enum:
-          - us-east-1
-          - us-east-2
-          - us-west-1
-          - us-west-2
-          - eu-west-1
-          - eu-west-2
-          - eu-west-3
-          - eu-central-1
-          - ap-northeast-1
-          - ap-northeast-2
-          - ap-southeast-1
-          - ap-southeast-2
-          - ap-south-1
-          - sa-east-1
-          - ca-central-1
+- url: https://polly.{region}.amazonaws.com
+  description: Amazon Polly regional endpoint
+  variables:
+    region:
+      default: us-east-1
+      description: AWS region
+      enum:
+      - us-east-1
+      - us-east-2
+      - us-west-1
+      - us-west-2
+      - eu-west-1
+      - eu-west-2
+      - eu-west-3
+      - eu-central-1
+      - ap-northeast-1
+      - ap-northeast-2
+      - ap-southeast-1
+      - ap-southeast-2
+      - ap-south-1
+      - sa-east-1
+      - ca-central-1
 security:
-  - sigv4: []
+- sigv4: []
 tags:
-  - name: Lexicons
-    description: Operations for managing pronunciation lexicons
-  - name: Speech Synthesis
-    description: Operations for synthesizing speech from text
-  - name: Voices
-    description: Operations for listing available voices
+- name: Lexicons
+  description: Operations for managing pronunciation lexicons
+- name: Speech Synthesis
+  description: Operations for synthesizing speech from text
+- name: Voices
+  description: Operations for listing available voices
 paths:
   /v1/speech:
     post:
       operationId: SynthesizeSpeech
-      summary: Amazon Polly Synthesize speech
+      summary: Amazon Polly Synthesize Speech
       description: Synthesizes UTF-8 input text into an audio stream.
       tags:
-        - Speech Synthesis
+      - Speech Synthesis
       requestBody:
         required: true
         content:
@@ -80,24 +80,24 @@ paths:
   /v1/voices:
     get:
       operationId: DescribeVoices
-      summary: Amazon Polly List available voices
+      summary: Amazon Polly List Available Voices
       description: Returns the list of voices that are available for use when synthesizing speech.
       tags:
-        - Voices
+      - Voices
       parameters:
-        - name: Engine
-          in: query
-          schema:
-            type: string
-            enum:
-              - standard
-              - neural
-              - long-form
-              - generative
-        - name: LanguageCode
-          in: query
-          schema:
-            type: string
+      - name: Engine
+        in: query
+        schema:
+          type: string
+          enum:
+          - standard
+          - neural
+          - long-form
+          - generative
+      - name: LanguageCode
+        in: query
+        schema:
+          type: string
       responses:
         '200':
           description: Voices listed successfully
@@ -113,16 +113,16 @@ paths:
   /v1/lexicons/{LexiconName}:
     put:
       operationId: PutLexicon
-      summary: Amazon Polly Store a pronunciation lexicon
+      summary: Amazon Polly Store a Pronunciation Lexicon
       description: Stores a pronunciation lexicon in an AWS Region.
       tags:
-        - Lexicons
+      - Lexicons
       parameters:
-        - name: LexiconName
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: LexiconName
+        in: path
+        required: true
+        schema:
+          type: string
       requestBody:
         required: true
         content:
@@ -138,41 +138,41 @@ paths:
           description: Lexicon stored successfully
     get:
       operationId: GetLexicon
-      summary: Amazon Polly Get a pronunciation lexicon
+      summary: Amazon Polly Get a Pronunciation Lexicon
       description: Returns the content of the specified pronunciation lexicon.
       tags:
-        - Lexicons
+      - Lexicons
       parameters:
-        - name: LexiconName
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: LexiconName
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Lexicon retrieved successfully
     delete:
       operationId: DeleteLexicon
-      summary: Amazon Polly Delete a pronunciation lexicon
+      summary: Amazon Polly Delete a Pronunciation Lexicon
       description: Deletes the specified pronunciation lexicon stored in an AWS Region.
       tags:
-        - Lexicons
+      - Lexicons
       parameters:
-        - name: LexiconName
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: LexiconName
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Lexicon deleted successfully
   /v1/lexicons:
     get:
       operationId: ListLexicons
-      summary: Amazon Polly List pronunciation lexicons
+      summary: Amazon Polly List Pronunciation Lexicons
       description: Returns a list of pronunciation lexicons stored in an AWS Region.
       tags:
-        - Lexicons
+      - Lexicons
       responses:
         '200':
           description: Lexicons listed successfully
@@ -187,17 +187,17 @@ components:
     SynthesizeSpeechInput:
       type: object
       required:
-        - OutputFormat
-        - Text
-        - VoiceId
+      - OutputFormat
+      - Text
+      - VoiceId
       properties:
         Engine:
           type: string
           enum:
-            - standard
-            - neural
-            - long-form
-            - generative
+          - standard
+          - neural
+          - long-form
+          - generative
           description: The engine to use for speech synthesis
         LanguageCode:
           type: string
@@ -210,10 +210,10 @@ components:
         OutputFormat:
           type: string
           enum:
-            - json
-            - mp3
-            - ogg_vorbis
-            - pcm
+          - json
+          - mp3
+          - ogg_vorbis
+          - pcm
           description: The format in which the returned output will be encoded
         SampleRate:
           type: string
@@ -223,18 +223,18 @@ components:
           items:
             type: string
             enum:
-              - sentence
-              - ssml
-              - viseme
-              - word
+            - sentence
+            - ssml
+            - viseme
+            - word
         Text:
           type: string
           description: Input text to synthesize
         TextType:
           type: string
           enum:
-            - ssml
-            - text
+          - ssml
+          - text
           description: Whether the input text is plain text or SSML
         VoiceId:
           type: string
@@ -245,8 +245,8 @@ components:
         Gender:
           type: string
           enum:
-            - Female
-            - Male
+          - Female
+          - Male
         Id:
           type: string
           description: Amazon Polly assigned voice ID
@@ -262,7 +262,7 @@ components:
           items:
             type: string
             enum:
-              - standard
-              - neural
-              - long-form
-              - generative
+            - standard
+            - neural
+            - long-form
+            - generative

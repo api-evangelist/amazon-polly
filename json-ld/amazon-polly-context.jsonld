@@ -1,170 +1,169 @@
 {
   "@context": {
-    "@vocab": "https://schema.org/",
-    "polly": "https://docs.aws.amazon.com/polly/latest/dg/",
-    "aws": "https://aws.amazon.com/",
+    "@version": 1.1,
+    "polly": "https://polly.amazonaws.com/schema/",
     "schema": "https://schema.org/",
-    "xsd": "http://www.w3.org/2001/XMLSchema#",
     "dcterms": "http://purl.org/dc/terms/",
-
-    "SynthesizeSpeechInput": {
-      "@id": "polly:API_SynthesizeSpeech",
-      "@context": {
-        "Engine": {
-          "@id": "polly:engine",
-          "@type": "xsd:string"
-        },
-        "LanguageCode": {
-          "@id": "schema:inLanguage",
-          "@type": "xsd:string"
-        },
-        "LexiconNames": {
-          "@id": "polly:lexiconNames",
-          "@container": "@list"
-        },
-        "OutputFormat": {
-          "@id": "schema:encodingFormat",
-          "@type": "xsd:string"
-        },
-        "SampleRate": {
-          "@id": "polly:sampleRate",
-          "@type": "xsd:string"
-        },
-        "SpeechMarkTypes": {
-          "@id": "polly:speechMarkTypes",
-          "@container": "@list"
-        },
-        "Text": {
-          "@id": "schema:text",
-          "@type": "xsd:string"
-        },
-        "TextType": {
-          "@id": "polly:textType",
-          "@type": "xsd:string"
-        },
-        "VoiceId": {
-          "@id": "polly:voiceId",
-          "@type": "xsd:string"
-        }
-      }
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "GetSpeechSynthesisTaskOutput": "polly:GetSpeechSynthesisTaskOutput",
+    "SynthesisTask": "polly:SynthesisTask",
+    "StartSpeechSynthesisTaskInput": "polly:StartSpeechSynthesisTaskInput",
+    "Engine": {
+      "@id": "polly:Engine",
+      "@type": "xsd:string"
     },
-
-    "Voice": {
-      "@id": "polly:API_DescribeVoices",
-      "@context": {
-        "Gender": {
-          "@id": "schema:gender",
-          "@type": "xsd:string"
-        },
-        "Id": {
-          "@id": "schema:identifier",
-          "@type": "xsd:string"
-        },
-        "LanguageCode": {
-          "@id": "schema:inLanguage",
-          "@type": "xsd:string"
-        },
-        "LanguageName": {
-          "@id": "polly:languageName",
-          "@type": "xsd:string"
-        },
-        "Name": {
-          "@id": "schema:name",
-          "@type": "xsd:string"
-        },
-        "AdditionalLanguageCodes": {
-          "@id": "polly:additionalLanguageCodes",
-          "@container": "@list"
-        },
-        "SupportedEngines": {
-          "@id": "polly:supportedEngines",
-          "@container": "@list"
-        }
-      }
+    "LanguageCode": {
+      "@id": "polly:LanguageCode",
+      "@type": "xsd:string"
     },
-
-    "Lexicon": {
-      "@id": "polly:API_GetLexicon",
-      "@context": {
-        "Name": {
-          "@id": "schema:name",
-          "@type": "xsd:string"
-        },
-        "Content": {
-          "@id": "polly:lexiconContent",
-          "@type": "xsd:string"
-        },
-        "LexiconArn": {
-          "@id": "schema:identifier",
-          "@type": "xsd:string"
-        },
-        "LexemesCount": {
-          "@id": "polly:lexemesCount",
-          "@type": "xsd:integer"
-        },
-        "Size": {
-          "@id": "polly:lexiconSize",
-          "@type": "xsd:integer"
-        },
-        "Alphabet": {
-          "@id": "polly:alphabet",
-          "@type": "xsd:string"
-        },
-        "LanguageCode": {
-          "@id": "schema:inLanguage",
-          "@type": "xsd:string"
-        },
-        "LastModified": {
-          "@id": "schema:dateModified",
-          "@type": "xsd:dateTime"
-        }
-      }
+    "LexiconNames": {
+      "@id": "polly:LexiconNames",
+      "@type": "xsd:string"
     },
-
-    "SynthesisTask": {
-      "@id": "polly:API_GetSpeechSynthesisTask",
-      "@context": {
-        "TaskId": {
-          "@id": "schema:identifier",
-          "@type": "xsd:string"
-        },
-        "TaskStatus": {
-          "@id": "polly:taskStatus",
-          "@type": "xsd:string"
-        },
-        "TaskStatusReason": {
-          "@id": "polly:taskStatusReason",
-          "@type": "xsd:string"
-        },
-        "OutputUri": {
-          "@id": "schema:url",
-          "@type": "@id"
-        },
-        "OutputFormat": {
-          "@id": "schema:encodingFormat",
-          "@type": "xsd:string"
-        },
-        "Engine": {
-          "@id": "polly:engine",
-          "@type": "xsd:string"
-        },
-        "VoiceId": {
-          "@id": "polly:voiceId",
-          "@type": "xsd:string"
-        },
-        "LanguageCode": {
-          "@id": "schema:inLanguage",
-          "@type": "xsd:string"
-        },
-        "CreationTime": {
-          "@id": "schema:dateCreated",
-          "@type": "xsd:dateTime"
-        },
-        "RequestCharacters": {
-          "@id": "polly:requestCharacters",
-          "@type": "xsd:integer"
-        }
-      }
+    "OutputFormat": {
+      "@id": "polly:OutputFormat",
+      "@type": "xsd:string"
+    },
+    "OutputS3BucketName": {
+      "@id": "polly:OutputS3BucketName",
+      "@type": "xsd:string"
+    },
+    "OutputS3KeyPrefix": {
+      "@id": "polly:OutputS3KeyPrefix",
+      "@type": "xsd:string"
+    },
+    "SampleRate": {
+      "@id": "polly:SampleRate",
+      "@type": "xsd:string"
+    },
+    "SnsTopicArn": {
+      "@id": "polly:SnsTopicArn",
+      "@type": "xsd:string"
+    },
+    "SpeechMarkTypes": {
+      "@id": "polly:SpeechMarkTypes",
+      "@type": "xsd:string"
+    },
+    "Text": {
+      "@id": "polly:Text",
+      "@type": "xsd:string"
+    },
+    "TextType": {
+      "@id": "polly:TextType",
+      "@type": "xsd:string"
+    },
+    "VoiceId": {
+      "@id": "polly:VoiceId",
+      "@type": "xsd:string"
+    },
+    "SynthesizeSpeechOutput": "polly:SynthesizeSpeechOutput",
+    "AudioStream": {
+      "@id": "polly:AudioStream",
+      "@type": "xsd:string"
+    },
+    "Voice": "polly:Voice",
+    "Gender": {
+      "@id": "polly:Gender",
+      "@type": "xsd:string"
+    },
+    "Id": {
+      "@id": "polly:Id",
+      "@type": "xsd:string"
+    },
+    "LanguageName": {
+      "@id": "polly:LanguageName",
+      "@type": "xsd:string"
+    },
+    "Name": {
+      "@id": "polly:Name",
+      "@type": "xsd:string"
+    },
+    "AdditionalLanguageCodes": {
+      "@id": "polly:AdditionalLanguageCodes",
+      "@type": "xsd:string"
+    },
+    "SupportedEngines": {
+      "@id": "polly:SupportedEngines",
+      "@type": "xsd:string"
+    },
+    "LexiconAttributes": "polly:LexiconAttributes",
+    "Alphabet": {
+      "@id": "polly:Alphabet",
+      "@type": "xsd:string"
+    },
+    "LastModified": {
+      "@id": "polly:LastModified",
+      "@type": "xsd:string"
+    },
+    "LexiconArn": {
+      "@id": "polly:LexiconArn",
+      "@type": "xsd:string"
+    },
+    "LexemesCount": {
+      "@id": "polly:LexemesCount",
+      "@type": "xsd:string"
+    },
+    "Size": {
+      "@id": "polly:Size",
+      "@type": "xsd:string"
+    },
+    "LexiconDescription": "polly:LexiconDescription",
+    "Attributes": {
+      "@id": "polly:Attributes",
+      "@type": "xsd:string"
+    },
+    "StartSpeechSynthesisTaskOutput": "polly:StartSpeechSynthesisTaskOutput",
+    "TaskId": {
+      "@id": "polly:TaskId",
+      "@type": "xsd:string"
+    },
+    "TaskStatus": {
+      "@id": "polly:TaskStatus",
+      "@type": "xsd:string"
+    },
+    "TaskStatusReason": {
+      "@id": "polly:TaskStatusReason",
+      "@type": "xsd:string"
+    },
+    "OutputUri": {
+      "@id": "polly:OutputUri",
+      "@type": "xsd:string"
+    },
+    "CreationTime": {
+      "@id": "polly:CreationTime",
+      "@type": "xsd:string"
+    },
+    "RequestCharacters": {
+      "@id": "polly:RequestCharacters",
+      "@type": "xsd:string"
+    },
+    "SynthesizeSpeechInput": "polly:SynthesizeSpeechInput",
+    "ListLexiconsOutput": "polly:ListLexiconsOutput",
+    "Lexicons": {
+      "@id": "polly:Lexicons",
+      "@type": "xsd:string"
+    },
+    "NextToken": {
+      "@id": "polly:NextToken",
+      "@type": "xsd:string"
+    },
+    "GetLexiconOutput": "polly:GetLexiconOutput",
+    "Lexicon": "polly:Lexicon",
+    "Amazon Polly Speech Synthesis Definition": "polly:Amazon Polly Speech Synthesis Definition",
+    "PutLexiconInput": "polly:PutLexiconInput",
+    "Content": {
+      "@id": "polly:Content",
+      "@type": "xsd:string"
+    },
+    "ListSpeechSynthesisTasksOutput": "polly:ListSpeechSynthesisTasksOutput",
+    "SynthesisTasks": {
+      "@id": "polly:SynthesisTasks",
+      "@type": "xsd:string"
+    },
+    "DescribeVoicesOutput": "polly:DescribeVoicesOutput",
+    "Voices": {
+      "@id": "polly:Voices",
+      "@type": "xsd:string"
     }
   }
 }
