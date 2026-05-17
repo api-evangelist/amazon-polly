@@ -138,7 +138,7 @@ common:
     description: Pair Polly text-to-speech with Transcribe speech-to-text for round-trip voice applications.
   - name: Amazon Connect
     description: Power Amazon Connect contact center voice responses with Polly neural speech.
-- type: JSON-LD
+- type: JSONLD
   url: json-ld/amazon-polly-context.jsonld
 - type: JSONSchema
   url: json-schema/amazon-polly-describe-voices-output-schema.json
