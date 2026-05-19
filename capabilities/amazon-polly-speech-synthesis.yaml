@@ -1,0 +1,82 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Amazon Polly API — Speech Synthesis
+  description: 'Amazon Polly API — Speech Synthesis. 1 operations. Lead operation: Amazon Polly Synthesize Speech. Self-contained
+    Naftiko capability covering one Amazon Polly business surface.'
+  tags:
+  - Amazon Polly
+  - Speech Synthesis
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_POLLY_API_KEY: AMAZON_POLLY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: amazon-polly-speech-synthesis
+    baseUri: https://polly.{region}.amazonaws.com
+    description: Amazon Polly API — Speech Synthesis business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-speech
+      path: /v1/speech
+      operations:
+      - name: synthesizespeech
+        method: POST
+        description: Amazon Polly Synthesize Speech
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.AMAZON_POLLY_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: amazon-polly-speech-synthesis-rest
+    port: 8080
+    description: REST adapter for Amazon Polly API — Speech Synthesis. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v1/speech
+      name: v1-speech
+      description: REST surface for v1-speech.
+      operations:
+      - method: POST
+        name: synthesizespeech
+        description: Amazon Polly Synthesize Speech
+        call: amazon-polly-speech-synthesis.synthesizespeech
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: amazon-polly-speech-synthesis-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Amazon Polly API — Speech Synthesis. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: amazon-polly-synthesize-speech
+      description: Amazon Polly Synthesize Speech
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-polly-speech-synthesis.synthesizespeech
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

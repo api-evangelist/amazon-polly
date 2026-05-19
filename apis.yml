@@ -1,6 +1,7 @@
 name: Amazon Polly
-description: Amazon Polly is a cloud service that converts text into lifelike speech, enabling you to create applications that talk and build entirely new categories of speech-enabled products. Polly 
-  supports multiple voices, languages, and audio output formats including neural and generative engines for natural-sounding speech.
+description: Amazon Polly is a cloud service that converts text into lifelike speech, enabling you to create applications
+  that talk and build entirely new categories of speech-enabled products. Polly supports multiple voices, languages, and audio
+  output formats including neural and generative engines for natural-sounding speech.
 url: https://raw.githubusercontent.com/api-evangelist/amazon-polly/refs/heads/main/apis.yml
 type: Index
 image: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
@@ -16,11 +17,12 @@ tags:
 - Neural Engine
 - Generative AI
 created: '2024-01-15'
-modified: '2026-04-19'
+modified: '2026-05-19'
 apis:
 - name: Amazon Polly API
-  description: The Amazon Polly API enables you to synthesize speech from text (plain text or SSML), manage custom pronunciation lexicons, list available voices across multiple languages and engines, 
-    and manage asynchronous synthesis tasks with S3 output.
+  description: The Amazon Polly API enables you to synthesize speech from text (plain text or SSML), manage custom pronunciation
+    lexicons, list available voices across multiple languages and engines, and manage asynchronous synthesis tasks with S3
+    output.
   image: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
   humanURL: https://aws.amazon.com/polly/
   baseURL: https://polly.amazonaws.com
@@ -53,6 +55,12 @@ apis:
     url: https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html
   - type: RateLimits
     url: https://docs.aws.amazon.com/polly/latest/dg/limits.html
+  - type: NaftikoCapability
+    url: capabilities/amazon-polly-lexicons.yaml
+  - type: NaftikoCapability
+    url: capabilities/amazon-polly-speech-synthesis.yaml
+  - type: NaftikoCapability
+    url: capabilities/amazon-polly-voices.yaml
 common:
 - type: Portal
   url: https://console.aws.amazon.com/polly/
@@ -90,8 +98,6 @@ common:
   url: https://aws.amazon.com/compliance/
 - type: SpectralRules
   url: rules/amazon-polly-spectral-rules.yml
-- type: NaftikoCapability
-  url: capabilities/text-to-speech.yaml
 - type: Vocabulary
   url: vocabulary/amazon-polly-vocabulary.yaml
 - type: Features
@@ -268,8 +274,6 @@ common:
   url: examples/amazon-polly-synthesize-speech-output-example.json
 - type: Example
   url: examples/amazon-polly-voice-example.json
-- type: NaftikoCapability
-  url: capabilities/shared/amazon-polly.yaml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
