@@ -1,0 +1,82 @@
+name: Amazon Polly AsyncAPI Review
+provider: Amazon Polly
+reviewedURL: https://docs.aws.amazon.com/polly/
+reviewDate: '2026-05-29'
+reviewer: API Evangelist
+decision: AsyncAPI specification NOT produced
+recommendation: Keep coverage limited to the existing OpenAPI specification
+
+summary: |
+  Amazon Polly does not expose a pub/sub, event-driven, or message-framed streaming
+  surface that AsyncAPI is designed to describe. Its "streaming" affordance is a
+  conventional HTTP request/response where the response body is an opaque audio
+  byte stream delivered over HTTP chunked transfer encoding. Modeling this as an
+  AsyncAPI channel would misrepresent the transport and invent semantics
+  (channels, messages, subscriptions) that Polly does not provide.
+
+surfacesReviewed:
+- name: SynthesizeSpeech
+  endpoint: POST /v1/speech
+  transport: HTTP/1.1 request-response
+  responseBody: Binary audio stream (mp3, ogg_vorbis, ogg_opus, pcm, mulaw, alaw)
+    or speech marks as application/x-json-stream (newline-delimited JSON)
+  framing: HTTP chunked transfer encoding of a single opaque body; no per-message
+    framing, no event types, no acks, no subscription model
+  asyncAPIfit: No. There is no channel, no broker, no message schema boundary, and
+    no subscriber-publisher pattern. It is a single HTTP response whose body
+    happens to be delivered as it is generated. AsyncAPI's "http" binding is
+    intended for request-reply over HTTP, but Polly already has an OpenAPI
+    description covering this; duplicating it as AsyncAPI adds no fidelity.
+  notes: |
+    The application/x-json-stream content type returned when OutputFormat=json
+    is closer to a "stream of records" but it is still delivered as a single
+    HTTP response body with newline-delimited JSON objects, not as discrete
+    pub/sub messages.
+
+- name: StartSpeechSynthesisTask
+  endpoint: POST /v1/synthesisTasks
+  transport: HTTP/1.1 request-response (synchronous control-plane call)
+  pattern: Asynchronous job; output is written to a caller-owned S3 bucket
+  events: Optional SNS topic notification on task completion (SnsTopicArn)
+  asyncAPIfit: No. The async behavior is delegated to S3 (object polling via
+    GetSpeechSynthesisTask) and to a customer-managed SNS topic. Polly itself
+    does not publish events; SNS is a separate AWS service the customer wires
+    up. The Polly API surface here is plain REST.
+
+- name: GetSpeechSynthesisTask / ListSpeechSynthesisTasks
+  transport: HTTP/1.1 request-response
+  pattern: Polling for task status
+  asyncAPIfit: No. Polling is the antithesis of pub/sub.
+
+transportsExplicitlyAbsent:
+- WebSocket
+- Server-Sent Events (SSE)
+- MQTT
+- AMQP
+- Kafka / Kinesis ingress on the Polly API itself
+- gRPC streaming
+- Webhooks delivered by Polly
+
+whyNotModelHTTPChunked: |
+  HTTP chunked transfer encoding is a transport-layer detail of HTTP/1.1, not an
+  application-layer messaging pattern. The audio bytes have no message
+  boundaries that the client can rely on; the client simply reads bytes until
+  the connection closes. There are no event types, correlation IDs, or
+  per-chunk schemas. Representing this as an AsyncAPI channel would require
+  fabricating message structures and channel semantics that the Polly API
+  contract does not define. That would violate the no-fabrication rule.
+
+ifClientNeedsStreamingSemantics: |
+  Consumers who want true low-latency streaming TTS over a persistent
+  bidirectional connection generally pair Polly with their own gateway
+  (for example, an API Gateway WebSocket + Lambda that calls SynthesizeSpeech
+  and forwards chunks). That gateway is the streamable surface; Polly itself
+  is not.
+
+artifactsProduced:
+- review.yml (this file)
+
+artifactsNotProduced:
+- asyncapi/amazon-polly-asyncapi.yml (intentionally omitted)
+
+apisYmlChanged: false
