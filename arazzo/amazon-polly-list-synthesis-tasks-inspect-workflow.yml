@@ -1,0 +1,118 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Polly List Synthesis Tasks and Inspect One
+  summary: List synthesis tasks filtered by status, then fetch full detail on the first.
+  description: >-
+    A monitoring pattern for asynchronous Amazon Polly synthesis. The workflow
+    lists SpeechSynthesisTask objects filtered by a status such as completed,
+    captures the task id of the first returned task, and then retrieves the full
+    task detail with GetSpeechSynthesisTask, surfacing the S3 output URI. Each
+    step spells out its request inline, including the AWS Signature Version 4
+    signing headers, so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: pollyApi
+  url: ../openapi/amazon-polly-openapi-original.yaml
+  type: openapi
+workflows:
+- workflowId: list-synthesis-tasks-inspect
+  summary: List synthesis tasks by status and inspect the first returned task in detail.
+  description: >-
+    Lists synthesis tasks filtered by status, selects the first task, and
+    retrieves its full detail including the S3 output URI and creation time.
+  inputs:
+    type: object
+    required:
+    - amzDate
+    - authorization
+    properties:
+      amzDate:
+        type: string
+        description: The X-Amz-Date timestamp used to sign the requests.
+      authorization:
+        type: string
+        description: The full SigV4 Authorization header value for the request.
+      contentSha256:
+        type: string
+        description: The X-Amz-Content-Sha256 hex digest of the request payload.
+      securityToken:
+        type: string
+        description: Optional X-Amz-Security-Token for temporary credentials.
+      status:
+        type: string
+        description: Status filter for the task list (scheduled, inProgress, completed, or failed).
+      maxResults:
+        type: integer
+        description: Maximum number of tasks to return (1-100).
+  steps:
+  - stepId: listTasks
+    description: List synthesis tasks filtered by the supplied status.
+    operationId: ListSpeechSynthesisTasks
+    parameters:
+    - name: Status
+      in: query
+      value: $inputs.status
+    - name: MaxResults
+      in: query
+      value: $inputs.maxResults
+    - name: X-Amz-Date
+      in: header
+      value: $inputs.amzDate
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    - name: X-Amz-Content-Sha256
+      in: header
+      value: $inputs.contentSha256
+    - name: X-Amz-Security-Token
+      in: header
+      value: $inputs.securityToken
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      tasks: $response.body#/SynthesisTasks
+      firstTaskId: $response.body#/SynthesisTasks/0/TaskId
+      nextToken: $response.body#/NextToken
+    onSuccess:
+    - name: haveTask
+      type: goto
+      stepId: inspectTask
+      criteria:
+      - context: $response.body
+        condition: $.SynthesisTasks.length > 0
+        type: jsonpath
+    - name: noTasks
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.SynthesisTasks.length == 0
+        type: jsonpath
+  - stepId: inspectTask
+    description: Retrieve the full detail for the first task returned by the list.
+    operationId: GetSpeechSynthesisTask
+    parameters:
+    - name: TaskId
+      in: path
+      value: $steps.listTasks.outputs.firstTaskId
+    - name: X-Amz-Date
+      in: header
+      value: $inputs.amzDate
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    - name: X-Amz-Content-Sha256
+      in: header
+      value: $inputs.contentSha256
+    - name: X-Amz-Security-Token
+      in: header
+      value: $inputs.securityToken
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      taskStatus: $response.body#/SynthesisTask/TaskStatus
+      outputUri: $response.body#/SynthesisTask/OutputUri
+      creationTime: $response.body#/SynthesisTask/CreationTime
+  outputs:
+    firstTaskId: $steps.listTasks.outputs.firstTaskId
+    outputUri: $steps.inspectTask.outputs.outputUri

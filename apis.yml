@@ -62,6 +62,36 @@ apis:
   - type: NaftikoCapability
     url: capabilities/amazon-polly-voices.yaml
 common:
+- type: ArazzoWorkflows
+  url: arazzo/
+  workflows:
+  - url: arazzo/amazon-polly-lexicon-async-task-poll-workflow.yml
+    name: Amazon Polly Store Lexicon, Start Async Task, and Poll
+    summary: Store a lexicon, start an async synthesis task applying it, then poll to completion.
+  - url: arazzo/amazon-polly-lexicon-lifecycle-workflow.yml
+    name: Amazon Polly Lexicon Lifecycle
+    summary: Store a lexicon, list lexicons, read it back, and delete it.
+  - url: arazzo/amazon-polly-list-synthesis-tasks-inspect-workflow.yml
+    name: Amazon Polly List Synthesis Tasks and Inspect One
+    summary: List synthesis tasks filtered by status, then fetch full detail on the first.
+  - url: arazzo/amazon-polly-list-voices-start-synthesis-task-workflow.yml
+    name: Amazon Polly Select Voice and Start Synthesis Task
+    summary: Discover a voice for a language, then start an async synthesis task with it.
+  - url: arazzo/amazon-polly-list-voices-synthesize-speech-workflow.yml
+    name: Amazon Polly List Voices and Synthesize Speech
+    summary: Pick an available voice for a language and synthesize speech with it.
+  - url: arazzo/amazon-polly-paginate-voices-workflow.yml
+    name: Amazon Polly Paginate the Voice Catalog
+    summary: Page through the full DescribeVoices catalog using the NextToken cursor.
+  - url: arazzo/amazon-polly-put-lexicon-synthesize-workflow.yml
+    name: Amazon Polly Store Lexicon and Synthesize With It
+    summary: Store a pronunciation lexicon, confirm it, then synthesize speech applying it.
+  - url: arazzo/amazon-polly-replace-lexicon-resynthesize-workflow.yml
+    name: Amazon Polly Replace Lexicon and Re-synthesize
+    summary: Overwrite an existing lexicon, confirm the change, then re-synthesize speech with it.
+  - url: arazzo/amazon-polly-start-synthesis-task-poll-workflow.yml
+    name: Amazon Polly Start Synthesis Task and Poll to Completion
+    summary: Start an async speech synthesis task, then poll it until it completes.
 - type: Portal
   url: https://console.aws.amazon.com/polly/
 - type: Blog

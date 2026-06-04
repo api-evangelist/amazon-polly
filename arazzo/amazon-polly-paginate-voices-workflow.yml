@@ -1,0 +1,123 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Polly Paginate the Voice Catalog
+  summary: Page through the full DescribeVoices catalog using the NextToken cursor.
+  description: >-
+    Walks the complete Amazon Polly voice catalog across pages. The workflow
+    calls DescribeVoices for the first page, captures the NextToken pagination
+    cursor, and then calls DescribeVoices again with that token to retrieve the
+    next page, branching to end when no further token is returned. Each step
+    spells out its request inline, including the AWS Signature Version 4 signing
+    headers, so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: pollyApi
+  url: ../openapi/amazon-polly-openapi-original.yaml
+  type: openapi
+workflows:
+- workflowId: paginate-voices
+  summary: Retrieve the first page of voices and follow the NextToken to the next page.
+  description: >-
+    Lists the first page of available voices, captures the pagination cursor,
+    and follows it to retrieve the next page when one exists.
+  inputs:
+    type: object
+    required:
+    - amzDate
+    - authorization
+    properties:
+      amzDate:
+        type: string
+        description: The X-Amz-Date timestamp used to sign the requests.
+      authorization:
+        type: string
+        description: The full SigV4 Authorization header value for the request.
+      contentSha256:
+        type: string
+        description: The X-Amz-Content-Sha256 hex digest of the request payload.
+      securityToken:
+        type: string
+        description: Optional X-Amz-Security-Token for temporary credentials.
+      engine:
+        type: string
+        description: Engine to filter voices by (standard or neural).
+      includeAdditionalLanguageCodes:
+        type: boolean
+        description: Whether to include bilingual voices that use a language as an additional language.
+  steps:
+  - stepId: firstPage
+    description: Retrieve the first page of available voices and capture the pagination cursor.
+    operationId: DescribeVoices
+    parameters:
+    - name: Engine
+      in: query
+      value: $inputs.engine
+    - name: IncludeAdditionalLanguageCodes
+      in: query
+      value: $inputs.includeAdditionalLanguageCodes
+    - name: X-Amz-Date
+      in: header
+      value: $inputs.amzDate
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    - name: X-Amz-Content-Sha256
+      in: header
+      value: $inputs.contentSha256
+    - name: X-Amz-Security-Token
+      in: header
+      value: $inputs.securityToken
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      voices: $response.body#/Voices
+      nextToken: $response.body#/NextToken
+    onSuccess:
+    - name: morePages
+      type: goto
+      stepId: nextPage
+      criteria:
+      - context: $response.body
+        condition: $.NextToken != null
+        type: jsonpath
+    - name: lastPage
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.NextToken == null
+        type: jsonpath
+  - stepId: nextPage
+    description: Retrieve the next page of voices using the cursor from the first page.
+    operationId: DescribeVoices
+    parameters:
+    - name: Engine
+      in: query
+      value: $inputs.engine
+    - name: IncludeAdditionalLanguageCodes
+      in: query
+      value: $inputs.includeAdditionalLanguageCodes
+    - name: NextToken
+      in: query
+      value: $steps.firstPage.outputs.nextToken
+    - name: X-Amz-Date
+      in: header
+      value: $inputs.amzDate
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    - name: X-Amz-Content-Sha256
+      in: header
+      value: $inputs.contentSha256
+    - name: X-Amz-Security-Token
+      in: header
+      value: $inputs.securityToken
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      voices: $response.body#/Voices
+      nextToken: $response.body#/NextToken
+  outputs:
+    firstPageVoices: $steps.firstPage.outputs.voices
+    nextPageVoices: $steps.nextPage.outputs.voices
+    lastToken: $steps.nextPage.outputs.nextToken

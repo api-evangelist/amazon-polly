@@ -1,0 +1,170 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Polly Store Lexicon, Start Async Task, and Poll
+  summary: Store a lexicon, start an async synthesis task applying it, then poll to completion.
+  description: >-
+    Combines custom pronunciation with long-form asynchronous synthesis. The
+    workflow stores a PLS lexicon with PutLexicon, starts a SpeechSynthesisTask
+    that applies that lexicon and writes audio to an S3 bucket, and then polls
+    GetSpeechSynthesisTask until the task reaches a terminal state, surfacing the
+    S3 output URI. Each step spells out its request inline, including the AWS
+    Signature Version 4 signing headers, so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: pollyApi
+  url: ../openapi/amazon-polly-openapi-original.yaml
+  type: openapi
+workflows:
+- workflowId: lexicon-async-task-poll
+  summary: Store a lexicon, start a synthesis task that applies it, and poll to completion.
+  description: >-
+    Stores a PLS lexicon, starts an asynchronous synthesis task that applies the
+    lexicon and writes to S3, and polls the task status until it completes or
+    fails.
+  inputs:
+    type: object
+    required:
+    - lexiconName
+    - content
+    - amzDate
+    - authorization
+    - text
+    - outputFormat
+    - outputS3BucketName
+    - voiceId
+    properties:
+      lexiconName:
+        type: string
+        description: Case-sensitive alphanumeric lexicon name (1-20 chars).
+      content:
+        type: string
+        description: The PLS lexicon content as a string.
+      amzDate:
+        type: string
+        description: The X-Amz-Date timestamp used to sign the requests.
+      authorization:
+        type: string
+        description: The full SigV4 Authorization header value for the request.
+      contentSha256:
+        type: string
+        description: The X-Amz-Content-Sha256 hex digest of the request payload.
+      securityToken:
+        type: string
+        description: Optional X-Amz-Security-Token for temporary credentials.
+      text:
+        type: string
+        description: The input text (plain text or SSML) to synthesize.
+      outputFormat:
+        type: string
+        description: The audio output format (mp3, ogg_vorbis, pcm, or json).
+      outputS3BucketName:
+        type: string
+        description: The S3 bucket name to which the output file will be saved.
+      voiceId:
+        type: string
+        description: Voice ID to use for the synthesis (e.g. Joanna).
+  steps:
+  - stepId: putLexicon
+    description: Store the PLS lexicon to be applied during the synthesis task.
+    operationId: PutLexicon
+    parameters:
+    - name: LexiconName
+      in: path
+      value: $inputs.lexiconName
+    - name: X-Amz-Date
+      in: header
+      value: $inputs.amzDate
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    - name: X-Amz-Content-Sha256
+      in: header
+      value: $inputs.contentSha256
+    - name: X-Amz-Security-Token
+      in: header
+      value: $inputs.securityToken
+    requestBody:
+      contentType: application/json
+      payload:
+        Content: $inputs.content
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $statusCode
+  - stepId: startTask
+    description: >-
+      Start an asynchronous synthesis task that applies the stored lexicon and
+      writes its output to the supplied S3 bucket.
+    operationId: StartSpeechSynthesisTask
+    parameters:
+    - name: X-Amz-Date
+      in: header
+      value: $inputs.amzDate
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    - name: X-Amz-Content-Sha256
+      in: header
+      value: $inputs.contentSha256
+    - name: X-Amz-Security-Token
+      in: header
+      value: $inputs.securityToken
+    requestBody:
+      contentType: application/json
+      payload:
+        LexiconNames:
+        - $inputs.lexiconName
+        OutputFormat: $inputs.outputFormat
+        OutputS3BucketName: $inputs.outputS3BucketName
+        Text: $inputs.text
+        VoiceId: $inputs.voiceId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      taskId: $response.body#/SynthesisTask/TaskId
+      taskStatus: $response.body#/SynthesisTask/TaskStatus
+  - stepId: pollTask
+    description: >-
+      Poll the synthesis task by id, branching back to poll again while it is
+      still scheduled or in progress.
+    operationId: GetSpeechSynthesisTask
+    parameters:
+    - name: TaskId
+      in: path
+      value: $steps.startTask.outputs.taskId
+    - name: X-Amz-Date
+      in: header
+      value: $inputs.amzDate
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    - name: X-Amz-Content-Sha256
+      in: header
+      value: $inputs.contentSha256
+    - name: X-Amz-Security-Token
+      in: header
+      value: $inputs.securityToken
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      taskStatus: $response.body#/SynthesisTask/TaskStatus
+      outputUri: $response.body#/SynthesisTask/OutputUri
+    onSuccess:
+    - name: stillRunning
+      type: goto
+      stepId: pollTask
+      criteria:
+      - context: $response.body
+        condition: $.SynthesisTask.TaskStatus == "scheduled" || $.SynthesisTask.TaskStatus == "inProgress"
+        type: jsonpath
+    - name: terminal
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.SynthesisTask.TaskStatus == "completed" || $.SynthesisTask.TaskStatus == "failed"
+        type: jsonpath
+  outputs:
+    taskId: $steps.startTask.outputs.taskId
+    taskStatus: $steps.pollTask.outputs.taskStatus
+    outputUri: $steps.pollTask.outputs.outputUri

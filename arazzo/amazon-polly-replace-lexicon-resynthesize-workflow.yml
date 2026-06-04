@@ -1,0 +1,171 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Polly Replace Lexicon and Re-synthesize
+  summary: Overwrite an existing lexicon, confirm the change, then re-synthesize speech with it.
+  description: >-
+    Demonstrates updating a custom pronunciation and re-rendering audio. The
+    workflow reads the current lexicon with GetLexicon, overwrites it with a new
+    PLS body via PutLexicon, reads it back to confirm the replacement, and then
+    re-synthesizes the input text with SynthesizeSpeech so the audio reflects the
+    updated pronunciations. Each step spells out its request inline, including
+    the AWS Signature Version 4 signing headers, so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: pollyApi
+  url: ../openapi/amazon-polly-openapi-original.yaml
+  type: openapi
+workflows:
+- workflowId: replace-lexicon-resynthesize
+  summary: Read, overwrite, verify a lexicon, then re-synthesize speech applying it.
+  description: >-
+    Reads the existing lexicon, overwrites it with a new PLS body, confirms the
+    replacement, and re-synthesizes the supplied text with the updated lexicon
+    applied.
+  inputs:
+    type: object
+    required:
+    - lexiconName
+    - content
+    - amzDate
+    - authorization
+    - text
+    - outputFormat
+    - voiceId
+    properties:
+      lexiconName:
+        type: string
+        description: Case-sensitive alphanumeric lexicon name (1-20 chars).
+      content:
+        type: string
+        description: The replacement PLS lexicon content as a string.
+      amzDate:
+        type: string
+        description: The X-Amz-Date timestamp used to sign the requests.
+      authorization:
+        type: string
+        description: The full SigV4 Authorization header value for the request.
+      contentSha256:
+        type: string
+        description: The X-Amz-Content-Sha256 hex digest of the request payload.
+      securityToken:
+        type: string
+        description: Optional X-Amz-Security-Token for temporary credentials.
+      text:
+        type: string
+        description: The input text (plain text or SSML) to synthesize.
+      outputFormat:
+        type: string
+        description: The audio output format (mp3, ogg_vorbis, pcm, or json).
+      voiceId:
+        type: string
+        description: Voice ID to use for the synthesis (e.g. Joanna).
+  steps:
+  - stepId: readCurrent
+    description: Read the current lexicon to capture its attributes before replacing it.
+    operationId: GetLexicon
+    parameters:
+    - name: LexiconName
+      in: path
+      value: $inputs.lexiconName
+    - name: X-Amz-Date
+      in: header
+      value: $inputs.amzDate
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    - name: X-Amz-Content-Sha256
+      in: header
+      value: $inputs.contentSha256
+    - name: X-Amz-Security-Token
+      in: header
+      value: $inputs.securityToken
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      previousAttributes: $response.body#/LexiconAttributes
+  - stepId: overwriteLexicon
+    description: Overwrite the lexicon with the new PLS body under the same name.
+    operationId: PutLexicon
+    parameters:
+    - name: LexiconName
+      in: path
+      value: $inputs.lexiconName
+    - name: X-Amz-Date
+      in: header
+      value: $inputs.amzDate
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    - name: X-Amz-Content-Sha256
+      in: header
+      value: $inputs.contentSha256
+    - name: X-Amz-Security-Token
+      in: header
+      value: $inputs.securityToken
+    requestBody:
+      contentType: application/json
+      payload:
+        Content: $inputs.content
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $statusCode
+  - stepId: confirmReplacement
+    description: Read the lexicon back to confirm the replacement is stored.
+    operationId: GetLexicon
+    parameters:
+    - name: LexiconName
+      in: path
+      value: $inputs.lexiconName
+    - name: X-Amz-Date
+      in: header
+      value: $inputs.amzDate
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    - name: X-Amz-Content-Sha256
+      in: header
+      value: $inputs.contentSha256
+    - name: X-Amz-Security-Token
+      in: header
+      value: $inputs.securityToken
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      lexiconName: $response.body#/Lexicon/Name
+      updatedAttributes: $response.body#/LexiconAttributes
+  - stepId: resynthesize
+    description: >-
+      Re-synthesize the supplied text with the replaced lexicon applied so the
+      audio reflects the updated pronunciations.
+    operationId: SynthesizeSpeech
+    parameters:
+    - name: X-Amz-Date
+      in: header
+      value: $inputs.amzDate
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    - name: X-Amz-Content-Sha256
+      in: header
+      value: $inputs.contentSha256
+    - name: X-Amz-Security-Token
+      in: header
+      value: $inputs.securityToken
+    requestBody:
+      contentType: application/json
+      payload:
+        LexiconNames:
+        - $inputs.lexiconName
+        OutputFormat: $inputs.outputFormat
+        Text: $inputs.text
+        VoiceId: $inputs.voiceId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      contentType: $response.body#/ContentType
+      requestCharacters: $response.body#/RequestCharacters
+  outputs:
+    lexiconName: $steps.confirmReplacement.outputs.lexiconName
+    requestCharacters: $steps.resynthesize.outputs.requestCharacters
