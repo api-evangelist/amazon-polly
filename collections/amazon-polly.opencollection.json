@@ -1,0 +1,149 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Polly API",
+    "version": "2016-06-10"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Speech Synthesis",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Polly Synthesize Speech",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://polly.{region}.amazonaws.com/v1/speech",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Synthesizes UTF-8 input text into an audio stream."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Voices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Polly List Available Voices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://polly.{region}.amazonaws.com/v1/voices",
+            "params": [
+              {
+                "name": "Engine",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "LanguageCode",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the list of voices that are available for use when synthesizing speech."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Lexicons",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Polly Get a Pronunciation Lexicon",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://polly.{region}.amazonaws.com/v1/lexicons/:LexiconName",
+            "params": [
+              {
+                "name": "LexiconName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the content of the specified pronunciation lexicon."
+        },
+        {
+          "info": {
+            "name": "Amazon Polly Store a Pronunciation Lexicon",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://polly.{region}.amazonaws.com/v1/lexicons/:LexiconName",
+            "params": [
+              {
+                "name": "LexiconName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Stores a pronunciation lexicon in an AWS Region."
+        },
+        {
+          "info": {
+            "name": "Amazon Polly Delete a Pronunciation Lexicon",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://polly.{region}.amazonaws.com/v1/lexicons/:LexiconName",
+            "params": [
+              {
+                "name": "LexiconName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes the specified pronunciation lexicon stored in an AWS Region."
+        },
+        {
+          "info": {
+            "name": "Amazon Polly List Pronunciation Lexicons",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://polly.{region}.amazonaws.com/v1/lexicons"
+          },
+          "docs": "Returns a list of pronunciation lexicons stored in an AWS Region."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

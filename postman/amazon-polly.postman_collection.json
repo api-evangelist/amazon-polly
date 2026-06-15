@@ -1,0 +1,605 @@
+{
+  "info": {
+    "_postman_id": "108d34ed-c18e-497b-9e5d-fecfd032031d",
+    "name": "Amazon Polly API",
+    "description": "The Amazon Polly API enables you to synthesize speech from text using a variety of lifelike voices across multiple languages. You can also manage pronunciation lexicons and start long-running speech synthesis tasks.\n\nContact Support:\n Name: AWS Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:04:50.000Z",
+    "updatedAt": "2026-06-05T15:04:50.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-108d34ed-c18e-497b-9e5d-fecfd032031d"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "speech",
+          "item": [
+            {
+              "name": "Amazon Polly Synthesize Speech",
+              "id": "8495feae-6762-4044-a09f-a28c49d1400d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "audio/mpeg"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"OutputFormat\": \"json\",\n  \"Text\": \"<string>\",\n  \"VoiceId\": \"<string>\",\n  \"Engine\": \"long-form\",\n  \"LanguageCode\": \"<string>\",\n  \"LexiconNames\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"SampleRate\": \"<string>\",\n  \"SpeechMarkTypes\": [\n    \"viseme\",\n    \"viseme\"\n  ],\n  \"TextType\": \"ssml\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/speech",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "speech"
+                  ]
+                },
+                "description": "Synthesizes UTF-8 input text into an audio stream."
+              },
+              "response": [
+                {
+                  "id": "56c8514e-577c-4ce2-ade2-b31a2f3a15de",
+                  "name": "Speech audio stream",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "audio/mpeg"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"OutputFormat\": \"json\",\n  \"Text\": \"<string>\",\n  \"VoiceId\": \"<string>\",\n  \"Engine\": \"long-form\",\n  \"LanguageCode\": \"<string>\",\n  \"LexiconNames\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"SampleRate\": \"<string>\",\n  \"SpeechMarkTypes\": [\n    \"viseme\",\n    \"viseme\"\n  ],\n  \"TextType\": \"ssml\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/speech",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "speech"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "audio/mpeg"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<binary>",
+                  "createdAt": "2026-06-05T15:04:50.000Z",
+                  "updatedAt": "2026-06-05T15:04:50.000Z",
+                  "uid": "35240-56c8514e-577c-4ce2-ade2-b31a2f3a15de"
+                }
+              ],
+              "createdAt": "2026-06-05T15:04:50.000Z",
+              "updatedAt": "2026-06-05T15:04:50.000Z",
+              "uid": "35240-8495feae-6762-4044-a09f-a28c49d1400d"
+            }
+          ],
+          "id": "1a25aed0-5be4-4837-b6d4-bf455aff3398",
+          "createdAt": "2026-06-05T15:04:50.000Z",
+          "updatedAt": "2026-06-05T15:04:50.000Z",
+          "uid": "35240-1a25aed0-5be4-4837-b6d4-bf455aff3398"
+        },
+        {
+          "name": "voices",
+          "item": [
+            {
+              "name": "Amazon Polly List Available Voices",
+              "id": "854db474-c169-487e-b466-344e6c2d03c1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/voices?Engine=neural&LanguageCode=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "voices"
+                  ],
+                  "query": [
+                    {
+                      "key": "Engine",
+                      "value": "neural"
+                    },
+                    {
+                      "key": "LanguageCode",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Returns the list of voices that are available for use when synthesizing speech."
+              },
+              "response": [
+                {
+                  "id": "2bd809da-a146-495d-a671-5806e62086a2",
+                  "name": "Voices listed successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/voices?Engine=neural&LanguageCode=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "voices"
+                      ],
+                      "query": [
+                        {
+                          "key": "Engine",
+                          "value": "neural"
+                        },
+                        {
+                          "key": "LanguageCode",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"Voices\": [\n    {\n      \"Gender\": \"Female\",\n      \"Id\": \"<string>\",\n      \"LanguageCode\": \"<string>\",\n      \"LanguageName\": \"<string>\",\n      \"Name\": \"<string>\",\n      \"SupportedEngines\": [\n        \"generative\",\n        \"standard\"\n      ]\n    },\n    {\n      \"Gender\": \"Female\",\n      \"Id\": \"<string>\",\n      \"LanguageCode\": \"<string>\",\n      \"LanguageName\": \"<string>\",\n      \"Name\": \"<string>\",\n      \"SupportedEngines\": [\n        \"standard\",\n        \"neural\"\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T15:04:50.000Z",
+                  "updatedAt": "2026-06-05T15:04:50.000Z",
+                  "uid": "35240-2bd809da-a146-495d-a671-5806e62086a2"
+                }
+              ],
+              "createdAt": "2026-06-05T15:04:50.000Z",
+              "updatedAt": "2026-06-05T15:04:50.000Z",
+              "uid": "35240-854db474-c169-487e-b466-344e6c2d03c1"
+            }
+          ],
+          "id": "afb80856-ca1e-41b7-a48b-6090e8cad0eb",
+          "createdAt": "2026-06-05T15:04:50.000Z",
+          "updatedAt": "2026-06-05T15:04:50.000Z",
+          "uid": "35240-afb80856-ca1e-41b7-a48b-6090e8cad0eb"
+        },
+        {
+          "name": "lexicons",
+          "item": [
+            {
+              "name": "{LexiconName}",
+              "item": [
+                {
+                  "name": "Amazon Polly Store a Pronunciation Lexicon",
+                  "id": "66d19712-0fa0-4f4f-ba49-fa1e7dc50f79",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"Content\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/lexicons/:LexiconName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "lexicons",
+                        ":LexiconName"
+                      ],
+                      "variable": [
+                        {
+                          "id": "9ad3f71d-5de4-409a-8312-9571f201cca7",
+                          "key": "LexiconName",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Stores a pronunciation lexicon in an AWS Region."
+                  },
+                  "response": [
+                    {
+                      "id": "fc08e442-5891-4bfa-8cab-1b9bf1da1f6f",
+                      "name": "Lexicon stored successfully",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"Content\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/lexicons/:LexiconName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "lexicons",
+                            ":LexiconName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "LexiconName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:04:50.000Z",
+                      "updatedAt": "2026-06-05T15:04:50.000Z",
+                      "uid": "35240-fc08e442-5891-4bfa-8cab-1b9bf1da1f6f"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:04:50.000Z",
+                  "updatedAt": "2026-06-05T15:04:50.000Z",
+                  "uid": "35240-66d19712-0fa0-4f4f-ba49-fa1e7dc50f79"
+                },
+                {
+                  "name": "Amazon Polly Get a Pronunciation Lexicon",
+                  "id": "159deb0e-9643-4ea0-833c-ec2dd55a0431",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/lexicons/:LexiconName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "lexicons",
+                        ":LexiconName"
+                      ],
+                      "variable": [
+                        {
+                          "id": "2aadff20-2a8a-4227-9921-529e07ac43d0",
+                          "key": "LexiconName",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Returns the content of the specified pronunciation lexicon."
+                  },
+                  "response": [
+                    {
+                      "id": "16c64f2b-8d57-4d75-a36f-dc3eb5541ca7",
+                      "name": "Lexicon retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/lexicons/:LexiconName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "lexicons",
+                            ":LexiconName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "LexiconName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:04:50.000Z",
+                      "updatedAt": "2026-06-05T15:04:50.000Z",
+                      "uid": "35240-16c64f2b-8d57-4d75-a36f-dc3eb5541ca7"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:04:50.000Z",
+                  "updatedAt": "2026-06-05T15:04:50.000Z",
+                  "uid": "35240-159deb0e-9643-4ea0-833c-ec2dd55a0431"
+                },
+                {
+                  "name": "Amazon Polly Delete a Pronunciation Lexicon",
+                  "id": "83d731a6-53d4-400e-ba90-400808db4ea5",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/lexicons/:LexiconName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "lexicons",
+                        ":LexiconName"
+                      ],
+                      "variable": [
+                        {
+                          "id": "d3ebff3b-12a9-4db7-ae79-a9eb930b8cb0",
+                          "key": "LexiconName",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Deletes the specified pronunciation lexicon stored in an AWS Region."
+                  },
+                  "response": [
+                    {
+                      "id": "20276e69-5723-422c-967f-bc4b7d6d3029",
+                      "name": "Lexicon deleted successfully",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/lexicons/:LexiconName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "lexicons",
+                            ":LexiconName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "LexiconName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:04:50.000Z",
+                      "updatedAt": "2026-06-05T15:04:50.000Z",
+                      "uid": "35240-20276e69-5723-422c-967f-bc4b7d6d3029"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:04:50.000Z",
+                  "updatedAt": "2026-06-05T15:04:50.000Z",
+                  "uid": "35240-83d731a6-53d4-400e-ba90-400808db4ea5"
+                }
+              ],
+              "id": "9084d500-ffa8-4d04-b80d-d6dadb65917f",
+              "createdAt": "2026-06-05T15:04:50.000Z",
+              "updatedAt": "2026-06-05T15:04:50.000Z",
+              "uid": "35240-9084d500-ffa8-4d04-b80d-d6dadb65917f"
+            },
+            {
+              "name": "Amazon Polly List Pronunciation Lexicons",
+              "id": "e015f0de-5481-488a-98f4-1612067d9502",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/lexicons",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "lexicons"
+                  ]
+                },
+                "description": "Returns a list of pronunciation lexicons stored in an AWS Region."
+              },
+              "response": [
+                {
+                  "id": "0e1810f0-7596-4757-8473-46cb86e4ca18",
+                  "name": "Lexicons listed successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/lexicons",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "lexicons"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:04:50.000Z",
+                  "updatedAt": "2026-06-05T15:04:50.000Z",
+                  "uid": "35240-0e1810f0-7596-4757-8473-46cb86e4ca18"
+                }
+              ],
+              "createdAt": "2026-06-05T15:04:50.000Z",
+              "updatedAt": "2026-06-05T15:04:50.000Z",
+              "uid": "35240-e015f0de-5481-488a-98f4-1612067d9502"
+            }
+          ],
+          "id": "b88d83e8-58db-4de7-8df3-f68f90ae07cc",
+          "createdAt": "2026-06-05T15:04:50.000Z",
+          "updatedAt": "2026-06-05T15:04:50.000Z",
+          "uid": "35240-b88d83e8-58db-4de7-8df3-f68f90ae07cc"
+        }
+      ],
+      "id": "b24d634b-80ba-4ad1-b560-9df11a96b247",
+      "createdAt": "2026-06-05T15:04:50.000Z",
+      "updatedAt": "2026-06-05T15:04:50.000Z",
+      "uid": "35240-b24d634b-80ba-4ad1-b560-9df11a96b247"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-east-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://polly.{{region}}.amazonaws.com"
+    }
+  ]
+}
