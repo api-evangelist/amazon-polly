@@ -51,7 +51,7 @@ apis:
         url: https://aws.amazon.com/polly/faqs/
       - type: Features
         url: https://aws.amazon.com/polly/features/
-      - type: Quotas
+      - type: RateLimits
         url: https://docs.aws.amazon.com/polly/latest/dg/limits.html
       - type: Authentication
         url: https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html
@@ -60,36 +60,33 @@ apis:
 common:
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/amazon-polly/overview
-  - type: ArazzoWorkflows
-    url: arazzo/
-    workflows:
-      - url: arazzo/amazon-polly-lexicon-async-task-poll-workflow.yml
-        name: Amazon Polly Store Lexicon, Start Async Task, and Poll
-        summary: Store a lexicon, start an async synthesis task applying it, then poll to completion.
-      - url: arazzo/amazon-polly-lexicon-lifecycle-workflow.yml
-        name: Amazon Polly Lexicon Lifecycle
-        summary: Store a lexicon, list lexicons, read it back, and delete it.
-      - url: arazzo/amazon-polly-list-synthesis-tasks-inspect-workflow.yml
-        name: Amazon Polly List Synthesis Tasks and Inspect One
-        summary: List synthesis tasks filtered by status, then fetch full detail on the first.
-      - url: arazzo/amazon-polly-list-voices-start-synthesis-task-workflow.yml
-        name: Amazon Polly Select Voice and Start Synthesis Task
-        summary: Discover a voice for a language, then start an async synthesis task with it.
-      - url: arazzo/amazon-polly-list-voices-synthesize-speech-workflow.yml
-        name: Amazon Polly List Voices and Synthesize Speech
-        summary: Pick an available voice for a language and synthesize speech with it.
-      - url: arazzo/amazon-polly-paginate-voices-workflow.yml
-        name: Amazon Polly Paginate the Voice Catalog
-        summary: Page through the full DescribeVoices catalog using the NextToken cursor.
-      - url: arazzo/amazon-polly-put-lexicon-synthesize-workflow.yml
-        name: Amazon Polly Store Lexicon and Synthesize With It
-        summary: Store a pronunciation lexicon, confirm it, then synthesize speech applying it.
-      - url: arazzo/amazon-polly-replace-lexicon-resynthesize-workflow.yml
-        name: Amazon Polly Replace Lexicon and Re-synthesize
-        summary: Overwrite an existing lexicon, confirm the change, then re-synthesize speech with it.
-      - url: arazzo/amazon-polly-start-synthesis-task-poll-workflow.yml
-        name: Amazon Polly Start Synthesis Task and Poll to Completion
-        summary: Start an async speech synthesis task, then poll it until it completes.
+  - type: Arazzo
+    url: arazzo/amazon-polly-lexicon-async-task-poll-workflow.yml
+    name: Amazon Polly Store Lexicon, Start Async Task, and Poll
+  - type: Arazzo
+    url: arazzo/amazon-polly-lexicon-lifecycle-workflow.yml
+    name: Amazon Polly Lexicon Lifecycle
+  - type: Arazzo
+    url: arazzo/amazon-polly-list-synthesis-tasks-inspect-workflow.yml
+    name: Amazon Polly List Synthesis Tasks and Inspect One
+  - type: Arazzo
+    url: arazzo/amazon-polly-list-voices-start-synthesis-task-workflow.yml
+    name: Amazon Polly Select Voice and Start Synthesis Task
+  - type: Arazzo
+    url: arazzo/amazon-polly-list-voices-synthesize-speech-workflow.yml
+    name: Amazon Polly List Voices and Synthesize Speech
+  - type: Arazzo
+    url: arazzo/amazon-polly-paginate-voices-workflow.yml
+    name: Amazon Polly Paginate the Voice Catalog
+  - type: Arazzo
+    url: arazzo/amazon-polly-put-lexicon-synthesize-workflow.yml
+    name: Amazon Polly Store Lexicon and Synthesize With It
+  - type: Arazzo
+    url: arazzo/amazon-polly-replace-lexicon-resynthesize-workflow.yml
+    name: Amazon Polly Replace Lexicon and Re-synthesize
+  - type: Arazzo
+    url: arazzo/amazon-polly-start-synthesis-task-poll-workflow.yml
+    name: Amazon Polly Start Synthesis Task and Poll to Completion
   - type: Portal
     url: https://console.aws.amazon.com/polly/
   - type: Blog
@@ -98,7 +95,7 @@ common:
     url: https://aws.amazon.com/premiumsupport/
   - type: CLI
     url: https://docs.aws.amazon.com/cli/latest/reference/polly/
-  - type: SDK
+  - type: SDKs
     url: https://aws.amazon.com/tools/
   - type: StatusPage
     url: https://status.aws.amazon.com/
@@ -114,7 +111,7 @@ common:
     url: https://aws.amazon.com/polly/getting-started/
   - type: FAQ
     url: https://aws.amazon.com/polly/faqs/
-  - type: SignUp
+  - type: Signup
     url: https://portal.aws.amazon.com/billing/signup
   - type: GitHubOrganization
     url: https://github.com/aws
@@ -270,37 +267,37 @@ common:
     url: json-structure/amazon-polly-voice-id-structure.json
   - type: JSONStructure
     url: json-structure/amazon-polly-voice-structure.json
-  - type: Example
+  - type: Examples
     url: examples/amazon-polly-describe-voices-output-example.json
-  - type: Example
+  - type: Examples
     url: examples/amazon-polly-example.json
-  - type: Example
+  - type: Examples
     url: examples/amazon-polly-get-lexicon-output-example.json
-  - type: Example
+  - type: Examples
     url: examples/amazon-polly-get-speech-synthesis-task-output-example.json
-  - type: Example
+  - type: Examples
     url: examples/amazon-polly-lexicon-attributes-example.json
-  - type: Example
+  - type: Examples
     url: examples/amazon-polly-lexicon-description-example.json
-  - type: Example
+  - type: Examples
     url: examples/amazon-polly-lexicon-example.json
-  - type: Example
+  - type: Examples
     url: examples/amazon-polly-list-lexicons-output-example.json
-  - type: Example
+  - type: Examples
     url: examples/amazon-polly-list-speech-synthesis-tasks-output-example.json
-  - type: Example
+  - type: Examples
     url: examples/amazon-polly-put-lexicon-input-example.json
-  - type: Example
+  - type: Examples
     url: examples/amazon-polly-start-speech-synthesis-task-input-example.json
-  - type: Example
+  - type: Examples
     url: examples/amazon-polly-start-speech-synthesis-task-output-example.json
-  - type: Example
+  - type: Examples
     url: examples/amazon-polly-synthesis-task-example.json
-  - type: Example
+  - type: Examples
     url: examples/amazon-polly-synthesize-speech-input-example.json
-  - type: Example
+  - type: Examples
     url: examples/amazon-polly-synthesize-speech-output-example.json
-  - type: Example
+  - type: Examples
     url: examples/amazon-polly-voice-example.json
 maintainers:
   - FN: Kin Lane
