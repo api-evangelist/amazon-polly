@@ -58,6 +58,12 @@ apis:
       - type: RateLimits
         url: https://docs.aws.amazon.com/polly/latest/dg/limits.html
 common:
+  - type: VulnerabilityDisclosure
+    url: security/amazon-polly-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/amazon-polly-domain-security.yml
+  - type: Authentication
+    url: authentication/amazon-polly-authentication.yml
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/amazon-polly/overview
   - type: Arazzo
