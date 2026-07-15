@@ -58,6 +58,8 @@ apis:
       - type: RateLimits
         url: https://docs.aws.amazon.com/polly/latest/dg/limits.html
 common:
+  - type: AgenticAccess
+    url: agentic-access/amazon-polly-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/amazon-polly-vulnerability-disclosure.yml
   - type: DomainSecurity
