@@ -1,0 +1,553 @@
+openapi: 3.0.0
+info:
+  version: 2016-06-10
+  x-release: v4
+  title: Amazon Polly Lexicons API
+  description: <p>Amazon Polly is a web service that makes it easy to synthesize speech from text.</p> <p>The Amazon Polly service provides API operations for synthesizing high-quality speech from plain text and Speech Synthesis Markup Language (SSML), along with managing pronunciations lexicons that enable you to get the best results for your application domain.</p>
+  x-logo:
+    url: https://api.apis.guru/v2/cache/logo/https_twitter.com_awscloud_profile_image.png
+    backgroundColor: '#FFFFFF'
+  termsOfService: https://aws.amazon.com/service-terms/
+  contact:
+    name: Mike Ralphson
+    email: mike.ralphson@gmail.com
+    url: https://github.com/mermade/aws2openapi
+    x-twitter: PermittedSoc
+  license:
+    name: Apache 2.0 License
+    url: http://www.apache.org/licenses/
+  x-providerName: amazonaws.com
+  x-serviceName: polly
+  x-origin:
+  - contentType: application/json
+    url: https://raw.githubusercontent.com/aws/aws-sdk-js/master/apis/polly-2016-06-10.normal.json
+    converter:
+      url: https://github.com/mermade/aws2openapi
+      version: 1.0.0
+    x-apisguru-driver: external
+  x-apiClientRegistration:
+    url: https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct
+  x-apisguru-categories:
+  - cloud
+  x-preferred: true
+servers:
+- url: http://polly.{region}.amazonaws.com
+  variables:
+    region:
+      description: The AWS region
+      enum:
+      - us-east-1
+      - us-east-2
+      - us-west-1
+      - us-west-2
+      - us-gov-west-1
+      - us-gov-east-1
+      - ca-central-1
+      - eu-north-1
+      - eu-west-1
+      - eu-west-2
+      - eu-west-3
+      - eu-central-1
+      - eu-south-1
+      - af-south-1
+      - ap-northeast-1
+      - ap-northeast-2
+      - ap-northeast-3
+      - ap-southeast-1
+      - ap-southeast-2
+      - ap-east-1
+      - ap-south-1
+      - sa-east-1
+      - me-south-1
+      default: us-east-1
+  description: The Amazon Polly multi-region endpoint
+- url: https://polly.{region}.amazonaws.com
+  variables:
+    region:
+      description: The AWS region
+      enum:
+      - us-east-1
+      - us-east-2
+      - us-west-1
+      - us-west-2
+      - us-gov-west-1
+      - us-gov-east-1
+      - ca-central-1
+      - eu-north-1
+      - eu-west-1
+      - eu-west-2
+      - eu-west-3
+      - eu-central-1
+      - eu-south-1
+      - af-south-1
+      - ap-northeast-1
+      - ap-northeast-2
+      - ap-northeast-3
+      - ap-southeast-1
+      - ap-southeast-2
+      - ap-east-1
+      - ap-south-1
+      - sa-east-1
+      - me-south-1
+      default: us-east-1
+  description: The Amazon Polly multi-region endpoint
+- url: http://polly.{region}.amazonaws.com.cn
+  variables:
+    region:
+      description: The AWS region
+      enum:
+      - cn-north-1
+      - cn-northwest-1
+      default: cn-north-1
+  description: The Amazon Polly endpoint for China (Beijing) and China (Ningxia)
+- url: https://polly.{region}.amazonaws.com.cn
+  variables:
+    region:
+      description: The AWS region
+      enum:
+      - cn-north-1
+      - cn-northwest-1
+      default: cn-north-1
+  description: The Amazon Polly endpoint for China (Beijing) and China (Ningxia)
+security:
+- hmac: []
+tags:
+- name: Lexicons
+paths:
+  /v1/lexicons/{LexiconName}:
+    parameters:
+    - $ref: '#/components/parameters/X-Amz-Content-Sha256'
+    - $ref: '#/components/parameters/X-Amz-Date'
+    - $ref: '#/components/parameters/X-Amz-Algorithm'
+    - $ref: '#/components/parameters/X-Amz-Credential'
+    - $ref: '#/components/parameters/X-Amz-Security-Token'
+    - $ref: '#/components/parameters/X-Amz-Signature'
+    - $ref: '#/components/parameters/X-Amz-SignedHeaders'
+    delete:
+      operationId: DeleteLexicon
+      description: <p>Deletes the specified pronunciation lexicon stored in an Amazon Web Services Region. A lexicon which has been deleted is not available for speech synthesis, nor is it possible to retrieve it using either the <code>GetLexicon</code> or <code>ListLexicon</code> APIs.</p> <p>For more information, see <a href="https://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html">Managing Lexicons</a>.</p>
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteLexiconOutput'
+        '480':
+          description: LexiconNotFoundException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LexiconNotFoundException'
+        '481':
+          description: ServiceFailureException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceFailureException'
+      parameters:
+      - name: LexiconName
+        in: path
+        required: true
+        description: The name of the lexicon to delete. Must be an existing lexicon in the region.
+        schema:
+          type: string
+          pattern: '[0-9A-Za-z]{1,20}'
+      summary: Amazon Polly Delete Lexicon
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      tags:
+      - Lexicons
+    get:
+      operationId: GetLexicon
+      description: Returns the content of the specified pronunciation lexicon stored in an Amazon Web Services Region. For more information, see <a href="https://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html">Managing Lexicons</a>.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetLexiconOutput'
+        '480':
+          description: LexiconNotFoundException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LexiconNotFoundException'
+        '481':
+          description: ServiceFailureException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceFailureException'
+      parameters:
+      - name: LexiconName
+        in: path
+        required: true
+        description: Name of the lexicon.
+        schema:
+          type: string
+          pattern: '[0-9A-Za-z]{1,20}'
+      summary: Amazon Polly Get Lexicon
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      tags:
+      - Lexicons
+    put:
+      operationId: PutLexicon
+      description: <p>Stores a pronunciation lexicon in an Amazon Web Services Region. If a lexicon with the same name already exists in the region, it is overwritten by the new lexicon. Lexicon operations have eventual consistency, therefore, it might take some time before the lexicon is available to the SynthesizeSpeech operation.</p> <p>For more information, see <a href="https://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html">Managing Lexicons</a>.</p>
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PutLexiconOutput'
+        '480':
+          description: InvalidLexiconException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidLexiconException'
+        '481':
+          description: UnsupportedPlsAlphabetException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsupportedPlsAlphabetException'
+        '482':
+          description: UnsupportedPlsLanguageException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsupportedPlsLanguageException'
+        '483':
+          description: LexiconSizeExceededException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LexiconSizeExceededException'
+        '484':
+          description: MaxLexemeLengthExceededException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MaxLexemeLengthExceededException'
+        '485':
+          description: MaxLexiconsNumberExceededException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MaxLexiconsNumberExceededException'
+        '486':
+          description: ServiceFailureException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceFailureException'
+      parameters:
+      - name: LexiconName
+        in: path
+        required: true
+        description: 'Name of the lexicon. The name must follow the regular express format [0-9A-Za-z]{1,20}. That is, the name is a case-sensitive alphanumeric string up to 20 characters long. '
+        schema:
+          type: string
+          pattern: '[0-9A-Za-z]{1,20}'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - Content
+              properties:
+                Content:
+                  description: Content of the PLS lexicon as string data.
+                  type: string
+                  format: password
+      summary: Amazon Polly Put Lexicon
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      tags:
+      - Lexicons
+  /v1/lexicons:
+    parameters:
+    - $ref: '#/components/parameters/X-Amz-Content-Sha256'
+    - $ref: '#/components/parameters/X-Amz-Date'
+    - $ref: '#/components/parameters/X-Amz-Algorithm'
+    - $ref: '#/components/parameters/X-Amz-Credential'
+    - $ref: '#/components/parameters/X-Amz-Security-Token'
+    - $ref: '#/components/parameters/X-Amz-Signature'
+    - $ref: '#/components/parameters/X-Amz-SignedHeaders'
+    get:
+      operationId: ListLexicons
+      description: Returns a list of pronunciation lexicons stored in an Amazon Web Services Region. For more information, see <a href="https://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html">Managing Lexicons</a>.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListLexiconsOutput'
+        '480':
+          description: InvalidNextTokenException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidNextTokenException'
+        '481':
+          description: ServiceFailureException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceFailureException'
+      parameters:
+      - name: NextToken
+        in: query
+        required: false
+        description: An opaque pagination token returned from previous <code>ListLexicons</code> operation. If present, indicates where to continue the list of lexicons.
+        schema:
+          type: string
+          minLength: 0
+          maxLength: 4096
+      summary: Amazon Polly List Lexicons
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      tags:
+      - Lexicons
+components:
+  schemas:
+    LexiconAttributes:
+      type: object
+      properties:
+        Alphabet:
+          allOf:
+          - $ref: '#/components/schemas/Alphabet'
+          - description: Phonetic alphabet used in the lexicon. Valid values are <code>ipa</code> and <code>x-sampa</code>.
+        LanguageCode:
+          allOf:
+          - $ref: '#/components/schemas/LanguageCode'
+          - description: Language code that the lexicon applies to. A lexicon with a language code such as "en" would be applied to all English languages (en-GB, en-US, en-AUS, en-WLS, and so on.
+        LastModified:
+          allOf:
+          - $ref: '#/components/schemas/LastModified'
+          - description: Date lexicon was last modified (a timestamp value).
+        LexiconArn:
+          allOf:
+          - $ref: '#/components/schemas/LexiconArn'
+          - description: Amazon Resource Name (ARN) of the lexicon.
+        LexemesCount:
+          allOf:
+          - $ref: '#/components/schemas/LexemesCount'
+          - description: Number of lexemes in the lexicon.
+        Size:
+          allOf:
+          - $ref: '#/components/schemas/Size'
+          - description: Total size of the lexicon, in characters.
+      description: Contains metadata describing the lexicon such as the number of lexemes, language code, and so on. For more information, see <a href="https://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html">Managing Lexicons</a>.
+    ListLexiconsOutput:
+      type: object
+      example:
+        Lexicons:
+        - Attributes:
+            Alphabet: ipa
+            LanguageCode: en-US
+            LastModified: 1478542980.117
+            LexemesCount: 1
+            LexiconArn: arn:aws:polly:us-east-1:123456789012:lexicon/example
+            Size: 503
+          Name: example
+      properties:
+        Lexicons:
+          allOf:
+          - $ref: '#/components/schemas/LexiconDescriptionList'
+          - description: A list of lexicon names and attributes.
+        NextToken:
+          allOf:
+          - $ref: '#/components/schemas/NextToken'
+          - description: The pagination token to use in the next request to continue the listing of lexicons. <code>NextToken</code> is returned only if the response is truncated.
+    LastModified:
+      type: string
+      format: date-time
+    LanguageCode:
+      type: string
+      enum:
+      - arb
+      - cmn-CN
+      - cy-GB
+      - da-DK
+      - de-DE
+      - en-AU
+      - en-GB
+      - en-GB-WLS
+      - en-IN
+      - en-US
+      - es-ES
+      - es-MX
+      - es-US
+      - fr-CA
+      - fr-FR
+      - is-IS
+      - it-IT
+      - ja-JP
+      - hi-IN
+      - ko-KR
+      - nb-NO
+      - nl-NL
+      - pl-PL
+      - pt-BR
+      - pt-PT
+      - ro-RO
+      - ru-RU
+      - sv-SE
+      - tr-TR
+      - en-NZ
+      - en-ZA
+      - ca-ES
+      - de-AT
+      - yue-CN
+      - ar-AE
+      - fi-FI
+    UnsupportedPlsLanguageException: {}
+    LexemesCount:
+      type: integer
+    LexiconContent:
+      type: string
+      format: password
+    MaxLexiconsNumberExceededException: {}
+    LexiconDescriptionList:
+      type: array
+      items:
+        $ref: '#/components/schemas/LexiconDescription'
+    Alphabet:
+      type: string
+    NextToken:
+      type: string
+      minLength: 0
+      maxLength: 4096
+    PutLexiconOutput:
+      type: object
+      example: {}
+      properties: {}
+    GetLexiconOutput:
+      type: object
+      example:
+        Lexicon:
+          Content: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<lexicon version=\"1.0\" \r\n      xmlns=\"http://www.w3.org/2005/01/pronunciation-lexicon\"\r\n      xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" \r\n      xsi:schemaLocation=\"http://www.w3.org/2005/01/pronunciation-lexicon \r\n        http://www.w3.org/TR/2007/CR-pronunciation-lexicon-20071212/pls.xsd\"\r\n      alphabet=\"ipa\" \r\n      xml:lang=\"en-US\">\r\n  <lexeme>\r\n    <grapheme>W3C</grapheme>\r\n    <alias>World Wide Web Consortium</alias>\r\n  </lexeme>\r\n</lexicon>"
+          Name: example
+        LexiconAttributes:
+          Alphabet: ipa
+          LanguageCode: en-US
+          LastModified: 1478542980.117
+          LexemesCount: 1
+          LexiconArn: arn:aws:polly:us-east-1:123456789012:lexicon/example
+          Size: 503
+      properties:
+        Lexicon:
+          allOf:
+          - $ref: '#/components/schemas/Lexicon'
+          - description: 'Lexicon object that provides name and the string content of the lexicon. '
+        LexiconAttributes:
+          allOf:
+          - $ref: '#/components/schemas/LexiconAttributes'
+          - description: Metadata of the lexicon, including phonetic alphabetic used, language code, lexicon ARN, number of lexemes defined in the lexicon, and size of lexicon in bytes.
+    UnsupportedPlsAlphabetException: {}
+    ServiceFailureException: {}
+    InvalidNextTokenException: {}
+    LexiconNotFoundException: {}
+    Size:
+      type: integer
+    InvalidLexiconException: {}
+    Lexicon:
+      type: object
+      properties:
+        Content:
+          allOf:
+          - $ref: '#/components/schemas/LexiconContent'
+          - description: Lexicon content in string format. The content of a lexicon must be in PLS format.
+        Name:
+          allOf:
+          - $ref: '#/components/schemas/LexiconName'
+          - description: Name of the lexicon.
+      description: Provides lexicon name and lexicon content in string format. For more information, see <a href="https://www.w3.org/TR/pronunciation-lexicon/">Pronunciation Lexicon Specification (PLS) Version 1.0</a>.
+    MaxLexemeLengthExceededException: {}
+    DeleteLexiconOutput:
+      type: object
+      example: {}
+      properties: {}
+    LexiconDescription:
+      type: object
+      properties:
+        Name:
+          allOf:
+          - $ref: '#/components/schemas/LexiconName'
+          - description: Name of the lexicon.
+        Attributes:
+          allOf:
+          - $ref: '#/components/schemas/LexiconAttributes'
+          - description: Provides lexicon metadata.
+      description: Describes the content of the lexicon.
+    LexiconArn:
+      type: string
+    LexiconName:
+      type: string
+      pattern: '[0-9A-Za-z]{1,20}'
+    LexiconSizeExceededException: {}
+  parameters:
+    X-Amz-Signature:
+      name: X-Amz-Signature
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Content-Sha256:
+      name: X-Amz-Content-Sha256
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Algorithm:
+      name: X-Amz-Algorithm
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Security-Token:
+      name: X-Amz-Security-Token
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-SignedHeaders:
+      name: X-Amz-SignedHeaders
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Credential:
+      name: X-Amz-Credential
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Date:
+      name: X-Amz-Date
+      in: header
+      schema:
+        type: string
+      required: false
+  securitySchemes:
+    hmac:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: Amazon Signature authorization v4
+      x-amazon-apigateway-authtype: awsSigv4
+externalDocs:
+  description: Amazon Web Services documentation
+  url: https://docs.aws.amazon.com/polly/

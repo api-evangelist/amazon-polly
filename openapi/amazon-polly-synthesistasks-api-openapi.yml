@@ -1,0 +1,873 @@
+openapi: 3.0.0
+info:
+  version: 2016-06-10
+  x-release: v4
+  title: Amazon Polly Lexicons SynthesisTasks API
+  description: <p>Amazon Polly is a web service that makes it easy to synthesize speech from text.</p> <p>The Amazon Polly service provides API operations for synthesizing high-quality speech from plain text and Speech Synthesis Markup Language (SSML), along with managing pronunciations lexicons that enable you to get the best results for your application domain.</p>
+  x-logo:
+    url: https://api.apis.guru/v2/cache/logo/https_twitter.com_awscloud_profile_image.png
+    backgroundColor: '#FFFFFF'
+  termsOfService: https://aws.amazon.com/service-terms/
+  contact:
+    name: Mike Ralphson
+    email: mike.ralphson@gmail.com
+    url: https://github.com/mermade/aws2openapi
+    x-twitter: PermittedSoc
+  license:
+    name: Apache 2.0 License
+    url: http://www.apache.org/licenses/
+  x-providerName: amazonaws.com
+  x-serviceName: polly
+  x-origin:
+  - contentType: application/json
+    url: https://raw.githubusercontent.com/aws/aws-sdk-js/master/apis/polly-2016-06-10.normal.json
+    converter:
+      url: https://github.com/mermade/aws2openapi
+      version: 1.0.0
+    x-apisguru-driver: external
+  x-apiClientRegistration:
+    url: https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct
+  x-apisguru-categories:
+  - cloud
+  x-preferred: true
+servers:
+- url: http://polly.{region}.amazonaws.com
+  variables:
+    region:
+      description: The AWS region
+      enum:
+      - us-east-1
+      - us-east-2
+      - us-west-1
+      - us-west-2
+      - us-gov-west-1
+      - us-gov-east-1
+      - ca-central-1
+      - eu-north-1
+      - eu-west-1
+      - eu-west-2
+      - eu-west-3
+      - eu-central-1
+      - eu-south-1
+      - af-south-1
+      - ap-northeast-1
+      - ap-northeast-2
+      - ap-northeast-3
+      - ap-southeast-1
+      - ap-southeast-2
+      - ap-east-1
+      - ap-south-1
+      - sa-east-1
+      - me-south-1
+      default: us-east-1
+  description: The Amazon Polly multi-region endpoint
+- url: https://polly.{region}.amazonaws.com
+  variables:
+    region:
+      description: The AWS region
+      enum:
+      - us-east-1
+      - us-east-2
+      - us-west-1
+      - us-west-2
+      - us-gov-west-1
+      - us-gov-east-1
+      - ca-central-1
+      - eu-north-1
+      - eu-west-1
+      - eu-west-2
+      - eu-west-3
+      - eu-central-1
+      - eu-south-1
+      - af-south-1
+      - ap-northeast-1
+      - ap-northeast-2
+      - ap-northeast-3
+      - ap-southeast-1
+      - ap-southeast-2
+      - ap-east-1
+      - ap-south-1
+      - sa-east-1
+      - me-south-1
+      default: us-east-1
+  description: The Amazon Polly multi-region endpoint
+- url: http://polly.{region}.amazonaws.com.cn
+  variables:
+    region:
+      description: The AWS region
+      enum:
+      - cn-north-1
+      - cn-northwest-1
+      default: cn-north-1
+  description: The Amazon Polly endpoint for China (Beijing) and China (Ningxia)
+- url: https://polly.{region}.amazonaws.com.cn
+  variables:
+    region:
+      description: The AWS region
+      enum:
+      - cn-north-1
+      - cn-northwest-1
+      default: cn-north-1
+  description: The Amazon Polly endpoint for China (Beijing) and China (Ningxia)
+security:
+- hmac: []
+tags:
+- name: SynthesisTasks
+paths:
+  /v1/synthesisTasks/{TaskId}:
+    parameters:
+    - $ref: '#/components/parameters/X-Amz-Content-Sha256'
+    - $ref: '#/components/parameters/X-Amz-Date'
+    - $ref: '#/components/parameters/X-Amz-Algorithm'
+    - $ref: '#/components/parameters/X-Amz-Credential'
+    - $ref: '#/components/parameters/X-Amz-Security-Token'
+    - $ref: '#/components/parameters/X-Amz-Signature'
+    - $ref: '#/components/parameters/X-Amz-SignedHeaders'
+    get:
+      operationId: GetSpeechSynthesisTask
+      description: Retrieves a specific SpeechSynthesisTask object based on its TaskID. This object contains information about the given speech synthesis task, including the status of the task, and a link to the S3 bucket containing the output of the task.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSpeechSynthesisTaskOutput'
+        '480':
+          description: InvalidTaskIdException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidTaskIdException'
+        '481':
+          description: ServiceFailureException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceFailureException'
+        '482':
+          description: SynthesisTaskNotFoundException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SynthesisTaskNotFoundException'
+      parameters:
+      - name: TaskId
+        in: path
+        required: true
+        description: The Amazon Polly generated identifier for a speech synthesis task.
+        schema:
+          type: string
+          pattern: ^[a-zA-Z0-9_-]{1,100}$
+      summary: Amazon Polly Get Speech Synthesis Task
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      tags:
+      - SynthesisTasks
+  /v1/synthesisTasks:
+    parameters:
+    - $ref: '#/components/parameters/X-Amz-Content-Sha256'
+    - $ref: '#/components/parameters/X-Amz-Date'
+    - $ref: '#/components/parameters/X-Amz-Algorithm'
+    - $ref: '#/components/parameters/X-Amz-Credential'
+    - $ref: '#/components/parameters/X-Amz-Security-Token'
+    - $ref: '#/components/parameters/X-Amz-Signature'
+    - $ref: '#/components/parameters/X-Amz-SignedHeaders'
+    get:
+      operationId: ListSpeechSynthesisTasks
+      description: Returns a list of SpeechSynthesisTask objects ordered by their creation date. This operation can filter the tasks by their status, for example, allowing users to list only tasks that are completed.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListSpeechSynthesisTasksOutput'
+        '480':
+          description: InvalidNextTokenException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidNextTokenException'
+        '481':
+          description: ServiceFailureException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceFailureException'
+      parameters:
+      - name: MaxResults
+        in: query
+        required: false
+        description: Maximum number of speech synthesis tasks returned in a List operation.
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+      - name: NextToken
+        in: query
+        required: false
+        description: 'The pagination token to use in the next request to continue the listing of speech synthesis tasks. '
+        schema:
+          type: string
+          minLength: 0
+          maxLength: 4096
+      - name: Status
+        in: query
+        required: false
+        description: Status of the speech synthesis tasks returned in a List operation
+        schema:
+          type: string
+          enum:
+          - scheduled
+          - inProgress
+          - completed
+          - failed
+      summary: Amazon Polly List Speech Synthesis Tasks
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      tags:
+      - SynthesisTasks
+    post:
+      operationId: StartSpeechSynthesisTask
+      description: Allows the creation of an asynchronous synthesis task, by starting a new <code>SpeechSynthesisTask</code>. This operation requires all the standard information needed for speech synthesis, plus the name of an Amazon S3 bucket for the service to store the output of the synthesis task and two optional parameters (<code>OutputS3KeyPrefix</code> and <code>SnsTopicArn</code>). Once the synthesis task is created, this operation will return a <code>SpeechSynthesisTask</code> object, which will include an identifier of this task as well as the current status. The <code>SpeechSynthesisTask</code> object is available for 72 hours after starting the asynchronous synthesis task.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StartSpeechSynthesisTaskOutput'
+        '480':
+          description: TextLengthExceededException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TextLengthExceededException'
+        '481':
+          description: InvalidS3BucketException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidS3BucketException'
+        '482':
+          description: InvalidS3KeyException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidS3KeyException'
+        '483':
+          description: InvalidSampleRateException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidSampleRateException'
+        '484':
+          description: InvalidSnsTopicArnException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidSnsTopicArnException'
+        '485':
+          description: InvalidSsmlException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidSsmlException'
+        '486':
+          description: EngineNotSupportedException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EngineNotSupportedException'
+        '487':
+          description: LexiconNotFoundException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LexiconNotFoundException'
+        '488':
+          description: ServiceFailureException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceFailureException'
+        '489':
+          description: MarksNotSupportedForFormatException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MarksNotSupportedForFormatException'
+        '490':
+          description: SsmlMarksNotSupportedForTextTypeException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SsmlMarksNotSupportedForTextTypeException'
+        '491':
+          description: LanguageNotSupportedException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LanguageNotSupportedException'
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - OutputFormat
+              - OutputS3BucketName
+              - Text
+              - VoiceId
+              properties:
+                Engine:
+                  description: Specifies the engine (<code>standard</code> or <code>neural</code>) for Amazon Polly to use when processing input text for speech synthesis. Using a voice that is not supported for the engine selected will result in an error.
+                  type: string
+                  enum:
+                  - standard
+                  - neural
+                LanguageCode:
+                  description: <p>Optional language code for the Speech Synthesis request. This is only necessary if using a bilingual voice, such as Aditi, which can be used for either Indian English (en-IN) or Hindi (hi-IN). </p> <p>If a bilingual voice is used and no language code is specified, Amazon Polly uses the default language of the bilingual voice. The default language for any voice is the one returned by the <a href="https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html">DescribeVoices</a> operation for the <code>LanguageCode</code> parameter. For example, if no language code is specified, Aditi will use Indian English rather than Hindi.</p>
+                  type: string
+                  enum:
+                  - arb
+                  - cmn-CN
+                  - cy-GB
+                  - da-DK
+                  - de-DE
+                  - en-AU
+                  - en-GB
+                  - en-GB-WLS
+                  - en-IN
+                  - en-US
+                  - es-ES
+                  - es-MX
+                  - es-US
+                  - fr-CA
+                  - fr-FR
+                  - is-IS
+                  - it-IT
+                  - ja-JP
+                  - hi-IN
+                  - ko-KR
+                  - nb-NO
+                  - nl-NL
+                  - pl-PL
+                  - pt-BR
+                  - pt-PT
+                  - ro-RO
+                  - ru-RU
+                  - sv-SE
+                  - tr-TR
+                  - en-NZ
+                  - en-ZA
+                  - ca-ES
+                  - de-AT
+                  - yue-CN
+                  - ar-AE
+                  - fi-FI
+                LexiconNames:
+                  description: 'List of one or more pronunciation lexicon names you want the service to apply during synthesis. Lexicons are applied only if the language of the lexicon is the same as the language of the voice. '
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/LexiconName'
+                  maxItems: 5
+                OutputFormat:
+                  description: 'The format in which the returned output will be encoded. For audio stream, this will be mp3, ogg_vorbis, or pcm. For speech marks, this will be json. '
+                  type: string
+                  enum:
+                  - json
+                  - mp3
+                  - ogg_vorbis
+                  - pcm
+                OutputS3BucketName:
+                  description: Amazon S3 bucket name to which the output file will be saved.
+                  type: string
+                  pattern: ^[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9]$
+                OutputS3KeyPrefix:
+                  description: The Amazon S3 key prefix for the output speech file.
+                  type: string
+                  pattern: ^[0-9a-zA-Z\/\!\-_\.\*\'\(\):;\$@=+\,\?&]{0,800}$
+                SampleRate:
+                  description: <p>The audio frequency specified in Hz.</p> <p>The valid values for mp3 and ogg_vorbis are "8000", "16000", "22050", and "24000". The default value for standard voices is "22050". The default value for neural voices is "24000".</p> <p>Valid values for pcm are "8000" and "16000" The default value is "16000". </p>
+                  type: string
+                SnsTopicArn:
+                  description: ARN for the SNS topic optionally used for providing status notification for a speech synthesis task.
+                  type: string
+                  pattern: ^arn:aws(-(cn|iso(-b)?|us-gov))?:sns:[a-z0-9_-]{1,50}:\d{12}:[a-zA-Z0-9_-]{1,256}$
+                SpeechMarkTypes:
+                  description: The type of speech marks returned for the input text.
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/SpeechMarkType'
+                  maxItems: 4
+                Text:
+                  description: 'The input text to synthesize. If you specify ssml as the TextType, follow the SSML format for the input text. '
+                  type: string
+                TextType:
+                  description: 'Specifies whether the input text is plain text or SSML. The default value is plain text. '
+                  type: string
+                  enum:
+                  - ssml
+                  - text
+                VoiceId:
+                  description: 'Voice ID to use for the synthesis. '
+                  type: string
+                  enum:
+                  - Aditi
+                  - Amy
+                  - Astrid
+                  - Bianca
+                  - Brian
+                  - Camila
+                  - Carla
+                  - Carmen
+                  - Celine
+                  - Chantal
+                  - Conchita
+                  - Cristiano
+                  - Dora
+                  - Emma
+                  - Enrique
+                  - Ewa
+                  - Filiz
+                  - Gabrielle
+                  - Geraint
+                  - Giorgio
+                  - Gwyneth
+                  - Hans
+                  - Ines
+                  - Ivy
+                  - Jacek
+                  - Jan
+                  - Joanna
+                  - Joey
+                  - Justin
+                  - Karl
+                  - Kendra
+                  - Kevin
+                  - Kimberly
+                  - Lea
+                  - Liv
+                  - Lotte
+                  - Lucia
+                  - Lupe
+                  - Mads
+                  - Maja
+                  - Marlene
+                  - Mathieu
+                  - Matthew
+                  - Maxim
+                  - Mia
+                  - Miguel
+                  - Mizuki
+                  - Naja
+                  - Nicole
+                  - Olivia
+                  - Penelope
+                  - Raveena
+                  - Ricardo
+                  - Ruben
+                  - Russell
+                  - Salli
+                  - Seoyeon
+                  - Takumi
+                  - Tatyana
+                  - Vicki
+                  - Vitoria
+                  - Zeina
+                  - Zhiyu
+                  - Aria
+                  - Ayanda
+                  - Arlet
+                  - Hannah
+                  - Arthur
+                  - Daniel
+                  - Liam
+                  - Pedro
+                  - Kajal
+                  - Hiujin
+                  - Laura
+                  - Elin
+                  - Ida
+                  - Suvi
+                  - Ola
+                  - Hala
+                  - Andres
+                  - Sergio
+                  - Remi
+                  - Adriano
+                  - Thiago
+                  - Ruth
+                  - Stephen
+                  - Kazuha
+                  - Tomoko
+      summary: Amazon Polly Start Speech Synthesis Task
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      tags:
+      - SynthesisTasks
+components:
+  schemas:
+    VoiceId:
+      type: string
+      enum:
+      - Aditi
+      - Amy
+      - Astrid
+      - Bianca
+      - Brian
+      - Camila
+      - Carla
+      - Carmen
+      - Celine
+      - Chantal
+      - Conchita
+      - Cristiano
+      - Dora
+      - Emma
+      - Enrique
+      - Ewa
+      - Filiz
+      - Gabrielle
+      - Geraint
+      - Giorgio
+      - Gwyneth
+      - Hans
+      - Ines
+      - Ivy
+      - Jacek
+      - Jan
+      - Joanna
+      - Joey
+      - Justin
+      - Karl
+      - Kendra
+      - Kevin
+      - Kimberly
+      - Lea
+      - Liv
+      - Lotte
+      - Lucia
+      - Lupe
+      - Mads
+      - Maja
+      - Marlene
+      - Mathieu
+      - Matthew
+      - Maxim
+      - Mia
+      - Miguel
+      - Mizuki
+      - Naja
+      - Nicole
+      - Olivia
+      - Penelope
+      - Raveena
+      - Ricardo
+      - Ruben
+      - Russell
+      - Salli
+      - Seoyeon
+      - Takumi
+      - Tatyana
+      - Vicki
+      - Vitoria
+      - Zeina
+      - Zhiyu
+      - Aria
+      - Ayanda
+      - Arlet
+      - Hannah
+      - Arthur
+      - Daniel
+      - Liam
+      - Pedro
+      - Kajal
+      - Hiujin
+      - Laura
+      - Elin
+      - Ida
+      - Suvi
+      - Ola
+      - Hala
+      - Andres
+      - Sergio
+      - Remi
+      - Adriano
+      - Thiago
+      - Ruth
+      - Stephen
+      - Kazuha
+      - Tomoko
+    DateTime:
+      type: string
+      format: date-time
+    MarksNotSupportedForFormatException: {}
+    InvalidS3BucketException: {}
+    OutputUri:
+      type: string
+    TextLengthExceededException: {}
+    SynthesisTask:
+      type: object
+      properties:
+        Engine:
+          allOf:
+          - $ref: '#/components/schemas/Engine'
+          - description: Specifies the engine (<code>standard</code> or <code>neural</code>) for Amazon Polly to use when processing input text for speech synthesis. Using a voice that is not supported for the engine selected will result in an error.
+        TaskId:
+          allOf:
+          - $ref: '#/components/schemas/TaskId'
+          - description: The Amazon Polly generated identifier for a speech synthesis task.
+        TaskStatus:
+          allOf:
+          - $ref: '#/components/schemas/TaskStatus'
+          - description: Current status of the individual speech synthesis task.
+        TaskStatusReason:
+          allOf:
+          - $ref: '#/components/schemas/TaskStatusReason'
+          - description: Reason for the current status of a specific speech synthesis task, including errors if the task has failed.
+        OutputUri:
+          allOf:
+          - $ref: '#/components/schemas/OutputUri'
+          - description: Pathway for the output speech file.
+        CreationTime:
+          allOf:
+          - $ref: '#/components/schemas/DateTime'
+          - description: Timestamp for the time the synthesis task was started.
+        RequestCharacters:
+          allOf:
+          - $ref: '#/components/schemas/RequestCharacters'
+          - description: Number of billable characters synthesized.
+        SnsTopicArn:
+          allOf:
+          - $ref: '#/components/schemas/SnsTopicArn'
+          - description: ARN for the SNS topic optionally used for providing status notification for a speech synthesis task.
+        LexiconNames:
+          allOf:
+          - $ref: '#/components/schemas/LexiconNameList'
+          - description: 'List of one or more pronunciation lexicon names you want the service to apply during synthesis. Lexicons are applied only if the language of the lexicon is the same as the language of the voice. '
+        OutputFormat:
+          allOf:
+          - $ref: '#/components/schemas/OutputFormat'
+          - description: 'The format in which the returned output will be encoded. For audio stream, this will be mp3, ogg_vorbis, or pcm. For speech marks, this will be json. '
+        SampleRate:
+          allOf:
+          - $ref: '#/components/schemas/SampleRate'
+          - description: <p>The audio frequency specified in Hz.</p> <p>The valid values for mp3 and ogg_vorbis are "8000", "16000", "22050", and "24000". The default value for standard voices is "22050". The default value for neural voices is "24000".</p> <p>Valid values for pcm are "8000" and "16000" The default value is "16000". </p>
+        SpeechMarkTypes:
+          allOf:
+          - $ref: '#/components/schemas/SpeechMarkTypeList'
+          - description: The type of speech marks returned for the input text.
+        TextType:
+          allOf:
+          - $ref: '#/components/schemas/TextType'
+          - description: 'Specifies whether the input text is plain text or SSML. The default value is plain text. '
+        VoiceId:
+          allOf:
+          - $ref: '#/components/schemas/VoiceId'
+          - description: 'Voice ID to use for the synthesis. '
+        LanguageCode:
+          allOf:
+          - $ref: '#/components/schemas/LanguageCode'
+          - description: <p>Optional language code for a synthesis task. This is only necessary if using a bilingual voice, such as Aditi, which can be used for either Indian English (en-IN) or Hindi (hi-IN). </p> <p>If a bilingual voice is used and no language code is specified, Amazon Polly uses the default language of the bilingual voice. The default language for any voice is the one returned by the <a href="https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html">DescribeVoices</a> operation for the <code>LanguageCode</code> parameter. For example, if no language code is specified, Aditi will use Indian English rather than Hindi.</p>
+      description: SynthesisTask object that provides information about a speech synthesis task.
+    GetSpeechSynthesisTaskOutput:
+      type: object
+      properties:
+        SynthesisTask:
+          allOf:
+          - $ref: '#/components/schemas/SynthesisTask'
+          - description: SynthesisTask object that provides information from the requested task, including output format, creation time, task status, and so on.
+    LanguageCode:
+      type: string
+      enum:
+      - arb
+      - cmn-CN
+      - cy-GB
+      - da-DK
+      - de-DE
+      - en-AU
+      - en-GB
+      - en-GB-WLS
+      - en-IN
+      - en-US
+      - es-ES
+      - es-MX
+      - es-US
+      - fr-CA
+      - fr-FR
+      - is-IS
+      - it-IT
+      - ja-JP
+      - hi-IN
+      - ko-KR
+      - nb-NO
+      - nl-NL
+      - pl-PL
+      - pt-BR
+      - pt-PT
+      - ro-RO
+      - ru-RU
+      - sv-SE
+      - tr-TR
+      - en-NZ
+      - en-ZA
+      - ca-ES
+      - de-AT
+      - yue-CN
+      - ar-AE
+      - fi-FI
+    InvalidSampleRateException: {}
+    TextType:
+      type: string
+      enum:
+      - ssml
+      - text
+    InvalidTaskIdException: {}
+    SynthesisTasks:
+      type: array
+      items:
+        $ref: '#/components/schemas/SynthesisTask'
+    OutputFormat:
+      type: string
+      enum:
+      - json
+      - mp3
+      - ogg_vorbis
+      - pcm
+    StartSpeechSynthesisTaskOutput:
+      type: object
+      properties:
+        SynthesisTask:
+          allOf:
+          - $ref: '#/components/schemas/SynthesisTask'
+          - description: SynthesisTask object that provides information and attributes about a newly submitted speech synthesis task.
+    TaskId:
+      type: string
+      pattern: ^[a-zA-Z0-9_-]{1,100}$
+    SnsTopicArn:
+      type: string
+      pattern: ^arn:aws(-(cn|iso(-b)?|us-gov))?:sns:[a-z0-9_-]{1,50}:\d{12}:[a-zA-Z0-9_-]{1,256}$
+    SsmlMarksNotSupportedForTextTypeException: {}
+    NextToken:
+      type: string
+      minLength: 0
+      maxLength: 4096
+    SynthesisTaskNotFoundException: {}
+    SpeechMarkType:
+      type: string
+      enum:
+      - sentence
+      - ssml
+      - viseme
+      - word
+    ServiceFailureException: {}
+    TaskStatus:
+      type: string
+      enum:
+      - scheduled
+      - inProgress
+      - completed
+      - failed
+    SpeechMarkTypeList:
+      type: array
+      items:
+        $ref: '#/components/schemas/SpeechMarkType'
+      maxItems: 4
+    LexiconNotFoundException: {}
+    InvalidNextTokenException: {}
+    EngineNotSupportedException: {}
+    SampleRate:
+      type: string
+    Engine:
+      type: string
+      enum:
+      - standard
+      - neural
+    TaskStatusReason:
+      type: string
+    LanguageNotSupportedException: {}
+    ListSpeechSynthesisTasksOutput:
+      type: object
+      properties:
+        NextToken:
+          allOf:
+          - $ref: '#/components/schemas/NextToken'
+          - description: An opaque pagination token returned from the previous List operation in this request. If present, this indicates where to continue the listing.
+        SynthesisTasks:
+          allOf:
+          - $ref: '#/components/schemas/SynthesisTasks'
+          - description: List of SynthesisTask objects that provides information from the specified task in the list request, including output format, creation time, task status, and so on.
+    LexiconNameList:
+      type: array
+      items:
+        $ref: '#/components/schemas/LexiconName'
+      maxItems: 5
+    InvalidS3KeyException: {}
+    InvalidSsmlException: {}
+    InvalidSnsTopicArnException: {}
+    LexiconName:
+      type: string
+      pattern: '[0-9A-Za-z]{1,20}'
+    RequestCharacters:
+      type: integer
+  parameters:
+    X-Amz-Signature:
+      name: X-Amz-Signature
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Content-Sha256:
+      name: X-Amz-Content-Sha256
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Algorithm:
+      name: X-Amz-Algorithm
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Security-Token:
+      name: X-Amz-Security-Token
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-SignedHeaders:
+      name: X-Amz-SignedHeaders
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Credential:
+      name: X-Amz-Credential
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Date:
+      name: X-Amz-Date
+      in: header
+      schema:
+        type: string
+      required: false
+  securitySchemes:
+    hmac:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: Amazon Signature authorization v4
+      x-amazon-apigateway-authtype: awsSigv4
+externalDocs:
+  description: Amazon Web Services documentation
+  url: https://docs.aws.amazon.com/polly/

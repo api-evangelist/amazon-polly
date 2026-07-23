@@ -1,0 +1,213 @@
+openapi: 3.0.0
+info:
+  version: 2016-06-10
+  x-release: v4
+  title: Amazon Polly Lexicons Speech Synthesis API
+  description: <p>Amazon Polly is a web service that makes it easy to synthesize speech from text.</p> <p>The Amazon Polly service provides API operations for synthesizing high-quality speech from plain text and Speech Synthesis Markup Language (SSML), along with managing pronunciations lexicons that enable you to get the best results for your application domain.</p>
+  x-logo:
+    url: https://api.apis.guru/v2/cache/logo/https_twitter.com_awscloud_profile_image.png
+    backgroundColor: '#FFFFFF'
+  termsOfService: https://aws.amazon.com/service-terms/
+  contact:
+    name: Mike Ralphson
+    email: mike.ralphson@gmail.com
+    url: https://github.com/mermade/aws2openapi
+    x-twitter: PermittedSoc
+  license:
+    name: Apache 2.0 License
+    url: http://www.apache.org/licenses/
+  x-providerName: amazonaws.com
+  x-serviceName: polly
+  x-origin:
+  - contentType: application/json
+    url: https://raw.githubusercontent.com/aws/aws-sdk-js/master/apis/polly-2016-06-10.normal.json
+    converter:
+      url: https://github.com/mermade/aws2openapi
+      version: 1.0.0
+    x-apisguru-driver: external
+  x-apiClientRegistration:
+    url: https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct
+  x-apisguru-categories:
+  - cloud
+  x-preferred: true
+servers:
+- url: http://polly.{region}.amazonaws.com
+  variables:
+    region:
+      description: The AWS region
+      enum:
+      - us-east-1
+      - us-east-2
+      - us-west-1
+      - us-west-2
+      - us-gov-west-1
+      - us-gov-east-1
+      - ca-central-1
+      - eu-north-1
+      - eu-west-1
+      - eu-west-2
+      - eu-west-3
+      - eu-central-1
+      - eu-south-1
+      - af-south-1
+      - ap-northeast-1
+      - ap-northeast-2
+      - ap-northeast-3
+      - ap-southeast-1
+      - ap-southeast-2
+      - ap-east-1
+      - ap-south-1
+      - sa-east-1
+      - me-south-1
+      default: us-east-1
+  description: The Amazon Polly multi-region endpoint
+- url: https://polly.{region}.amazonaws.com
+  variables:
+    region:
+      description: The AWS region
+      enum:
+      - us-east-1
+      - us-east-2
+      - us-west-1
+      - us-west-2
+      - us-gov-west-1
+      - us-gov-east-1
+      - ca-central-1
+      - eu-north-1
+      - eu-west-1
+      - eu-west-2
+      - eu-west-3
+      - eu-central-1
+      - eu-south-1
+      - af-south-1
+      - ap-northeast-1
+      - ap-northeast-2
+      - ap-northeast-3
+      - ap-southeast-1
+      - ap-southeast-2
+      - ap-east-1
+      - ap-south-1
+      - sa-east-1
+      - me-south-1
+      default: us-east-1
+  description: The Amazon Polly multi-region endpoint
+- url: http://polly.{region}.amazonaws.com.cn
+  variables:
+    region:
+      description: The AWS region
+      enum:
+      - cn-north-1
+      - cn-northwest-1
+      default: cn-north-1
+  description: The Amazon Polly endpoint for China (Beijing) and China (Ningxia)
+- url: https://polly.{region}.amazonaws.com.cn
+  variables:
+    region:
+      description: The AWS region
+      enum:
+      - cn-north-1
+      - cn-northwest-1
+      default: cn-north-1
+  description: The Amazon Polly endpoint for China (Beijing) and China (Ningxia)
+security:
+- hmac: []
+tags:
+- name: Speech Synthesis
+  description: Operations for synthesizing speech from text
+paths:
+  /v1/speech:
+    post:
+      operationId: SynthesizeSpeech
+      summary: Amazon Polly Synthesize Speech
+      description: Synthesizes UTF-8 input text into an audio stream.
+      tags:
+      - Speech Synthesis
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SynthesizeSpeechInput'
+      responses:
+        '200':
+          description: Speech audio stream
+          content:
+            audio/mpeg:
+              schema:
+                type: string
+                format: binary
+            audio/ogg:
+              schema:
+                type: string
+                format: binary
+            audio/pcm:
+              schema:
+                type: string
+                format: binary
+components:
+  schemas:
+    SynthesizeSpeechInput:
+      type: object
+      required:
+      - OutputFormat
+      - Text
+      - VoiceId
+      properties:
+        Engine:
+          type: string
+          enum:
+          - standard
+          - neural
+          - long-form
+          - generative
+          description: The engine to use for speech synthesis
+        LanguageCode:
+          type: string
+          description: Language code for the synthesis request
+        LexiconNames:
+          type: array
+          items:
+            type: string
+          description: List of lexicon names to apply during synthesis
+        OutputFormat:
+          type: string
+          enum:
+          - json
+          - mp3
+          - ogg_vorbis
+          - pcm
+          description: The format in which the returned output will be encoded
+        SampleRate:
+          type: string
+          description: The audio frequency in Hz
+        SpeechMarkTypes:
+          type: array
+          items:
+            type: string
+            enum:
+            - sentence
+            - ssml
+            - viseme
+            - word
+        Text:
+          type: string
+          description: Input text to synthesize
+        TextType:
+          type: string
+          enum:
+          - ssml
+          - text
+          description: Whether the input text is plain text or SSML
+        VoiceId:
+          type: string
+          description: Voice ID to use for the synthesis
+  securitySchemes:
+    hmac:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: Amazon Signature authorization v4
+      x-amazon-apigateway-authtype: awsSigv4
+externalDocs:
+  description: Amazon Web Services documentation
+  url: https://docs.aws.amazon.com/polly/
