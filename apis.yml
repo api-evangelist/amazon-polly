@@ -5,6 +5,19 @@ description: >-
   output formats including neural and generative engines for natural-sounding speech.
 url: https://raw.githubusercontent.com/api-evangelist/amazon-polly/refs/heads/main/apis.yml
 type: Index
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 image: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
 tags:
   - AI
@@ -20,43 +33,136 @@ tags:
 created: '2024-01-15'
 modified: '2026-05-19'
 apis:
-  - name: Amazon Polly API
-    description: >-
-      The Amazon Polly API enables you to synthesize speech from text (plain text or SSML), manage custom pronunciation
-      lexicons, list available voices across multiple languages and engines, and manage asynchronous synthesis tasks
-      with S3 output.
-    image: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
-    humanURL: https://aws.amazon.com/polly/
-    baseURL: https://polly.amazonaws.com
-    tags:
-      - Speech Synthesis
-      - Text-To-Speech
-      - Voice
-      - SSML
-      - Neural Engine
-    properties:
-      - type: Documentation
-        url: https://docs.aws.amazon.com/polly/latest/dg/what-is.html
-      - type: APIReference
-        url: https://docs.aws.amazon.com/polly/latest/dg/API_Reference.html
-      - type: OpenAPI
-        url: openapi/amazon-polly-openapi.yml
-      - type: OpenAPI
-        url: openapi/amazon-polly-openapi-original.yaml
-      - type: Pricing
-        url: https://aws.amazon.com/polly/pricing/
-      - type: GettingStarted
-        url: https://aws.amazon.com/polly/getting-started/
-      - type: FAQ
-        url: https://aws.amazon.com/polly/faqs/
-      - type: Features
-        url: https://aws.amazon.com/polly/features/
-      - type: RateLimits
-        url: https://docs.aws.amazon.com/polly/latest/dg/limits.html
-      - type: Authentication
-        url: https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html
-      - type: RateLimits
-        url: https://docs.aws.amazon.com/polly/latest/dg/limits.html
+- aid: amazon-polly:amazon-polly-lexicons-api
+  name: Amazon Polly Lexicons API
+  description: The Lexicons API from Amazon Polly — 2 operation(s) for lexicons.
+  humanURL: https://aws.amazon.com/polly/
+  baseURL: https://polly.amazonaws.com
+  tags:
+  - Lexicons
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-polly-lexicons-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/polly/latest/dg/what-is.html
+  - type: APIReference
+    url: https://docs.aws.amazon.com/polly/latest/dg/API_Reference.html
+  - type: Pricing
+    url: https://aws.amazon.com/polly/pricing/
+  - type: GettingStarted
+    url: https://aws.amazon.com/polly/getting-started/
+  - type: FAQ
+    url: https://aws.amazon.com/polly/faqs/
+  - type: Features
+    url: https://aws.amazon.com/polly/features/
+  - type: RateLimits
+    url: https://docs.aws.amazon.com/polly/latest/dg/limits.html
+  - type: Authentication
+    url: https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html
+- aid: amazon-polly:amazon-polly-speech-api
+  name: Amazon Polly Speech API
+  description: The Speech API from Amazon Polly — 1 operation(s) for speech.
+  humanURL: https://aws.amazon.com/polly/
+  baseURL: https://polly.amazonaws.com
+  tags:
+  - Speech
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-polly-speech-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/polly/latest/dg/what-is.html
+  - type: APIReference
+    url: https://docs.aws.amazon.com/polly/latest/dg/API_Reference.html
+  - type: Pricing
+    url: https://aws.amazon.com/polly/pricing/
+  - type: GettingStarted
+    url: https://aws.amazon.com/polly/getting-started/
+  - type: FAQ
+    url: https://aws.amazon.com/polly/faqs/
+  - type: Features
+    url: https://aws.amazon.com/polly/features/
+  - type: RateLimits
+    url: https://docs.aws.amazon.com/polly/latest/dg/limits.html
+  - type: Authentication
+    url: https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html
+- aid: amazon-polly:amazon-polly-speech-synthesis-api
+  name: Amazon Polly Speech Synthesis API
+  description: Operations for synthesizing speech from text
+  humanURL: https://aws.amazon.com/polly/
+  baseURL: https://polly.amazonaws.com
+  tags:
+  - Speech Synthesis
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-polly-speech-synthesis-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/polly/latest/dg/what-is.html
+  - type: APIReference
+    url: https://docs.aws.amazon.com/polly/latest/dg/API_Reference.html
+  - type: Pricing
+    url: https://aws.amazon.com/polly/pricing/
+  - type: GettingStarted
+    url: https://aws.amazon.com/polly/getting-started/
+  - type: FAQ
+    url: https://aws.amazon.com/polly/faqs/
+  - type: Features
+    url: https://aws.amazon.com/polly/features/
+  - type: RateLimits
+    url: https://docs.aws.amazon.com/polly/latest/dg/limits.html
+  - type: Authentication
+    url: https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html
+- aid: amazon-polly:amazon-polly-synthesistasks-api
+  name: Amazon Polly SynthesisTasks API
+  description: The SynthesisTasks API from Amazon Polly — 2 operation(s) for synthesistasks.
+  humanURL: https://aws.amazon.com/polly/
+  baseURL: https://polly.amazonaws.com
+  tags:
+  - SynthesisTasks
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-polly-synthesistasks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/polly/latest/dg/what-is.html
+  - type: APIReference
+    url: https://docs.aws.amazon.com/polly/latest/dg/API_Reference.html
+  - type: Pricing
+    url: https://aws.amazon.com/polly/pricing/
+  - type: GettingStarted
+    url: https://aws.amazon.com/polly/getting-started/
+  - type: FAQ
+    url: https://aws.amazon.com/polly/faqs/
+  - type: Features
+    url: https://aws.amazon.com/polly/features/
+  - type: RateLimits
+    url: https://docs.aws.amazon.com/polly/latest/dg/limits.html
+  - type: Authentication
+    url: https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html
+- aid: amazon-polly:amazon-polly-voices-api
+  name: Amazon Polly Voices API
+  description: The Voices API from Amazon Polly — 1 operation(s) for voices.
+  humanURL: https://aws.amazon.com/polly/
+  baseURL: https://polly.amazonaws.com
+  tags:
+  - Voices
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-polly-voices-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/polly/latest/dg/what-is.html
+  - type: APIReference
+    url: https://docs.aws.amazon.com/polly/latest/dg/API_Reference.html
+  - type: Pricing
+    url: https://aws.amazon.com/polly/pricing/
+  - type: GettingStarted
+    url: https://aws.amazon.com/polly/getting-started/
+  - type: FAQ
+    url: https://aws.amazon.com/polly/faqs/
+  - type: Features
+    url: https://aws.amazon.com/polly/features/
+  - type: RateLimits
+    url: https://docs.aws.amazon.com/polly/latest/dg/limits.html
+  - type: Authentication
+    url: https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html
 common:
   - type: AgenticAccess
     url: agentic-access/amazon-polly-agentic-access.yml
