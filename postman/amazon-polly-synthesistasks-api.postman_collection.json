@@ -1,0 +1,1934 @@
+{
+  "info": {
+    "_postman_id": "b11b84a1-9cb0-4e40-8ae4-0d20ff0dbb1b",
+    "name": "Amazon Polly Lexicons SynthesisTasks API",
+    "description": "<p>Amazon Polly is a web service that makes it easy to synthesize speech from text.</p> <p>The Amazon Polly service provides API operations for synthesizing high-quality speech from plain text and Speech Synthesis Markup Language (SSML), along with managing pronunciations lexicons that enable you to get the best results for your application domain.</p>\n\nContact Support:\n Name: Mike Ralphson\n Email: mike.ralphson@gmail.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T10:41:43.000Z",
+    "updatedAt": "2026-07-28T10:41:44.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b11b84a1-9cb0-4e40-8ae4-0d20ff0dbb1b"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "synthesisTasks",
+          "item": [
+            {
+              "name": "{TaskId}",
+              "item": [
+                {
+                  "name": "Amazon Polly Get Speech Synthesis Task",
+                  "id": "e9a26e5c-fae7-40c2-b19c-a6805ce90377",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/synthesisTasks/:TaskId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "synthesisTasks",
+                        ":TaskId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "058387a5-c55b-4850-a049-13e29564a425",
+                          "key": "TaskId",
+                          "value": "KDvzwVjCqdzYApPUga39aAHGqu_XZG32vdr6NXzMHd_4ywWsG",
+                          "description": "(Required) The Amazon Polly generated identifier for a speech synthesis task."
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a specific SpeechSynthesisTask object based on its TaskID. This object contains information about the given speech synthesis task, including the status of the task, and a link to the S3 bucket containing the output of the task."
+                  },
+                  "response": [
+                    {
+                      "id": "3a0dcd4a-adf5-439e-b4b1-320680ed2142",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "X-Amz-Content-Sha256",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Date",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Algorithm",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Credential",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Security-Token",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Signature",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-SignedHeaders",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/synthesisTasks/:TaskId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "synthesisTasks",
+                            ":TaskId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "TaskId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"SynthesisTask\": {\n    \"Engine\": \"standard\",\n    \"TaskId\": \"4dkQqLwkdy9CArnGCdr0FQILCt4Ue2o7mL8XyU7YiiZvrsBR_9l4F1stYcV_v8zVoYBfg_cDE\",\n    \"TaskStatus\": \"scheduled\",\n    \"TaskStatusReason\": \"<string>\",\n    \"OutputUri\": \"<string>\",\n    \"CreationTime\": \"<dateTime>\",\n    \"RequestCharacters\": \"<integer>\",\n    \"SnsTopicArn\": \"arn:aws-us-gov:sns:l9o:770705024803:ZKYfmTGNB_X6vPBDkwKEN8w9FIZJ8aIK3nXt-PrJ6nWu8rKogEvgeAwHuiBdXS0JN3NFIims8IwUSIy_VkUbjShF5o4NneKYYe2fi-9mju4fhomHvWBJmrZZ-b03qmgLyVsE0kiU__pYH8BXQ7NgtAWufasGl\",\n    \"LexiconNames\": [\n      \"6LLVduzY\",\n      \"mKEAW\"\n    ],\n    \"OutputFormat\": \"ogg_vorbis\",\n    \"SampleRate\": \"<string>\",\n    \"SpeechMarkTypes\": [\n      \"word\",\n      \"sentence\"\n    ],\n    \"TextType\": \"ssml\",\n    \"VoiceId\": \"Ola\",\n    \"LanguageCode\": \"hi-IN\"\n  }\n}",
+                      "createdAt": "2026-07-28T10:41:44.000Z",
+                      "updatedAt": "2026-07-28T10:41:44.000Z",
+                      "uid": "35240-3a0dcd4a-adf5-439e-b4b1-320680ed2142"
+                    },
+                    {
+                      "id": "fc3e4a79-4624-4217-8ce8-93b48f5bd1a6",
+                      "name": "InvalidTaskIdException",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "X-Amz-Content-Sha256",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Date",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Algorithm",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Credential",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Security-Token",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Signature",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-SignedHeaders",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/synthesisTasks/:TaskId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "synthesisTasks",
+                            ":TaskId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "TaskId"
+                            }
+                          ]
+                        }
+                      },
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T10:41:44.000Z",
+                      "updatedAt": "2026-07-28T10:41:44.000Z",
+                      "uid": "35240-fc3e4a79-4624-4217-8ce8-93b48f5bd1a6"
+                    },
+                    {
+                      "id": "c65b152a-82b0-4e93-b959-a5fc6713d14c",
+                      "name": "ServiceFailureException",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "X-Amz-Content-Sha256",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Date",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Algorithm",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Credential",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Security-Token",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Signature",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-SignedHeaders",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/synthesisTasks/:TaskId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "synthesisTasks",
+                            ":TaskId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "TaskId"
+                            }
+                          ]
+                        }
+                      },
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T10:41:44.000Z",
+                      "updatedAt": "2026-07-28T10:41:44.000Z",
+                      "uid": "35240-c65b152a-82b0-4e93-b959-a5fc6713d14c"
+                    },
+                    {
+                      "id": "43478a1d-4d39-4b34-8564-3d557679db1e",
+                      "name": "SynthesisTaskNotFoundException",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "X-Amz-Content-Sha256",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Date",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Algorithm",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Credential",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Security-Token",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Signature",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-SignedHeaders",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/synthesisTasks/:TaskId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "synthesisTasks",
+                            ":TaskId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "TaskId"
+                            }
+                          ]
+                        }
+                      },
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T10:41:44.000Z",
+                      "updatedAt": "2026-07-28T10:41:44.000Z",
+                      "uid": "35240-43478a1d-4d39-4b34-8564-3d557679db1e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T10:41:44.000Z",
+                  "updatedAt": "2026-07-28T10:41:44.000Z",
+                  "uid": "35240-e9a26e5c-fae7-40c2-b19c-a6805ce90377"
+                }
+              ],
+              "id": "8d57e8dc-de2c-480b-a297-5261ba83c45c",
+              "createdAt": "2026-07-28T10:41:44.000Z",
+              "updatedAt": "2026-07-28T10:41:44.000Z",
+              "uid": "35240-8d57e8dc-de2c-480b-a297-5261ba83c45c"
+            },
+            {
+              "name": "Amazon Polly List Speech Synthesis Tasks",
+              "id": "dff38cd0-924c-4dd0-8f23-bf442b326f23",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "X-Amz-Content-Sha256",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Date",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Algorithm",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Credential",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Security-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Signature",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-SignedHeaders",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/synthesisTasks?MaxResults=<integer>&NextToken=<string>&Status=inProgress",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "synthesisTasks"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of speech synthesis tasks returned in a List operation.",
+                      "key": "MaxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The pagination token to use in the next request to continue the listing of speech synthesis tasks. ",
+                      "key": "NextToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Status of the speech synthesis tasks returned in a List operation",
+                      "key": "Status",
+                      "value": "inProgress"
+                    }
+                  ]
+                },
+                "description": "Returns a list of SpeechSynthesisTask objects ordered by their creation date. This operation can filter the tasks by their status, for example, allowing users to list only tasks that are completed."
+              },
+              "response": [
+                {
+                  "id": "9cf5ab2d-5f27-46ad-bdf5-b72fd7df29cb",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/synthesisTasks?MaxResults=<integer>&NextToken=<string>&Status=inProgress",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "synthesisTasks"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of speech synthesis tasks returned in a List operation.",
+                          "key": "MaxResults",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "The pagination token to use in the next request to continue the listing of speech synthesis tasks. ",
+                          "key": "NextToken",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Status of the speech synthesis tasks returned in a List operation",
+                          "key": "Status",
+                          "value": "inProgress"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"NextToken\": \"<string>\",\n  \"SynthesisTasks\": [\n    {\n      \"Engine\": \"neural\",\n      \"TaskId\": \"cBJcqiAq9qPtB5\",\n      \"TaskStatus\": \"scheduled\",\n      \"TaskStatusReason\": \"<string>\",\n      \"OutputUri\": \"<string>\",\n      \"CreationTime\": \"<dateTime>\",\n      \"RequestCharacters\": \"<integer>\",\n      \"SnsTopicArn\": \"arn:aws-us-gov:sns:6huj9hr:843371951295:yhC0GIZRIvXrrxY55Xfdphxg9ZqqGwbdfyXBvvhAWOVR0DCZWxBapQTE1bHeME\",\n      \"LexiconNames\": [\n        \"Z1puOtOS\",\n        \"E\"\n      ],\n      \"OutputFormat\": \"json\",\n      \"SampleRate\": \"<string>\",\n      \"SpeechMarkTypes\": [\n        \"word\",\n        \"word\"\n      ],\n      \"TextType\": \"text\",\n      \"VoiceId\": \"Kazuha\",\n      \"LanguageCode\": \"tr-TR\"\n    },\n    {\n      \"Engine\": \"neural\",\n      \"TaskId\": \"WZfSi8p_uOhIsKZyFyB7KCp9-f1uToqoIQQVtKiM24k_W4g\",\n      \"TaskStatus\": \"completed\",\n      \"TaskStatusReason\": \"<string>\",\n      \"OutputUri\": \"<string>\",\n      \"CreationTime\": \"<dateTime>\",\n      \"RequestCharacters\": \"<integer>\",\n      \"SnsTopicArn\": \"arn:aws:sns:rn0q-0par5i3t-jatkg7ghx2mx7t9iaj3774tl:324057753249:2_xtcrH7M2lKlbEBHW3CPDfISlCeRcl72MEbUBn8zTzoQwzWXSEcwU2bt1kHu_CQyB0yv5PeFurnMA\",\n      \"LexiconNames\": [\n        \"fxGQ3DYHbBDx\",\n        \"O5b\"\n      ],\n      \"OutputFormat\": \"pcm\",\n      \"SampleRate\": \"<string>\",\n      \"SpeechMarkTypes\": [\n        \"sentence\",\n        \"sentence\"\n      ],\n      \"TextType\": \"ssml\",\n      \"VoiceId\": \"Adriano\",\n      \"LanguageCode\": \"ko-KR\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T10:41:44.000Z",
+                  "updatedAt": "2026-07-28T10:41:44.000Z",
+                  "uid": "35240-9cf5ab2d-5f27-46ad-bdf5-b72fd7df29cb"
+                },
+                {
+                  "id": "9a9f6fc5-afc9-4eea-a305-b276ae6767d5",
+                  "name": "InvalidNextTokenException",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/synthesisTasks?MaxResults=<integer>&NextToken=<string>&Status=inProgress",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "synthesisTasks"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of speech synthesis tasks returned in a List operation.",
+                          "key": "MaxResults",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "The pagination token to use in the next request to continue the listing of speech synthesis tasks. ",
+                          "key": "NextToken",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Status of the speech synthesis tasks returned in a List operation",
+                          "key": "Status",
+                          "value": "inProgress"
+                        }
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T10:41:44.000Z",
+                  "updatedAt": "2026-07-28T10:41:44.000Z",
+                  "uid": "35240-9a9f6fc5-afc9-4eea-a305-b276ae6767d5"
+                },
+                {
+                  "id": "a0604e48-8050-4ca9-bb67-ca1360c0a681",
+                  "name": "ServiceFailureException",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/synthesisTasks?MaxResults=<integer>&NextToken=<string>&Status=inProgress",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "synthesisTasks"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of speech synthesis tasks returned in a List operation.",
+                          "key": "MaxResults",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "The pagination token to use in the next request to continue the listing of speech synthesis tasks. ",
+                          "key": "NextToken",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Status of the speech synthesis tasks returned in a List operation",
+                          "key": "Status",
+                          "value": "inProgress"
+                        }
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T10:41:44.000Z",
+                  "updatedAt": "2026-07-28T10:41:44.000Z",
+                  "uid": "35240-a0604e48-8050-4ca9-bb67-ca1360c0a681"
+                }
+              ],
+              "createdAt": "2026-07-28T10:41:44.000Z",
+              "updatedAt": "2026-07-28T10:41:44.000Z",
+              "uid": "35240-dff38cd0-924c-4dd0-8f23-bf442b326f23"
+            },
+            {
+              "name": "Amazon Polly Start Speech Synthesis Task",
+              "id": "0be3e6c3-30c2-4e3a-9fe8-4e7d975311a9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-Amz-Content-Sha256",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Date",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Algorithm",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Credential",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Security-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Signature",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-SignedHeaders",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"OutputFormat\": \"mp3\",\n  \"OutputS3BucketName\": \"im1ap2zp-7gcnstmo3zo-gxf3s68tw0ya0b7g1ssi\",\n  \"Text\": \"<string>\",\n  \"VoiceId\": \"Lupe\",\n  \"Engine\": \"standard\",\n  \"LanguageCode\": \"arb\",\n  \"LexiconNames\": [\n    \"Eia4x6YP2GlvN2GhjJ9\",\n    \"XAz5Ni057NHk2A7ozk\"\n  ],\n  \"OutputS3KeyPrefix\": \"I$VolP78T(dHPzP1j6N7i=,6t!BJHU5GQ'6,WOxf1BVMRfe8ZS$RVjBRt;liXWfL\",\n  \"SampleRate\": \"<string>\",\n  \"SnsTopicArn\": \"arn:aws-iso:sns:gqa017a6e63skmzx9s1em5xvm:152388579971:RtabNKt0Xc4Gc8f2eq44_dOPaiMNX1IlUYmDzb1IJxnQrdI3Ngm5s3ZVBzkfi1O3fVGS1l971ogaDmEvWQjky3aDTPAZh_tNHyj4wMeclU61nwH5u6scFl5w3VlkW8nzRorikuBZlnSDyd_w_484szSvY9C468OSqZFCDHgdk98u5BfFAwZsREWxREQfUeywxjJ7qdjjYz-AQ3BHXhQWiiihvf0_af\",\n  \"SpeechMarkTypes\": [\n    \"viseme\",\n    \"viseme\"\n  ],\n  \"TextType\": \"text\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/synthesisTasks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "synthesisTasks"
+                  ]
+                },
+                "description": "Allows the creation of an asynchronous synthesis task, by starting a new <code>SpeechSynthesisTask</code>. This operation requires all the standard information needed for speech synthesis, plus the name of an Amazon S3 bucket for the service to store the output of the synthesis task and two optional parameters (<code>OutputS3KeyPrefix</code> and <code>SnsTopicArn</code>). Once the synthesis task is created, this operation will return a <code>SpeechSynthesisTask</code> object, which will include an identifier of this task as well as the current status. The <code>SpeechSynthesisTask</code> object is available for 72 hours after starting the asynchronous synthesis task."
+              },
+              "response": [
+                {
+                  "id": "c36eabd9-8242-4ff4-985c-b6ba4e6f5417",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"OutputFormat\": \"mp3\",\n  \"OutputS3BucketName\": \"im1ap2zp-7gcnstmo3zo-gxf3s68tw0ya0b7g1ssi\",\n  \"Text\": \"<string>\",\n  \"VoiceId\": \"Lupe\",\n  \"Engine\": \"standard\",\n  \"LanguageCode\": \"arb\",\n  \"LexiconNames\": [\n    \"Eia4x6YP2GlvN2GhjJ9\",\n    \"XAz5Ni057NHk2A7ozk\"\n  ],\n  \"OutputS3KeyPrefix\": \"I$VolP78T(dHPzP1j6N7i=,6t!BJHU5GQ'6,WOxf1BVMRfe8ZS$RVjBRt;liXWfL\",\n  \"SampleRate\": \"<string>\",\n  \"SnsTopicArn\": \"arn:aws-iso:sns:gqa017a6e63skmzx9s1em5xvm:152388579971:RtabNKt0Xc4Gc8f2eq44_dOPaiMNX1IlUYmDzb1IJxnQrdI3Ngm5s3ZVBzkfi1O3fVGS1l971ogaDmEvWQjky3aDTPAZh_tNHyj4wMeclU61nwH5u6scFl5w3VlkW8nzRorikuBZlnSDyd_w_484szSvY9C468OSqZFCDHgdk98u5BfFAwZsREWxREQfUeywxjJ7qdjjYz-AQ3BHXhQWiiihvf0_af\",\n  \"SpeechMarkTypes\": [\n    \"viseme\",\n    \"viseme\"\n  ],\n  \"TextType\": \"text\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/synthesisTasks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "synthesisTasks"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"SynthesisTask\": {\n    \"Engine\": \"standard\",\n    \"TaskId\": \"4dkQqLwkdy9CArnGCdr0FQILCt4Ue2o7mL8XyU7YiiZvrsBR_9l4F1stYcV_v8zVoYBfg_cDE\",\n    \"TaskStatus\": \"scheduled\",\n    \"TaskStatusReason\": \"<string>\",\n    \"OutputUri\": \"<string>\",\n    \"CreationTime\": \"<dateTime>\",\n    \"RequestCharacters\": \"<integer>\",\n    \"SnsTopicArn\": \"arn:aws-us-gov:sns:l9o:770705024803:ZKYfmTGNB_X6vPBDkwKEN8w9FIZJ8aIK3nXt-PrJ6nWu8rKogEvgeAwHuiBdXS0JN3NFIims8IwUSIy_VkUbjShF5o4NneKYYe2fi-9mju4fhomHvWBJmrZZ-b03qmgLyVsE0kiU__pYH8BXQ7NgtAWufasGl\",\n    \"LexiconNames\": [\n      \"6LLVduzY\",\n      \"mKEAW\"\n    ],\n    \"OutputFormat\": \"ogg_vorbis\",\n    \"SampleRate\": \"<string>\",\n    \"SpeechMarkTypes\": [\n      \"word\",\n      \"sentence\"\n    ],\n    \"TextType\": \"ssml\",\n    \"VoiceId\": \"Ola\",\n    \"LanguageCode\": \"hi-IN\"\n  }\n}",
+                  "createdAt": "2026-07-28T10:41:44.000Z",
+                  "updatedAt": "2026-07-28T10:41:44.000Z",
+                  "uid": "35240-c36eabd9-8242-4ff4-985c-b6ba4e6f5417"
+                },
+                {
+                  "id": "acc0c9de-cabc-406d-8902-84b1a1fc92bb",
+                  "name": "TextLengthExceededException",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"OutputFormat\": \"mp3\",\n  \"OutputS3BucketName\": \"im1ap2zp-7gcnstmo3zo-gxf3s68tw0ya0b7g1ssi\",\n  \"Text\": \"<string>\",\n  \"VoiceId\": \"Lupe\",\n  \"Engine\": \"standard\",\n  \"LanguageCode\": \"arb\",\n  \"LexiconNames\": [\n    \"Eia4x6YP2GlvN2GhjJ9\",\n    \"XAz5Ni057NHk2A7ozk\"\n  ],\n  \"OutputS3KeyPrefix\": \"I$VolP78T(dHPzP1j6N7i=,6t!BJHU5GQ'6,WOxf1BVMRfe8ZS$RVjBRt;liXWfL\",\n  \"SampleRate\": \"<string>\",\n  \"SnsTopicArn\": \"arn:aws-iso:sns:gqa017a6e63skmzx9s1em5xvm:152388579971:RtabNKt0Xc4Gc8f2eq44_dOPaiMNX1IlUYmDzb1IJxnQrdI3Ngm5s3ZVBzkfi1O3fVGS1l971ogaDmEvWQjky3aDTPAZh_tNHyj4wMeclU61nwH5u6scFl5w3VlkW8nzRorikuBZlnSDyd_w_484szSvY9C468OSqZFCDHgdk98u5BfFAwZsREWxREQfUeywxjJ7qdjjYz-AQ3BHXhQWiiihvf0_af\",\n  \"SpeechMarkTypes\": [\n    \"viseme\",\n    \"viseme\"\n  ],\n  \"TextType\": \"text\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/synthesisTasks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "synthesisTasks"
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T10:41:44.000Z",
+                  "updatedAt": "2026-07-28T10:41:44.000Z",
+                  "uid": "35240-acc0c9de-cabc-406d-8902-84b1a1fc92bb"
+                },
+                {
+                  "id": "c7a65d91-ed8d-482d-a52f-381fb361a917",
+                  "name": "InvalidS3BucketException",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"OutputFormat\": \"mp3\",\n  \"OutputS3BucketName\": \"im1ap2zp-7gcnstmo3zo-gxf3s68tw0ya0b7g1ssi\",\n  \"Text\": \"<string>\",\n  \"VoiceId\": \"Lupe\",\n  \"Engine\": \"standard\",\n  \"LanguageCode\": \"arb\",\n  \"LexiconNames\": [\n    \"Eia4x6YP2GlvN2GhjJ9\",\n    \"XAz5Ni057NHk2A7ozk\"\n  ],\n  \"OutputS3KeyPrefix\": \"I$VolP78T(dHPzP1j6N7i=,6t!BJHU5GQ'6,WOxf1BVMRfe8ZS$RVjBRt;liXWfL\",\n  \"SampleRate\": \"<string>\",\n  \"SnsTopicArn\": \"arn:aws-iso:sns:gqa017a6e63skmzx9s1em5xvm:152388579971:RtabNKt0Xc4Gc8f2eq44_dOPaiMNX1IlUYmDzb1IJxnQrdI3Ngm5s3ZVBzkfi1O3fVGS1l971ogaDmEvWQjky3aDTPAZh_tNHyj4wMeclU61nwH5u6scFl5w3VlkW8nzRorikuBZlnSDyd_w_484szSvY9C468OSqZFCDHgdk98u5BfFAwZsREWxREQfUeywxjJ7qdjjYz-AQ3BHXhQWiiihvf0_af\",\n  \"SpeechMarkTypes\": [\n    \"viseme\",\n    \"viseme\"\n  ],\n  \"TextType\": \"text\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/synthesisTasks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "synthesisTasks"
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T10:41:44.000Z",
+                  "updatedAt": "2026-07-28T10:41:44.000Z",
+                  "uid": "35240-c7a65d91-ed8d-482d-a52f-381fb361a917"
+                },
+                {
+                  "id": "fcc99100-b69e-43d2-83c5-b7683276fafe",
+                  "name": "InvalidS3KeyException",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"OutputFormat\": \"mp3\",\n  \"OutputS3BucketName\": \"im1ap2zp-7gcnstmo3zo-gxf3s68tw0ya0b7g1ssi\",\n  \"Text\": \"<string>\",\n  \"VoiceId\": \"Lupe\",\n  \"Engine\": \"standard\",\n  \"LanguageCode\": \"arb\",\n  \"LexiconNames\": [\n    \"Eia4x6YP2GlvN2GhjJ9\",\n    \"XAz5Ni057NHk2A7ozk\"\n  ],\n  \"OutputS3KeyPrefix\": \"I$VolP78T(dHPzP1j6N7i=,6t!BJHU5GQ'6,WOxf1BVMRfe8ZS$RVjBRt;liXWfL\",\n  \"SampleRate\": \"<string>\",\n  \"SnsTopicArn\": \"arn:aws-iso:sns:gqa017a6e63skmzx9s1em5xvm:152388579971:RtabNKt0Xc4Gc8f2eq44_dOPaiMNX1IlUYmDzb1IJxnQrdI3Ngm5s3ZVBzkfi1O3fVGS1l971ogaDmEvWQjky3aDTPAZh_tNHyj4wMeclU61nwH5u6scFl5w3VlkW8nzRorikuBZlnSDyd_w_484szSvY9C468OSqZFCDHgdk98u5BfFAwZsREWxREQfUeywxjJ7qdjjYz-AQ3BHXhQWiiihvf0_af\",\n  \"SpeechMarkTypes\": [\n    \"viseme\",\n    \"viseme\"\n  ],\n  \"TextType\": \"text\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/synthesisTasks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "synthesisTasks"
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T10:41:44.000Z",
+                  "updatedAt": "2026-07-28T10:41:44.000Z",
+                  "uid": "35240-fcc99100-b69e-43d2-83c5-b7683276fafe"
+                },
+                {
+                  "id": "81504c2d-04ee-4290-b931-734bf85422d8",
+                  "name": "InvalidSampleRateException",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"OutputFormat\": \"mp3\",\n  \"OutputS3BucketName\": \"im1ap2zp-7gcnstmo3zo-gxf3s68tw0ya0b7g1ssi\",\n  \"Text\": \"<string>\",\n  \"VoiceId\": \"Lupe\",\n  \"Engine\": \"standard\",\n  \"LanguageCode\": \"arb\",\n  \"LexiconNames\": [\n    \"Eia4x6YP2GlvN2GhjJ9\",\n    \"XAz5Ni057NHk2A7ozk\"\n  ],\n  \"OutputS3KeyPrefix\": \"I$VolP78T(dHPzP1j6N7i=,6t!BJHU5GQ'6,WOxf1BVMRfe8ZS$RVjBRt;liXWfL\",\n  \"SampleRate\": \"<string>\",\n  \"SnsTopicArn\": \"arn:aws-iso:sns:gqa017a6e63skmzx9s1em5xvm:152388579971:RtabNKt0Xc4Gc8f2eq44_dOPaiMNX1IlUYmDzb1IJxnQrdI3Ngm5s3ZVBzkfi1O3fVGS1l971ogaDmEvWQjky3aDTPAZh_tNHyj4wMeclU61nwH5u6scFl5w3VlkW8nzRorikuBZlnSDyd_w_484szSvY9C468OSqZFCDHgdk98u5BfFAwZsREWxREQfUeywxjJ7qdjjYz-AQ3BHXhQWiiihvf0_af\",\n  \"SpeechMarkTypes\": [\n    \"viseme\",\n    \"viseme\"\n  ],\n  \"TextType\": \"text\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/synthesisTasks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "synthesisTasks"
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T10:41:44.000Z",
+                  "updatedAt": "2026-07-28T10:41:44.000Z",
+                  "uid": "35240-81504c2d-04ee-4290-b931-734bf85422d8"
+                },
+                {
+                  "id": "1191a782-781f-41d8-8ad9-3043e58e4a34",
+                  "name": "InvalidSnsTopicArnException",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"OutputFormat\": \"mp3\",\n  \"OutputS3BucketName\": \"im1ap2zp-7gcnstmo3zo-gxf3s68tw0ya0b7g1ssi\",\n  \"Text\": \"<string>\",\n  \"VoiceId\": \"Lupe\",\n  \"Engine\": \"standard\",\n  \"LanguageCode\": \"arb\",\n  \"LexiconNames\": [\n    \"Eia4x6YP2GlvN2GhjJ9\",\n    \"XAz5Ni057NHk2A7ozk\"\n  ],\n  \"OutputS3KeyPrefix\": \"I$VolP78T(dHPzP1j6N7i=,6t!BJHU5GQ'6,WOxf1BVMRfe8ZS$RVjBRt;liXWfL\",\n  \"SampleRate\": \"<string>\",\n  \"SnsTopicArn\": \"arn:aws-iso:sns:gqa017a6e63skmzx9s1em5xvm:152388579971:RtabNKt0Xc4Gc8f2eq44_dOPaiMNX1IlUYmDzb1IJxnQrdI3Ngm5s3ZVBzkfi1O3fVGS1l971ogaDmEvWQjky3aDTPAZh_tNHyj4wMeclU61nwH5u6scFl5w3VlkW8nzRorikuBZlnSDyd_w_484szSvY9C468OSqZFCDHgdk98u5BfFAwZsREWxREQfUeywxjJ7qdjjYz-AQ3BHXhQWiiihvf0_af\",\n  \"SpeechMarkTypes\": [\n    \"viseme\",\n    \"viseme\"\n  ],\n  \"TextType\": \"text\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/synthesisTasks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "synthesisTasks"
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T10:41:44.000Z",
+                  "updatedAt": "2026-07-28T10:41:44.000Z",
+                  "uid": "35240-1191a782-781f-41d8-8ad9-3043e58e4a34"
+                },
+                {
+                  "id": "08b3b011-740a-4e94-a020-d116b404906b",
+                  "name": "InvalidSsmlException",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"OutputFormat\": \"mp3\",\n  \"OutputS3BucketName\": \"im1ap2zp-7gcnstmo3zo-gxf3s68tw0ya0b7g1ssi\",\n  \"Text\": \"<string>\",\n  \"VoiceId\": \"Lupe\",\n  \"Engine\": \"standard\",\n  \"LanguageCode\": \"arb\",\n  \"LexiconNames\": [\n    \"Eia4x6YP2GlvN2GhjJ9\",\n    \"XAz5Ni057NHk2A7ozk\"\n  ],\n  \"OutputS3KeyPrefix\": \"I$VolP78T(dHPzP1j6N7i=,6t!BJHU5GQ'6,WOxf1BVMRfe8ZS$RVjBRt;liXWfL\",\n  \"SampleRate\": \"<string>\",\n  \"SnsTopicArn\": \"arn:aws-iso:sns:gqa017a6e63skmzx9s1em5xvm:152388579971:RtabNKt0Xc4Gc8f2eq44_dOPaiMNX1IlUYmDzb1IJxnQrdI3Ngm5s3ZVBzkfi1O3fVGS1l971ogaDmEvWQjky3aDTPAZh_tNHyj4wMeclU61nwH5u6scFl5w3VlkW8nzRorikuBZlnSDyd_w_484szSvY9C468OSqZFCDHgdk98u5BfFAwZsREWxREQfUeywxjJ7qdjjYz-AQ3BHXhQWiiihvf0_af\",\n  \"SpeechMarkTypes\": [\n    \"viseme\",\n    \"viseme\"\n  ],\n  \"TextType\": \"text\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/synthesisTasks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "synthesisTasks"
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T10:41:44.000Z",
+                  "updatedAt": "2026-07-28T10:41:44.000Z",
+                  "uid": "35240-08b3b011-740a-4e94-a020-d116b404906b"
+                },
+                {
+                  "id": "2a6fbb99-9657-4bc8-b12f-f88fe0cb0f2b",
+                  "name": "EngineNotSupportedException",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"OutputFormat\": \"mp3\",\n  \"OutputS3BucketName\": \"im1ap2zp-7gcnstmo3zo-gxf3s68tw0ya0b7g1ssi\",\n  \"Text\": \"<string>\",\n  \"VoiceId\": \"Lupe\",\n  \"Engine\": \"standard\",\n  \"LanguageCode\": \"arb\",\n  \"LexiconNames\": [\n    \"Eia4x6YP2GlvN2GhjJ9\",\n    \"XAz5Ni057NHk2A7ozk\"\n  ],\n  \"OutputS3KeyPrefix\": \"I$VolP78T(dHPzP1j6N7i=,6t!BJHU5GQ'6,WOxf1BVMRfe8ZS$RVjBRt;liXWfL\",\n  \"SampleRate\": \"<string>\",\n  \"SnsTopicArn\": \"arn:aws-iso:sns:gqa017a6e63skmzx9s1em5xvm:152388579971:RtabNKt0Xc4Gc8f2eq44_dOPaiMNX1IlUYmDzb1IJxnQrdI3Ngm5s3ZVBzkfi1O3fVGS1l971ogaDmEvWQjky3aDTPAZh_tNHyj4wMeclU61nwH5u6scFl5w3VlkW8nzRorikuBZlnSDyd_w_484szSvY9C468OSqZFCDHgdk98u5BfFAwZsREWxREQfUeywxjJ7qdjjYz-AQ3BHXhQWiiihvf0_af\",\n  \"SpeechMarkTypes\": [\n    \"viseme\",\n    \"viseme\"\n  ],\n  \"TextType\": \"text\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/synthesisTasks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "synthesisTasks"
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T10:41:44.000Z",
+                  "updatedAt": "2026-07-28T10:41:44.000Z",
+                  "uid": "35240-2a6fbb99-9657-4bc8-b12f-f88fe0cb0f2b"
+                },
+                {
+                  "id": "0752411c-24c5-4f2c-acb0-e0ceb11d8441",
+                  "name": "LexiconNotFoundException",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"OutputFormat\": \"mp3\",\n  \"OutputS3BucketName\": \"im1ap2zp-7gcnstmo3zo-gxf3s68tw0ya0b7g1ssi\",\n  \"Text\": \"<string>\",\n  \"VoiceId\": \"Lupe\",\n  \"Engine\": \"standard\",\n  \"LanguageCode\": \"arb\",\n  \"LexiconNames\": [\n    \"Eia4x6YP2GlvN2GhjJ9\",\n    \"XAz5Ni057NHk2A7ozk\"\n  ],\n  \"OutputS3KeyPrefix\": \"I$VolP78T(dHPzP1j6N7i=,6t!BJHU5GQ'6,WOxf1BVMRfe8ZS$RVjBRt;liXWfL\",\n  \"SampleRate\": \"<string>\",\n  \"SnsTopicArn\": \"arn:aws-iso:sns:gqa017a6e63skmzx9s1em5xvm:152388579971:RtabNKt0Xc4Gc8f2eq44_dOPaiMNX1IlUYmDzb1IJxnQrdI3Ngm5s3ZVBzkfi1O3fVGS1l971ogaDmEvWQjky3aDTPAZh_tNHyj4wMeclU61nwH5u6scFl5w3VlkW8nzRorikuBZlnSDyd_w_484szSvY9C468OSqZFCDHgdk98u5BfFAwZsREWxREQfUeywxjJ7qdjjYz-AQ3BHXhQWiiihvf0_af\",\n  \"SpeechMarkTypes\": [\n    \"viseme\",\n    \"viseme\"\n  ],\n  \"TextType\": \"text\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/synthesisTasks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "synthesisTasks"
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T10:41:44.000Z",
+                  "updatedAt": "2026-07-28T10:41:44.000Z",
+                  "uid": "35240-0752411c-24c5-4f2c-acb0-e0ceb11d8441"
+                },
+                {
+                  "id": "478173ad-42d0-4287-9b1a-297573baad77",
+                  "name": "ServiceFailureException",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"OutputFormat\": \"mp3\",\n  \"OutputS3BucketName\": \"im1ap2zp-7gcnstmo3zo-gxf3s68tw0ya0b7g1ssi\",\n  \"Text\": \"<string>\",\n  \"VoiceId\": \"Lupe\",\n  \"Engine\": \"standard\",\n  \"LanguageCode\": \"arb\",\n  \"LexiconNames\": [\n    \"Eia4x6YP2GlvN2GhjJ9\",\n    \"XAz5Ni057NHk2A7ozk\"\n  ],\n  \"OutputS3KeyPrefix\": \"I$VolP78T(dHPzP1j6N7i=,6t!BJHU5GQ'6,WOxf1BVMRfe8ZS$RVjBRt;liXWfL\",\n  \"SampleRate\": \"<string>\",\n  \"SnsTopicArn\": \"arn:aws-iso:sns:gqa017a6e63skmzx9s1em5xvm:152388579971:RtabNKt0Xc4Gc8f2eq44_dOPaiMNX1IlUYmDzb1IJxnQrdI3Ngm5s3ZVBzkfi1O3fVGS1l971ogaDmEvWQjky3aDTPAZh_tNHyj4wMeclU61nwH5u6scFl5w3VlkW8nzRorikuBZlnSDyd_w_484szSvY9C468OSqZFCDHgdk98u5BfFAwZsREWxREQfUeywxjJ7qdjjYz-AQ3BHXhQWiiihvf0_af\",\n  \"SpeechMarkTypes\": [\n    \"viseme\",\n    \"viseme\"\n  ],\n  \"TextType\": \"text\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/synthesisTasks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "synthesisTasks"
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T10:41:44.000Z",
+                  "updatedAt": "2026-07-28T10:41:44.000Z",
+                  "uid": "35240-478173ad-42d0-4287-9b1a-297573baad77"
+                },
+                {
+                  "id": "ac696474-9410-41ef-993d-22efbeb4f853",
+                  "name": "MarksNotSupportedForFormatException",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"OutputFormat\": \"mp3\",\n  \"OutputS3BucketName\": \"im1ap2zp-7gcnstmo3zo-gxf3s68tw0ya0b7g1ssi\",\n  \"Text\": \"<string>\",\n  \"VoiceId\": \"Lupe\",\n  \"Engine\": \"standard\",\n  \"LanguageCode\": \"arb\",\n  \"LexiconNames\": [\n    \"Eia4x6YP2GlvN2GhjJ9\",\n    \"XAz5Ni057NHk2A7ozk\"\n  ],\n  \"OutputS3KeyPrefix\": \"I$VolP78T(dHPzP1j6N7i=,6t!BJHU5GQ'6,WOxf1BVMRfe8ZS$RVjBRt;liXWfL\",\n  \"SampleRate\": \"<string>\",\n  \"SnsTopicArn\": \"arn:aws-iso:sns:gqa017a6e63skmzx9s1em5xvm:152388579971:RtabNKt0Xc4Gc8f2eq44_dOPaiMNX1IlUYmDzb1IJxnQrdI3Ngm5s3ZVBzkfi1O3fVGS1l971ogaDmEvWQjky3aDTPAZh_tNHyj4wMeclU61nwH5u6scFl5w3VlkW8nzRorikuBZlnSDyd_w_484szSvY9C468OSqZFCDHgdk98u5BfFAwZsREWxREQfUeywxjJ7qdjjYz-AQ3BHXhQWiiihvf0_af\",\n  \"SpeechMarkTypes\": [\n    \"viseme\",\n    \"viseme\"\n  ],\n  \"TextType\": \"text\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/synthesisTasks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "synthesisTasks"
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T10:41:44.000Z",
+                  "updatedAt": "2026-07-28T10:41:44.000Z",
+                  "uid": "35240-ac696474-9410-41ef-993d-22efbeb4f853"
+                },
+                {
+                  "id": "7bae6f83-db4f-467b-99aa-0e3c7b253753",
+                  "name": "SsmlMarksNotSupportedForTextTypeException",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"OutputFormat\": \"mp3\",\n  \"OutputS3BucketName\": \"im1ap2zp-7gcnstmo3zo-gxf3s68tw0ya0b7g1ssi\",\n  \"Text\": \"<string>\",\n  \"VoiceId\": \"Lupe\",\n  \"Engine\": \"standard\",\n  \"LanguageCode\": \"arb\",\n  \"LexiconNames\": [\n    \"Eia4x6YP2GlvN2GhjJ9\",\n    \"XAz5Ni057NHk2A7ozk\"\n  ],\n  \"OutputS3KeyPrefix\": \"I$VolP78T(dHPzP1j6N7i=,6t!BJHU5GQ'6,WOxf1BVMRfe8ZS$RVjBRt;liXWfL\",\n  \"SampleRate\": \"<string>\",\n  \"SnsTopicArn\": \"arn:aws-iso:sns:gqa017a6e63skmzx9s1em5xvm:152388579971:RtabNKt0Xc4Gc8f2eq44_dOPaiMNX1IlUYmDzb1IJxnQrdI3Ngm5s3ZVBzkfi1O3fVGS1l971ogaDmEvWQjky3aDTPAZh_tNHyj4wMeclU61nwH5u6scFl5w3VlkW8nzRorikuBZlnSDyd_w_484szSvY9C468OSqZFCDHgdk98u5BfFAwZsREWxREQfUeywxjJ7qdjjYz-AQ3BHXhQWiiihvf0_af\",\n  \"SpeechMarkTypes\": [\n    \"viseme\",\n    \"viseme\"\n  ],\n  \"TextType\": \"text\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/synthesisTasks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "synthesisTasks"
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T10:41:44.000Z",
+                  "updatedAt": "2026-07-28T10:41:44.000Z",
+                  "uid": "35240-7bae6f83-db4f-467b-99aa-0e3c7b253753"
+                },
+                {
+                  "id": "4878cf49-5db6-4dfd-bcc2-b59957068f7d",
+                  "name": "LanguageNotSupportedException",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"OutputFormat\": \"mp3\",\n  \"OutputS3BucketName\": \"im1ap2zp-7gcnstmo3zo-gxf3s68tw0ya0b7g1ssi\",\n  \"Text\": \"<string>\",\n  \"VoiceId\": \"Lupe\",\n  \"Engine\": \"standard\",\n  \"LanguageCode\": \"arb\",\n  \"LexiconNames\": [\n    \"Eia4x6YP2GlvN2GhjJ9\",\n    \"XAz5Ni057NHk2A7ozk\"\n  ],\n  \"OutputS3KeyPrefix\": \"I$VolP78T(dHPzP1j6N7i=,6t!BJHU5GQ'6,WOxf1BVMRfe8ZS$RVjBRt;liXWfL\",\n  \"SampleRate\": \"<string>\",\n  \"SnsTopicArn\": \"arn:aws-iso:sns:gqa017a6e63skmzx9s1em5xvm:152388579971:RtabNKt0Xc4Gc8f2eq44_dOPaiMNX1IlUYmDzb1IJxnQrdI3Ngm5s3ZVBzkfi1O3fVGS1l971ogaDmEvWQjky3aDTPAZh_tNHyj4wMeclU61nwH5u6scFl5w3VlkW8nzRorikuBZlnSDyd_w_484szSvY9C468OSqZFCDHgdk98u5BfFAwZsREWxREQfUeywxjJ7qdjjYz-AQ3BHXhQWiiihvf0_af\",\n  \"SpeechMarkTypes\": [\n    \"viseme\",\n    \"viseme\"\n  ],\n  \"TextType\": \"text\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/synthesisTasks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "synthesisTasks"
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T10:41:44.000Z",
+                  "updatedAt": "2026-07-28T10:41:44.000Z",
+                  "uid": "35240-4878cf49-5db6-4dfd-bcc2-b59957068f7d"
+                }
+              ],
+              "createdAt": "2026-07-28T10:41:44.000Z",
+              "updatedAt": "2026-07-28T10:41:44.000Z",
+              "uid": "35240-0be3e6c3-30c2-4e3a-9fe8-4e7d975311a9"
+            }
+          ],
+          "id": "031b65f4-39d0-4337-ab54-9dc8103f6770",
+          "createdAt": "2026-07-28T10:41:44.000Z",
+          "updatedAt": "2026-07-28T10:41:44.000Z",
+          "uid": "35240-031b65f4-39d0-4337-ab54-9dc8103f6770"
+        }
+      ],
+      "id": "540297b9-37a8-4b0f-a8ff-c375653be6d6",
+      "createdAt": "2026-07-28T10:41:44.000Z",
+      "updatedAt": "2026-07-28T10:41:44.000Z",
+      "uid": "35240-540297b9-37a8-4b0f-a8ff-c375653be6d6"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-east-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "http://polly.{{region}}.amazonaws.com"
+    }
+  ]
+}

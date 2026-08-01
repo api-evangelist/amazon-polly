@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 2016-06-10
+  version: "1.0.0"
   x-release: v4
   title: Amazon Polly Lexicons Voices API
   description: <p>Amazon Polly is a web service that makes it easy to synthesize speech from text.</p> <p>The Amazon Polly service provides API operations for synthesizing high-quality speech from plain text and Speech Synthesis Markup Language (SSML), along with managing pronunciations lexicons that enable you to get the best results for your application domain.</p>
@@ -23,7 +23,6 @@ info:
     url: https://raw.githubusercontent.com/aws/aws-sdk-js/master/apis/polly-2016-06-10.normal.json
     converter:
       url: https://github.com/mermade/aws2openapi
-      version: 1.0.0
     x-apisguru-driver: external
   x-apiClientRegistration:
     url: https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct

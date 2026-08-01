@@ -1,0 +1,22 @@
+{
+  "provider": "amazon-polly",
+  "sources": [
+    "amazon-polly-lexicons-api-openapi.yml",
+    "amazon-polly-speech-api-openapi.yml",
+    "amazon-polly-speech-synthesis-api-openapi.yml",
+    "amazon-polly-synthesistasks-api-openapi.yml",
+    "amazon-polly-voices-api-openapi.yml"
+  ],
+  "outputs": [
+    "amazon-polly-lexicons-api-openapi.yml",
+    "amazon-polly-speech-api-openapi.yml",
+    "amazon-polly-speech-synthesis-api-openapi.yml",
+    "amazon-polly-synthesistasks-api-openapi.yml",
+    "amazon-polly-voices-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
