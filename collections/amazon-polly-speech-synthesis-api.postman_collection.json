@@ -1,0 +1,173 @@
+{
+  "item": [
+    {
+      "id": "a4ecdc96-a319-4ea7-a71a-5666f2f41d59",
+      "name": "Speech Synthesis",
+      "description": {
+        "content": "Operations for synthesizing speech from text",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cd402198-fca8-42bf-a6c5-62b7f6e033aa",
+          "name": "Amazon Polly Synthesize Speech",
+          "request": {
+            "name": "Amazon Polly Synthesize Speech",
+            "description": {
+              "content": "Synthesizes UTF-8 input text into an audio stream.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "speech"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The AWS region (This can only be one of us-east-1,us-east-2,us-west-1,us-west-2,us-gov-west-1,us-gov-east-1,ca-central-1,eu-north-1,eu-west-1,eu-west-2,eu-west-3,eu-central-1,eu-south-1,af-south-1,ap-northeast-1,ap-northeast-2,ap-northeast-3,ap-southeast-1,ap-southeast-2,ap-east-1,ap-south-1,sa-east-1,me-south-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "audio/mpeg"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"OutputFormat\": \"<string>\",\n  \"Text\": \"<string>\",\n  \"VoiceId\": \"<string>\",\n  \"Engine\": \"<string>\",\n  \"LanguageCode\": \"<string>\",\n  \"LexiconNames\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"SampleRate\": \"<string>\",\n  \"SpeechMarkTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"TextType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a5ae2eff-87f5-400c-9d17-9b0241842fc0",
+              "name": "Speech audio stream",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "speech"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-east-2,us-west-1,us-west-2,us-gov-west-1,us-gov-east-1,ca-central-1,eu-north-1,eu-west-1,eu-west-2,eu-west-3,eu-central-1,eu-south-1,af-south-1,ap-northeast-1,ap-northeast-2,ap-northeast-3,ap-southeast-1,ap-southeast-2,ap-east-1,ap-south-1,sa-east-1,me-south-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "audio/mpeg"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"OutputFormat\": \"<string>\",\n  \"Text\": \"<string>\",\n  \"VoiceId\": \"<string>\",\n  \"Engine\": \"<string>\",\n  \"LanguageCode\": \"<string>\",\n  \"LexiconNames\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"SampleRate\": \"<string>\",\n  \"SpeechMarkTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"TextType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "audio/mpeg"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The AWS region (This can only be one of us-east-1,us-east-2,us-west-1,us-west-2,us-gov-west-1,us-gov-east-1,ca-central-1,eu-north-1,eu-west-1,eu-west-2,eu-west-3,eu-central-1,eu-south-1,af-south-1,ap-northeast-1,ap-northeast-2,ap-northeast-3,ap-southeast-1,ap-southeast-2,ap-east-1,ap-south-1,sa-east-1,me-south-1)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-east-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "http://polly.{{region}}.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8de8cb29-5509-4698-b044-cf3a97dadd25",
+    "name": "Amazon Polly Lexicons Speech Synthesis API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "<p>Amazon Polly is a web service that makes it easy to synthesize speech from text.</p> <p>The Amazon Polly service provides API operations for synthesizing high-quality speech from plain text and Speech Synthesis Markup Language (SSML), along with managing pronunciations lexicons that enable you to get the best results for your application domain.</p>\n\nContact Support:\n Name: Mike Ralphson\n Email: mike.ralphson@gmail.com",
+      "type": "text/plain"
+    }
+  }
+}
