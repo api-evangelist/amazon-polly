@@ -21,6 +21,17 @@ accessModel:
   method: derived
 image: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
 tags:
+  - Artificial Intelligence
+  - AWS
+  - Machine-Learning
+  - Speech Synthesis
+  - Text-to-Speech
+  - TTS
+  - Voice
+  - SSML
+  - Neural Engine
+  - Generative AI
+tags_raw:
   - AI
   - AWS
   - Machine Learning
@@ -118,6 +129,8 @@ apis:
   humanURL: https://aws.amazon.com/polly/
   baseURL: https://polly.amazonaws.com
   tags:
+  - Synthesis Tasks
+  tags_raw:
   - SynthesisTasks
   properties:
   - type: OpenAPI
