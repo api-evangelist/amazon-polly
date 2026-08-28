@@ -12,8 +12,8 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: pollyApi
-  url: ../openapi/amazon-polly-openapi-original.yaml
+- name: lexiconsApi
+  url: ../openapi/amazon-polly-lexicons-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: lexicon-lifecycle

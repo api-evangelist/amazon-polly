@@ -12,8 +12,11 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: pollyApi
-  url: ../openapi/amazon-polly-openapi-original.yaml
+- name: synthesistasksApi
+  url: ../openapi/amazon-polly-synthesistasks-api-openapi.yml
+  type: openapi
+- name: voicesApi
+  url: ../openapi/amazon-polly-voices-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: list-voices-start-synthesis-task

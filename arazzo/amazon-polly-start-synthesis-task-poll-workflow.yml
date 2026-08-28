@@ -12,8 +12,8 @@ info:
     can be read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: pollyApi
-  url: ../openapi/amazon-polly-openapi-original.yaml
+- name: synthesistasksApi
+  url: ../openapi/amazon-polly-synthesistasks-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: start-synthesis-task-poll

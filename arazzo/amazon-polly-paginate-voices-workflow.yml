@@ -12,8 +12,8 @@ info:
     OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: pollyApi
-  url: ../openapi/amazon-polly-openapi-original.yaml
+- name: voicesApi
+  url: ../openapi/amazon-polly-voices-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: paginate-voices

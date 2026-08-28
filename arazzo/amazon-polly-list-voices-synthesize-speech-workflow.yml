@@ -12,8 +12,11 @@ info:
     executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: pollyApi
-  url: ../openapi/amazon-polly-openapi-original.yaml
+- name: speechApi
+  url: ../openapi/amazon-polly-speech-api-openapi.yml
+  type: openapi
+- name: voicesApi
+  url: ../openapi/amazon-polly-voices-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: list-voices-synthesize-speech
