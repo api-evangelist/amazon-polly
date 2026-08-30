@@ -37,7 +37,7 @@ tags:
   - AWS
   - Machine-Learning
   - Speech Synthesis
-  - Text-to-Speech
+  - Text-To-Speech
   - TTS
   - Voice
   - SSML
@@ -141,7 +141,7 @@ apis:
   humanURL: https://aws.amazon.com/polly/
   baseURL: https://polly.amazonaws.com
   tags:
-  - Synthesis Tasks
+  - SynthesisTasks
   tags_raw:
   - SynthesisTasks
   properties:
