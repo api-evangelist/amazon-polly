@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  version: "1.0.0"
+  version: 1.0.0
   x-release: v4
   title: Amazon Polly Lexicons Voices API
   description: <p>Amazon Polly is a web service that makes it easy to synthesize speech from text.</p> <p>The Amazon Polly service provides API operations for synthesizing high-quality speech from plain text and Speech Synthesis Markup Language (SSML), along with managing pronunciations lexicons that enable you to get the best results for your application domain.</p>
@@ -219,6 +219,137 @@ paths:
       - Voices
 components:
   schemas:
+    EngineList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Engine'
+    LanguageCodeList:
+      type: array
+      items:
+        $ref: '#/components/schemas/LanguageCode'
+    DescribeVoicesOutput:
+      type: object
+      example:
+        Voices:
+        - Gender: Female
+          Id: Emma
+          LanguageCode: en-GB
+          LanguageName: British English
+          Name: Emma
+        - Gender: Male
+          Id: Brian
+          LanguageCode: en-GB
+          LanguageName: British English
+          Name: Brian
+        - Gender: Female
+          Id: Amy
+          LanguageCode: en-GB
+          LanguageName: British English
+          Name: Amy
+      properties:
+        Voices:
+          allOf:
+          - $ref: '#/components/schemas/VoiceList'
+          - description: A list of voices with their properties.
+        NextToken:
+          allOf:
+          - $ref: '#/components/schemas/NextToken'
+          - description: The pagination token to use in the next request to continue the listing of voices. <code>NextToken</code> is returned only if the response is truncated.
+    Gender:
+      type: string
+      enum:
+      - Female
+      - Male
+    Engine:
+      type: string
+      enum:
+      - standard
+      - neural
+    InvalidNextTokenException: {}
+    VoiceName:
+      type: string
+    VoiceList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Voice'
+    NextToken:
+      type: string
+      minLength: 0
+      maxLength: 4096
+    Voice:
+      type: object
+      properties:
+        Gender:
+          allOf:
+          - $ref: '#/components/schemas/Gender'
+          - description: Gender of the voice.
+        Id:
+          allOf:
+          - $ref: '#/components/schemas/VoiceId'
+          - description: Amazon Polly assigned voice ID. This is the ID that you specify when calling the <code>SynthesizeSpeech</code> operation.
+        LanguageCode:
+          allOf:
+          - $ref: '#/components/schemas/LanguageCode'
+          - description: Language code of the voice.
+        LanguageName:
+          allOf:
+          - $ref: '#/components/schemas/LanguageName'
+          - description: Human readable name of the language in English.
+        Name:
+          allOf:
+          - $ref: '#/components/schemas/VoiceName'
+          - description: Name of the voice (for example, Salli, Kendra, etc.). This provides a human readable voice name that you might display in your application.
+        AdditionalLanguageCodes:
+          allOf:
+          - $ref: '#/components/schemas/LanguageCodeList'
+          - description: <p>Additional codes for languages available for the specified voice in addition to its default language. </p> <p>For example, the default language for Aditi is Indian English (en-IN) because it was first used for that language. Since Aditi is bilingual and fluent in both Indian English and Hindi, this parameter would show the code <code>hi-IN</code>.</p>
+        SupportedEngines:
+          allOf:
+          - $ref: '#/components/schemas/EngineList'
+          - description: Specifies which engines (<code>standard</code> or <code>neural</code>) that are supported by a given voice.
+      description: Description of the voice.
+    LanguageName:
+      type: string
+    ServiceFailureException: {}
+    LanguageCode:
+      type: string
+      enum:
+      - arb
+      - cmn-CN
+      - cy-GB
+      - da-DK
+      - de-DE
+      - en-AU
+      - en-GB
+      - en-GB-WLS
+      - en-IN
+      - en-US
+      - es-ES
+      - es-MX
+      - es-US
+      - fr-CA
+      - fr-FR
+      - is-IS
+      - it-IT
+      - ja-JP
+      - hi-IN
+      - ko-KR
+      - nb-NO
+      - nl-NL
+      - pl-PL
+      - pt-BR
+      - pt-PT
+      - ro-RO
+      - ru-RU
+      - sv-SE
+      - tr-TR
+      - en-NZ
+      - en-ZA
+      - ca-ES
+      - de-AT
+      - yue-CN
+      - ar-AE
+      - fi-FI
     VoiceId:
       type: string
       enum:
@@ -310,146 +441,9 @@ components:
       - Stephen
       - Kazuha
       - Tomoko
-    VoiceList:
-      type: array
-      items:
-        $ref: '#/components/schemas/Voice'
-    Voice:
-      type: object
-      properties:
-        Gender:
-          allOf:
-          - $ref: '#/components/schemas/Gender'
-          - description: Gender of the voice.
-        Id:
-          allOf:
-          - $ref: '#/components/schemas/VoiceId'
-          - description: Amazon Polly assigned voice ID. This is the ID that you specify when calling the <code>SynthesizeSpeech</code> operation.
-        LanguageCode:
-          allOf:
-          - $ref: '#/components/schemas/LanguageCode'
-          - description: Language code of the voice.
-        LanguageName:
-          allOf:
-          - $ref: '#/components/schemas/LanguageName'
-          - description: Human readable name of the language in English.
-        Name:
-          allOf:
-          - $ref: '#/components/schemas/VoiceName'
-          - description: Name of the voice (for example, Salli, Kendra, etc.). This provides a human readable voice name that you might display in your application.
-        AdditionalLanguageCodes:
-          allOf:
-          - $ref: '#/components/schemas/LanguageCodeList'
-          - description: <p>Additional codes for languages available for the specified voice in addition to its default language. </p> <p>For example, the default language for Aditi is Indian English (en-IN) because it was first used for that language. Since Aditi is bilingual and fluent in both Indian English and Hindi, this parameter would show the code <code>hi-IN</code>.</p>
-        SupportedEngines:
-          allOf:
-          - $ref: '#/components/schemas/EngineList'
-          - description: Specifies which engines (<code>standard</code> or <code>neural</code>) that are supported by a given voice.
-      description: Description of the voice.
-    LanguageCode:
-      type: string
-      enum:
-      - arb
-      - cmn-CN
-      - cy-GB
-      - da-DK
-      - de-DE
-      - en-AU
-      - en-GB
-      - en-GB-WLS
-      - en-IN
-      - en-US
-      - es-ES
-      - es-MX
-      - es-US
-      - fr-CA
-      - fr-FR
-      - is-IS
-      - it-IT
-      - ja-JP
-      - hi-IN
-      - ko-KR
-      - nb-NO
-      - nl-NL
-      - pl-PL
-      - pt-BR
-      - pt-PT
-      - ro-RO
-      - ru-RU
-      - sv-SE
-      - tr-TR
-      - en-NZ
-      - en-ZA
-      - ca-ES
-      - de-AT
-      - yue-CN
-      - ar-AE
-      - fi-FI
-    DescribeVoicesOutput:
-      type: object
-      example:
-        Voices:
-        - Gender: Female
-          Id: Emma
-          LanguageCode: en-GB
-          LanguageName: British English
-          Name: Emma
-        - Gender: Male
-          Id: Brian
-          LanguageCode: en-GB
-          LanguageName: British English
-          Name: Brian
-        - Gender: Female
-          Id: Amy
-          LanguageCode: en-GB
-          LanguageName: British English
-          Name: Amy
-      properties:
-        Voices:
-          allOf:
-          - $ref: '#/components/schemas/VoiceList'
-          - description: A list of voices with their properties.
-        NextToken:
-          allOf:
-          - $ref: '#/components/schemas/NextToken'
-          - description: The pagination token to use in the next request to continue the listing of voices. <code>NextToken</code> is returned only if the response is truncated.
-    Gender:
-      type: string
-      enum:
-      - Female
-      - Male
-    NextToken:
-      type: string
-      minLength: 0
-      maxLength: 4096
-    LanguageName:
-      type: string
-    ServiceFailureException: {}
-    LanguageCodeList:
-      type: array
-      items:
-        $ref: '#/components/schemas/LanguageCode'
-    InvalidNextTokenException: {}
-    Engine:
-      type: string
-      enum:
-      - standard
-      - neural
-    VoiceName:
-      type: string
-    EngineList:
-      type: array
-      items:
-        $ref: '#/components/schemas/Engine'
   parameters:
-    X-Amz-Signature:
-      name: X-Amz-Signature
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Content-Sha256:
-      name: X-Amz-Content-Sha256
+    X-Amz-Credential:
+      name: X-Amz-Credential
       in: header
       schema:
         type: string
@@ -460,8 +454,20 @@ components:
       schema:
         type: string
       required: false
+    X-Amz-Signature:
+      name: X-Amz-Signature
+      in: header
+      schema:
+        type: string
+      required: false
     X-Amz-Security-Token:
       name: X-Amz-Security-Token
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Date:
+      name: X-Amz-Date
       in: header
       schema:
         type: string
@@ -472,14 +478,8 @@ components:
       schema:
         type: string
       required: false
-    X-Amz-Credential:
-      name: X-Amz-Credential
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Date:
-      name: X-Amz-Date
+    X-Amz-Content-Sha256:
+      name: X-Amz-Content-Sha256
       in: header
       schema:
         type: string
