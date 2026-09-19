@@ -116,6 +116,8 @@ apis:
   humanURL: https://aws.amazon.com/polly/
   baseURL: https://polly.amazonaws.com
   tags:
+  - Voice
+  tags_raw:
   - Voices
   properties:
   - type: OpenAPI
