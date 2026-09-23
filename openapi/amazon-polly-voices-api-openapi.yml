@@ -1,9 +1,12 @@
 openapi: 3.2.0
 info:
-  version: 1.0.0
+  version: 2016-06-10
   x-release: v4
-  title: Amazon Polly Lexicons Voices API
-  description: <p>Amazon Polly is a web service that makes it easy to synthesize speech from text.</p> <p>The Amazon Polly service provides API operations for synthesizing high-quality speech from plain text and Speech Synthesis Markup Language (SSML), along with managing pronunciations lexicons that enable you to get the best results for your application domain.</p>
+  title: Amazon Polly Voices API
+  description: 'Amazon Polly is a web service that makes it easy to synthesize speech from text.
+
+
+    The Amazon Polly service provides API operations for synthesizing high-quality speech from plain text and Speech Synthesis Markup Language (SSML), along with managing pronunciations lexicons that enable you to get the best results for your application domain.'
   x-logo:
     url: https://api.apis.guru/v2/cache/logo/https_twitter.com_awscloud_profile_image.png
     backgroundColor: '#FFFFFF'
@@ -23,6 +26,7 @@ info:
     url: https://raw.githubusercontent.com/aws/aws-sdk-js/master/apis/polly-2016-06-10.normal.json
     converter:
       url: https://github.com/mermade/aws2openapi
+      version: 1.0.0
     x-apisguru-driver: external
   x-apiClientRegistration:
     url: https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct
@@ -124,7 +128,19 @@ paths:
     - $ref: '#/components/parameters/X-Amz-SignedHeaders'
     get:
       operationId: DescribeVoices
-      description: <p>Returns the list of voices that are available for use when requesting speech synthesis. Each voice speaks a specified language, is either male or female, and is identified by an ID, which is the ASCII version of the voice name. </p> <p>When synthesizing speech ( <code>SynthesizeSpeech</code> ), you provide the voice ID for the voice you want from the list of voices returned by <code>DescribeVoices</code>.</p> <p>For example, you want your news reader application to read news in a specific language, but giving a user the option to choose the voice. Using the <code>DescribeVoices</code> operation you can provide the user with a list of available voices to select from.</p> <p> You can optionally specify a language code to filter the available voices. For example, if you specify <code>en-US</code>, the operation returns a list of all available US English voices. </p> <p>This operation requires permissions to perform the <code>polly:DescribeVoices</code> action.</p>
+      description: 'Returns the list of voices that are available for use when requesting speech synthesis. Each voice speaks a specified language, is either male or female, and is identified by an ID, which is the ASCII version of the voice name.
+
+
+        When synthesizing speech ( SynthesizeSpeech ), you provide the voice ID for the voice you want from the list of voices returned by DescribeVoices.
+
+
+        For example, you want your news reader application to read news in a specific language, but giving a user the option to choose the voice. Using the DescribeVoices operation you can provide the user with a list of available voices to select from.
+
+
+        You can optionally specify a language code to filter the available voices. For example, if you specify en-US, the operation returns a list of all available US English voices.
+
+
+        This operation requires permissions to perform the polly:DescribeVoices action.'
       responses:
         '200':
           description: Success
@@ -218,64 +234,50 @@ paths:
       tags:
       - Voices
 components:
+  parameters:
+    X-Amz-Content-Sha256:
+      name: X-Amz-Content-Sha256
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Algorithm:
+      name: X-Amz-Algorithm
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Credential:
+      name: X-Amz-Credential
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-SignedHeaders:
+      name: X-Amz-SignedHeaders
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Signature:
+      name: X-Amz-Signature
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Date:
+      name: X-Amz-Date
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Security-Token:
+      name: X-Amz-Security-Token
+      in: header
+      schema:
+        type: string
+      required: false
   schemas:
-    EngineList:
-      type: array
-      items:
-        $ref: '#/components/schemas/Engine'
-    LanguageCodeList:
-      type: array
-      items:
-        $ref: '#/components/schemas/LanguageCode'
-    DescribeVoicesOutput:
-      type: object
-      example:
-        Voices:
-        - Gender: Female
-          Id: Emma
-          LanguageCode: en-GB
-          LanguageName: British English
-          Name: Emma
-        - Gender: Male
-          Id: Brian
-          LanguageCode: en-GB
-          LanguageName: British English
-          Name: Brian
-        - Gender: Female
-          Id: Amy
-          LanguageCode: en-GB
-          LanguageName: British English
-          Name: Amy
-      properties:
-        Voices:
-          allOf:
-          - $ref: '#/components/schemas/VoiceList'
-          - description: A list of voices with their properties.
-        NextToken:
-          allOf:
-          - $ref: '#/components/schemas/NextToken'
-          - description: The pagination token to use in the next request to continue the listing of voices. <code>NextToken</code> is returned only if the response is truncated.
-    Gender:
-      type: string
-      enum:
-      - Female
-      - Male
-    Engine:
-      type: string
-      enum:
-      - standard
-      - neural
-    InvalidNextTokenException: {}
-    VoiceName:
-      type: string
-    VoiceList:
-      type: array
-      items:
-        $ref: '#/components/schemas/Voice'
-    NextToken:
-      type: string
-      minLength: 0
-      maxLength: 4096
     Voice:
       type: object
       properties:
@@ -308,9 +310,12 @@ components:
           - $ref: '#/components/schemas/EngineList'
           - description: Specifies which engines (<code>standard</code> or <code>neural</code>) that are supported by a given voice.
       description: Description of the voice.
-    LanguageName:
+    VoiceName:
       type: string
-    ServiceFailureException: {}
+    EngineList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Engine'
     LanguageCode:
       type: string
       enum:
@@ -350,6 +355,54 @@ components:
       - yue-CN
       - ar-AE
       - fi-FI
+    Gender:
+      type: string
+      enum:
+      - Female
+      - Male
+    LanguageCodeList:
+      type: array
+      items:
+        $ref: '#/components/schemas/LanguageCode'
+    NextToken:
+      type: string
+      minLength: 0
+      maxLength: 4096
+    DescribeVoicesOutput:
+      type: object
+      example:
+        Voices:
+        - Gender: Female
+          Id: Emma
+          LanguageCode: en-GB
+          LanguageName: British English
+          Name: Emma
+        - Gender: Male
+          Id: Brian
+          LanguageCode: en-GB
+          LanguageName: British English
+          Name: Brian
+        - Gender: Female
+          Id: Amy
+          LanguageCode: en-GB
+          LanguageName: British English
+          Name: Amy
+      properties:
+        Voices:
+          allOf:
+          - $ref: '#/components/schemas/VoiceList'
+          - description: A list of voices with their properties.
+        NextToken:
+          allOf:
+          - $ref: '#/components/schemas/NextToken'
+          - description: The pagination token to use in the next request to continue the listing of voices. <code>NextToken</code> is returned only if the response is truncated.
+    VoiceList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Voice'
+    LanguageName:
+      type: string
+    ServiceFailureException: {}
     VoiceId:
       type: string
       enum:
@@ -441,49 +494,12 @@ components:
       - Stephen
       - Kazuha
       - Tomoko
-  parameters:
-    X-Amz-Credential:
-      name: X-Amz-Credential
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Algorithm:
-      name: X-Amz-Algorithm
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Signature:
-      name: X-Amz-Signature
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Security-Token:
-      name: X-Amz-Security-Token
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Date:
-      name: X-Amz-Date
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-SignedHeaders:
-      name: X-Amz-SignedHeaders
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Content-Sha256:
-      name: X-Amz-Content-Sha256
-      in: header
-      schema:
-        type: string
-      required: false
+    Engine:
+      type: string
+      enum:
+      - standard
+      - neural
+    InvalidNextTokenException: {}
   securitySchemes:
     hmac:
       type: apiKey

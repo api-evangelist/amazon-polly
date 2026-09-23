@@ -1,24 +1,44 @@
 {
   "provider": "amazon-polly",
   "sources": [
-    "amazon-polly-lexicons-api-openapi.yml",
-    "amazon-polly-speech-api-openapi.yml",
-    "amazon-polly-speech-synthesis-api-openapi.yml",
-    "amazon-polly-synthesistasks-api-openapi.yml",
-    "amazon-polly-voices-api-openapi.yml"
+    "_original/amazon-polly-openapi-original.yaml"
   ],
   "outputs": [
     "amazon-polly-lexicons-api-openapi.yml",
     "amazon-polly-speech-api-openapi.yml",
-    "amazon-polly-speech-synthesis-api-openapi.yml",
     "amazon-polly-synthesistasks-api-openapi.yml",
     "amazon-polly-voices-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
   "notes": [
-    "apis.yml register: already-registered"
+    "1 archived document(s) dropped as subsets of other archived documents",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "amazon-polly-openapi-original.yaml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "amazon-polly-openapi-original.yaml: tagged paths DELETE /v1/lexicons/{LexiconName} -> Lexicons",
+    "amazon-polly-openapi-original.yaml: tagged paths GET /v1/lexicons/{LexiconName} -> Lexicons",
+    "amazon-polly-openapi-original.yaml: tagged paths PUT /v1/lexicons/{LexiconName} -> Lexicons",
+    "amazon-polly-openapi-original.yaml: tagged paths GET /v1/voices -> Voices",
+    "amazon-polly-openapi-original.yaml: tagged paths GET /v1/synthesisTasks/{TaskId} -> SynthesisTasks",
+    "amazon-polly-openapi-original.yaml: tagged paths GET /v1/lexicons -> Lexicons",
+    "amazon-polly-openapi-original.yaml: tagged paths GET /v1/synthesisTasks -> SynthesisTasks",
+    "amazon-polly-openapi-original.yaml: tagged paths POST /v1/synthesisTasks -> SynthesisTasks",
+    "amazon-polly-openapi-original.yaml: tagged paths POST /v1/speech -> Speech",
+    "amazon-polly-openapi-original.yaml: declared missing tag: Lexicons",
+    "amazon-polly-openapi-original.yaml: declared missing tag: Speech",
+    "amazon-polly-openapi-original.yaml: declared missing tag: SynthesisTasks",
+    "amazon-polly-openapi-original.yaml: declared missing tag: Voices",
+    "superseded outputs removed: amazon-polly-synthesis-tasks-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 4 total)"
   ],
-  "skipped": []
+  "skipped": [
+    "_original/amazon-polly-openapi.yml: archived document superseded by a larger archived document",
+    "amazon-polly-lexicons-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amazon-polly-speech-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amazon-polly-synthesis-tasks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amazon-polly-voices-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
