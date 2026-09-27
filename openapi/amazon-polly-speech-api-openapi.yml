@@ -379,15 +379,42 @@ paths:
       tags:
       - Speech
 components:
+  schemas:
+    InvalidSampleRateException: {}
+    ServiceFailureException: {}
+    InvalidSsmlException: {}
+    SynthesizeSpeechOutput:
+      type: object
+      example:
+        AudioStream: TEXT
+        ContentType: audio/mpeg
+        RequestCharacters: 37
+      properties:
+        AudioStream:
+          allOf:
+          - $ref: '#/components/schemas/AudioStream'
+          - description: ' Stream containing the synthesized speech. '
+    EngineNotSupportedException: {}
+    LexiconName:
+      type: string
+      pattern: '[0-9A-Za-z]{1,20}'
+    MarksNotSupportedForFormatException: {}
+    SsmlMarksNotSupportedForTextTypeException: {}
+    TextLengthExceededException: {}
+    LexiconNotFoundException: {}
+    SpeechMarkType:
+      type: string
+      enum:
+      - sentence
+      - ssml
+      - viseme
+      - word
+    LanguageNotSupportedException: {}
+    AudioStream:
+      type: string
   parameters:
     X-Amz-Content-Sha256:
       name: X-Amz-Content-Sha256
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Algorithm:
-      name: X-Amz-Algorithm
       in: header
       schema:
         type: string
@@ -398,8 +425,20 @@ components:
       schema:
         type: string
       required: false
+    X-Amz-Algorithm:
+      name: X-Amz-Algorithm
+      in: header
+      schema:
+        type: string
+      required: false
     X-Amz-SignedHeaders:
       name: X-Amz-SignedHeaders
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Security-Token:
+      name: X-Amz-Security-Token
       in: header
       schema:
         type: string
@@ -416,45 +455,6 @@ components:
       schema:
         type: string
       required: false
-    X-Amz-Security-Token:
-      name: X-Amz-Security-Token
-      in: header
-      schema:
-        type: string
-      required: false
-  schemas:
-    EngineNotSupportedException: {}
-    InvalidSsmlException: {}
-    LanguageNotSupportedException: {}
-    TextLengthExceededException: {}
-    InvalidSampleRateException: {}
-    LexiconName:
-      type: string
-      pattern: '[0-9A-Za-z]{1,20}'
-    MarksNotSupportedForFormatException: {}
-    SsmlMarksNotSupportedForTextTypeException: {}
-    SynthesizeSpeechOutput:
-      type: object
-      example:
-        AudioStream: TEXT
-        ContentType: audio/mpeg
-        RequestCharacters: 37
-      properties:
-        AudioStream:
-          allOf:
-          - $ref: '#/components/schemas/AudioStream'
-          - description: ' Stream containing the synthesized speech. '
-    ServiceFailureException: {}
-    AudioStream:
-      type: string
-    LexiconNotFoundException: {}
-    SpeechMarkType:
-      type: string
-      enum:
-      - sentence
-      - ssml
-      - viseme
-      - word
   securitySchemes:
     hmac:
       type: apiKey

@@ -234,50 +234,20 @@ paths:
       tags:
       - Voices
 components:
-  parameters:
-    X-Amz-Content-Sha256:
-      name: X-Amz-Content-Sha256
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Algorithm:
-      name: X-Amz-Algorithm
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Credential:
-      name: X-Amz-Credential
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-SignedHeaders:
-      name: X-Amz-SignedHeaders
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Signature:
-      name: X-Amz-Signature
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Date:
-      name: X-Amz-Date
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Security-Token:
-      name: X-Amz-Security-Token
-      in: header
-      schema:
-        type: string
-      required: false
   schemas:
+    ServiceFailureException: {}
+    EngineList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Engine'
+    Gender:
+      type: string
+      enum:
+      - Female
+      - Male
+    InvalidNextTokenException: {}
+    VoiceName:
+      type: string
     Voice:
       type: object
       properties:
@@ -310,56 +280,6 @@ components:
           - $ref: '#/components/schemas/EngineList'
           - description: Specifies which engines (<code>standard</code> or <code>neural</code>) that are supported by a given voice.
       description: Description of the voice.
-    VoiceName:
-      type: string
-    EngineList:
-      type: array
-      items:
-        $ref: '#/components/schemas/Engine'
-    LanguageCode:
-      type: string
-      enum:
-      - arb
-      - cmn-CN
-      - cy-GB
-      - da-DK
-      - de-DE
-      - en-AU
-      - en-GB
-      - en-GB-WLS
-      - en-IN
-      - en-US
-      - es-ES
-      - es-MX
-      - es-US
-      - fr-CA
-      - fr-FR
-      - is-IS
-      - it-IT
-      - ja-JP
-      - hi-IN
-      - ko-KR
-      - nb-NO
-      - nl-NL
-      - pl-PL
-      - pt-BR
-      - pt-PT
-      - ro-RO
-      - ru-RU
-      - sv-SE
-      - tr-TR
-      - en-NZ
-      - en-ZA
-      - ca-ES
-      - de-AT
-      - yue-CN
-      - ar-AE
-      - fi-FI
-    Gender:
-      type: string
-      enum:
-      - Female
-      - Male
     LanguageCodeList:
       type: array
       items:
@@ -368,41 +288,13 @@ components:
       type: string
       minLength: 0
       maxLength: 4096
-    DescribeVoicesOutput:
-      type: object
-      example:
-        Voices:
-        - Gender: Female
-          Id: Emma
-          LanguageCode: en-GB
-          LanguageName: British English
-          Name: Emma
-        - Gender: Male
-          Id: Brian
-          LanguageCode: en-GB
-          LanguageName: British English
-          Name: Brian
-        - Gender: Female
-          Id: Amy
-          LanguageCode: en-GB
-          LanguageName: British English
-          Name: Amy
-      properties:
-        Voices:
-          allOf:
-          - $ref: '#/components/schemas/VoiceList'
-          - description: A list of voices with their properties.
-        NextToken:
-          allOf:
-          - $ref: '#/components/schemas/NextToken'
-          - description: The pagination token to use in the next request to continue the listing of voices. <code>NextToken</code> is returned only if the response is truncated.
-    VoiceList:
-      type: array
-      items:
-        $ref: '#/components/schemas/Voice'
     LanguageName:
       type: string
-    ServiceFailureException: {}
+    Engine:
+      type: string
+      enum:
+      - standard
+      - neural
     VoiceId:
       type: string
       enum:
@@ -494,12 +386,120 @@ components:
       - Stephen
       - Kazuha
       - Tomoko
-    Engine:
+    VoiceList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Voice'
+    DescribeVoicesOutput:
+      type: object
+      example:
+        Voices:
+        - Gender: Female
+          Id: Emma
+          LanguageCode: en-GB
+          LanguageName: British English
+          Name: Emma
+        - Gender: Male
+          Id: Brian
+          LanguageCode: en-GB
+          LanguageName: British English
+          Name: Brian
+        - Gender: Female
+          Id: Amy
+          LanguageCode: en-GB
+          LanguageName: British English
+          Name: Amy
+      properties:
+        Voices:
+          allOf:
+          - $ref: '#/components/schemas/VoiceList'
+          - description: A list of voices with their properties.
+        NextToken:
+          allOf:
+          - $ref: '#/components/schemas/NextToken'
+          - description: The pagination token to use in the next request to continue the listing of voices. <code>NextToken</code> is returned only if the response is truncated.
+    LanguageCode:
       type: string
       enum:
-      - standard
-      - neural
-    InvalidNextTokenException: {}
+      - arb
+      - cmn-CN
+      - cy-GB
+      - da-DK
+      - de-DE
+      - en-AU
+      - en-GB
+      - en-GB-WLS
+      - en-IN
+      - en-US
+      - es-ES
+      - es-MX
+      - es-US
+      - fr-CA
+      - fr-FR
+      - is-IS
+      - it-IT
+      - ja-JP
+      - hi-IN
+      - ko-KR
+      - nb-NO
+      - nl-NL
+      - pl-PL
+      - pt-BR
+      - pt-PT
+      - ro-RO
+      - ru-RU
+      - sv-SE
+      - tr-TR
+      - en-NZ
+      - en-ZA
+      - ca-ES
+      - de-AT
+      - yue-CN
+      - ar-AE
+      - fi-FI
+  parameters:
+    X-Amz-Content-Sha256:
+      name: X-Amz-Content-Sha256
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Credential:
+      name: X-Amz-Credential
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Algorithm:
+      name: X-Amz-Algorithm
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-SignedHeaders:
+      name: X-Amz-SignedHeaders
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Security-Token:
+      name: X-Amz-Security-Token
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Signature:
+      name: X-Amz-Signature
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Date:
+      name: X-Amz-Date
+      in: header
+      schema:
+        type: string
+      required: false
   securitySchemes:
     hmac:
       type: apiKey

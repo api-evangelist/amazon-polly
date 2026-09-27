@@ -330,64 +330,86 @@ paths:
       tags:
       - Lexicons
 components:
-  parameters:
-    X-Amz-Content-Sha256:
-      name: X-Amz-Content-Sha256
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Algorithm:
-      name: X-Amz-Algorithm
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Credential:
-      name: X-Amz-Credential
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-SignedHeaders:
-      name: X-Amz-SignedHeaders
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Signature:
-      name: X-Amz-Signature
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Date:
-      name: X-Amz-Date
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Security-Token:
-      name: X-Amz-Security-Token
-      in: header
-      schema:
-        type: string
-      required: false
   schemas:
-    Size:
+    ListLexiconsOutput:
+      type: object
+      example:
+        Lexicons:
+        - Attributes:
+            Alphabet: ipa
+            LanguageCode: en-US
+            LastModified: 1478542980.117
+            LexemesCount: 1
+            LexiconArn: arn:aws:polly:us-east-1:123456789012:lexicon/example
+            Size: 503
+          Name: example
+      properties:
+        Lexicons:
+          allOf:
+          - $ref: '#/components/schemas/LexiconDescriptionList'
+          - description: A list of lexicon names and attributes.
+        NextToken:
+          allOf:
+          - $ref: '#/components/schemas/NextToken'
+          - description: The pagination token to use in the next request to continue the listing of lexicons. <code>NextToken</code> is returned only if the response is truncated.
+    MaxLexiconsNumberExceededException: {}
+    LexiconSizeExceededException: {}
+    ServiceFailureException: {}
+    UnsupportedPlsAlphabetException: {}
+    LexemesCount:
       type: integer
-    LexiconContent:
-      type: string
-      format: password
-    DeleteLexiconOutput:
+    PutLexiconOutput:
       type: object
       example: {}
       properties: {}
+    Alphabet:
+      type: string
+    Lexicon:
+      type: object
+      properties:
+        Content:
+          allOf:
+          - $ref: '#/components/schemas/LexiconContent'
+          - description: Lexicon content in string format. The content of a lexicon must be in PLS format.
+        Name:
+          allOf:
+          - $ref: '#/components/schemas/LexiconName'
+          - description: Name of the lexicon.
+      description: Provides lexicon name and lexicon content in string format. For more information, see <a href="https://www.w3.org/TR/pronunciation-lexicon/">Pronunciation Lexicon Specification (PLS) Version 1.0</a>.
+    LexiconArn:
+      type: string
+    Size:
+      type: integer
+    InvalidLexiconException: {}
+    InvalidNextTokenException: {}
+    LexiconContent:
+      type: string
+      format: password
+    LexiconName:
+      type: string
+      pattern: '[0-9A-Za-z]{1,20}'
+    MaxLexemeLengthExceededException: {}
     LexiconDescriptionList:
       type: array
       items:
         $ref: '#/components/schemas/LexiconDescription'
-    InvalidLexiconException: {}
+    LexiconDescription:
+      type: object
+      properties:
+        Name:
+          allOf:
+          - $ref: '#/components/schemas/LexiconName'
+          - description: Name of the lexicon.
+        Attributes:
+          allOf:
+          - $ref: '#/components/schemas/LexiconAttributes'
+          - description: Provides lexicon metadata.
+      description: Describes the content of the lexicon.
+    UnsupportedPlsLanguageException: {}
+    NextToken:
+      type: string
+      minLength: 0
+      maxLength: 4096
     GetLexiconOutput:
       type: object
       example:
@@ -410,6 +432,42 @@ components:
           allOf:
           - $ref: '#/components/schemas/LexiconAttributes'
           - description: Metadata of the lexicon, including phonetic alphabetic used, language code, lexicon ARN, number of lexemes defined in the lexicon, and size of lexicon in bytes.
+    LexiconNotFoundException: {}
+    DeleteLexiconOutput:
+      type: object
+      example: {}
+      properties: {}
+    LastModified:
+      type: string
+      format: date-time
+    LexiconAttributes:
+      type: object
+      properties:
+        Alphabet:
+          allOf:
+          - $ref: '#/components/schemas/Alphabet'
+          - description: Phonetic alphabet used in the lexicon. Valid values are <code>ipa</code> and <code>x-sampa</code>.
+        LanguageCode:
+          allOf:
+          - $ref: '#/components/schemas/LanguageCode'
+          - description: Language code that the lexicon applies to. A lexicon with a language code such as "en" would be applied to all English languages (en-GB, en-US, en-AUS, en-WLS, and so on.
+        LastModified:
+          allOf:
+          - $ref: '#/components/schemas/LastModified'
+          - description: Date lexicon was last modified (a timestamp value).
+        LexiconArn:
+          allOf:
+          - $ref: '#/components/schemas/LexiconArn'
+          - description: Amazon Resource Name (ARN) of the lexicon.
+        LexemesCount:
+          allOf:
+          - $ref: '#/components/schemas/LexemesCount'
+          - description: Number of lexemes in the lexicon.
+        Size:
+          allOf:
+          - $ref: '#/components/schemas/Size'
+          - description: Total size of the lexicon, in characters.
+      description: Contains metadata describing the lexicon such as the number of lexemes, language code, and so on. For more information, see <a href="https://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html">Managing Lexicons</a>.
     LanguageCode:
       type: string
       enum:
@@ -449,107 +507,49 @@ components:
       - yue-CN
       - ar-AE
       - fi-FI
-    UnsupportedPlsLanguageException: {}
-    PutLexiconOutput:
-      type: object
-      example: {}
-      properties: {}
-    NextToken:
-      type: string
-      minLength: 0
-      maxLength: 4096
-    Lexicon:
-      type: object
-      properties:
-        Content:
-          allOf:
-          - $ref: '#/components/schemas/LexiconContent'
-          - description: Lexicon content in string format. The content of a lexicon must be in PLS format.
-        Name:
-          allOf:
-          - $ref: '#/components/schemas/LexiconName'
-          - description: Name of the lexicon.
-      description: Provides lexicon name and lexicon content in string format. For more information, see <a href="https://www.w3.org/TR/pronunciation-lexicon/">Pronunciation Lexicon Specification (PLS) Version 1.0</a>.
-    LastModified:
-      type: string
-      format: date-time
-    ListLexiconsOutput:
-      type: object
-      example:
-        Lexicons:
-        - Attributes:
-            Alphabet: ipa
-            LanguageCode: en-US
-            LastModified: 1478542980.117
-            LexemesCount: 1
-            LexiconArn: arn:aws:polly:us-east-1:123456789012:lexicon/example
-            Size: 503
-          Name: example
-      properties:
-        Lexicons:
-          allOf:
-          - $ref: '#/components/schemas/LexiconDescriptionList'
-          - description: A list of lexicon names and attributes.
-        NextToken:
-          allOf:
-          - $ref: '#/components/schemas/NextToken'
-          - description: The pagination token to use in the next request to continue the listing of lexicons. <code>NextToken</code> is returned only if the response is truncated.
-    LexiconSizeExceededException: {}
-    LexiconDescription:
-      type: object
-      properties:
-        Name:
-          allOf:
-          - $ref: '#/components/schemas/LexiconName'
-          - description: Name of the lexicon.
-        Attributes:
-          allOf:
-          - $ref: '#/components/schemas/LexiconAttributes'
-          - description: Provides lexicon metadata.
-      description: Describes the content of the lexicon.
-    LexiconName:
-      type: string
-      pattern: '[0-9A-Za-z]{1,20}'
-    UnsupportedPlsAlphabetException: {}
-    LexiconArn:
-      type: string
-    MaxLexemeLengthExceededException: {}
-    LexemesCount:
-      type: integer
-    ServiceFailureException: {}
-    Alphabet:
-      type: string
-    LexiconNotFoundException: {}
-    LexiconAttributes:
-      type: object
-      properties:
-        Alphabet:
-          allOf:
-          - $ref: '#/components/schemas/Alphabet'
-          - description: Phonetic alphabet used in the lexicon. Valid values are <code>ipa</code> and <code>x-sampa</code>.
-        LanguageCode:
-          allOf:
-          - $ref: '#/components/schemas/LanguageCode'
-          - description: Language code that the lexicon applies to. A lexicon with a language code such as "en" would be applied to all English languages (en-GB, en-US, en-AUS, en-WLS, and so on.
-        LastModified:
-          allOf:
-          - $ref: '#/components/schemas/LastModified'
-          - description: Date lexicon was last modified (a timestamp value).
-        LexiconArn:
-          allOf:
-          - $ref: '#/components/schemas/LexiconArn'
-          - description: Amazon Resource Name (ARN) of the lexicon.
-        LexemesCount:
-          allOf:
-          - $ref: '#/components/schemas/LexemesCount'
-          - description: Number of lexemes in the lexicon.
-        Size:
-          allOf:
-          - $ref: '#/components/schemas/Size'
-          - description: Total size of the lexicon, in characters.
-      description: Contains metadata describing the lexicon such as the number of lexemes, language code, and so on. For more information, see <a href="https://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html">Managing Lexicons</a>.
-    MaxLexiconsNumberExceededException: {}
-    InvalidNextTokenException: {}
+  parameters:
+    X-Amz-Content-Sha256:
+      name: X-Amz-Content-Sha256
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Credential:
+      name: X-Amz-Credential
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Algorithm:
+      name: X-Amz-Algorithm
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-SignedHeaders:
+      name: X-Amz-SignedHeaders
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Security-Token:
+      name: X-Amz-Security-Token
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Signature:
+      name: X-Amz-Signature
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Date:
+      name: X-Amz-Date
+      in: header
+      schema:
+        type: string
+      required: false
   securitySchemes:
     hmac:
       type: apiKey
