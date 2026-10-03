@@ -379,10 +379,67 @@ paths:
       tags:
       - Speech
 components:
+  parameters:
+    X-Amz-Date:
+      name: X-Amz-Date
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Signature:
+      name: X-Amz-Signature
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Credential:
+      name: X-Amz-Credential
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-SignedHeaders:
+      name: X-Amz-SignedHeaders
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Algorithm:
+      name: X-Amz-Algorithm
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Security-Token:
+      name: X-Amz-Security-Token
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Content-Sha256:
+      name: X-Amz-Content-Sha256
+      in: header
+      schema:
+        type: string
+      required: false
   schemas:
-    InvalidSampleRateException: {}
-    ServiceFailureException: {}
     InvalidSsmlException: {}
+    TextLengthExceededException: {}
+    LexiconName:
+      type: string
+      pattern: '[0-9A-Za-z]{1,20}'
+    EngineNotSupportedException: {}
+    AudioStream:
+      type: string
+    LanguageNotSupportedException: {}
+    SpeechMarkType:
+      type: string
+      enum:
+      - sentence
+      - ssml
+      - viseme
+      - word
+    MarksNotSupportedForFormatException: {}
     SynthesizeSpeechOutput:
       type: object
       example:
@@ -394,67 +451,10 @@ components:
           allOf:
           - $ref: '#/components/schemas/AudioStream'
           - description: ' Stream containing the synthesized speech. '
-    EngineNotSupportedException: {}
-    LexiconName:
-      type: string
-      pattern: '[0-9A-Za-z]{1,20}'
-    MarksNotSupportedForFormatException: {}
-    SsmlMarksNotSupportedForTextTypeException: {}
-    TextLengthExceededException: {}
+    ServiceFailureException: {}
+    InvalidSampleRateException: {}
     LexiconNotFoundException: {}
-    SpeechMarkType:
-      type: string
-      enum:
-      - sentence
-      - ssml
-      - viseme
-      - word
-    LanguageNotSupportedException: {}
-    AudioStream:
-      type: string
-  parameters:
-    X-Amz-Content-Sha256:
-      name: X-Amz-Content-Sha256
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Credential:
-      name: X-Amz-Credential
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Algorithm:
-      name: X-Amz-Algorithm
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-SignedHeaders:
-      name: X-Amz-SignedHeaders
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Security-Token:
-      name: X-Amz-Security-Token
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Signature:
-      name: X-Amz-Signature
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Date:
-      name: X-Amz-Date
-      in: header
-      schema:
-        type: string
-      required: false
+    SsmlMarksNotSupportedForTextTypeException: {}
   securitySchemes:
     hmac:
       type: apiKey
