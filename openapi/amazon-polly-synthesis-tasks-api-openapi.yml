@@ -518,7 +518,14 @@ paths:
       - Synthesis Tasks
 components:
   schemas:
-    InvalidS3KeyException: {}
+    SynthesisTaskNotFoundException: {}
+    LexiconNameList:
+      type: array
+      items:
+        $ref: '#/components/schemas/LexiconName'
+      maxItems: 5
+    InvalidNextTokenException: {}
+    LanguageNotSupportedException: {}
     LanguageCode:
       type: string
       enum:
@@ -558,8 +565,6 @@ components:
       - yue-CN
       - ar-AE
       - fi-FI
-    InvalidSsmlException: {}
-    InvalidSnsTopicArnException: {}
     VoiceId:
       type: string
       enum:
@@ -651,21 +656,6 @@ components:
       - Stephen
       - Kazuha
       - Tomoko
-    TextLengthExceededException: {}
-    LexiconName:
-      type: string
-      pattern: '[0-9A-Za-z]{1,20}'
-    EngineNotSupportedException: {}
-    SampleRate:
-      type: string
-    TaskStatusReason:
-      type: string
-    TaskId:
-      type: string
-      pattern: ^[a-zA-Z0-9_-]{1,100}$
-    DateTime:
-      type: string
-      format: date-time
     TaskStatus:
       type: string
       enum:
@@ -673,14 +663,23 @@ components:
       - inProgress
       - completed
       - failed
-    TextType:
-      type: string
-      enum:
-      - ssml
-      - text
-    LanguageNotSupportedException: {}
-    InvalidNextTokenException: {}
+    InvalidS3KeyException: {}
     InvalidS3BucketException: {}
+    ServiceFailureException: {}
+    LexiconName:
+      type: string
+      pattern: '[0-9A-Za-z]{1,20}'
+    DateTime:
+      type: string
+      format: date-time
+    StartSpeechSynthesisTaskOutput:
+      type: object
+      properties:
+        SynthesisTask:
+          allOf:
+          - $ref: '#/components/schemas/SynthesisTask'
+          - description: SynthesisTask object that provides information and attributes about a newly submitted speech synthesis task.
+    TextLengthExceededException: {}
     GetSpeechSynthesisTaskOutput:
       type: object
       properties:
@@ -688,6 +687,72 @@ components:
           allOf:
           - $ref: '#/components/schemas/SynthesisTask'
           - description: SynthesisTask object that provides information from the requested task, including output format, creation time, task status, and so on.
+    RequestCharacters:
+      type: integer
+    SsmlMarksNotSupportedForTextTypeException: {}
+    SampleRate:
+      type: string
+    SpeechMarkType:
+      type: string
+      enum:
+      - sentence
+      - ssml
+      - viseme
+      - word
+    InvalidSampleRateException: {}
+    SpeechMarkTypeList:
+      type: array
+      items:
+        $ref: '#/components/schemas/SpeechMarkType'
+      maxItems: 4
+    TextType:
+      type: string
+      enum:
+      - ssml
+      - text
+    TaskStatusReason:
+      type: string
+    Engine:
+      type: string
+      enum:
+      - standard
+      - neural
+    OutputFormat:
+      type: string
+      enum:
+      - json
+      - mp3
+      - ogg_vorbis
+      - pcm
+    TaskId:
+      type: string
+      pattern: ^[a-zA-Z0-9_-]{1,100}$
+    ListSpeechSynthesisTasksOutput:
+      type: object
+      properties:
+        NextToken:
+          allOf:
+          - $ref: '#/components/schemas/NextToken'
+          - description: An opaque pagination token returned from the previous List operation in this request. If present, this indicates where to continue the listing.
+        SynthesisTasks:
+          allOf:
+          - $ref: '#/components/schemas/SynthesisTasks'
+          - description: List of SynthesisTask objects that provides information from the specified task in the list request, including output format, creation time, task status, and so on.
+    SnsTopicArn:
+      type: string
+      pattern: ^arn:aws(-(cn|iso(-b)?|us-gov))?:sns:[a-z0-9_-]{1,50}:\d{12}:[a-zA-Z0-9_-]{1,256}$
+    MarksNotSupportedForFormatException: {}
+    SynthesisTasks:
+      type: array
+      items:
+        $ref: '#/components/schemas/SynthesisTask'
+    LexiconNotFoundException: {}
+    InvalidSsmlException: {}
+    NextToken:
+      type: string
+      minLength: 0
+      maxLength: 4096
+    InvalidTaskIdException: {}
     SynthesisTask:
       type: object
       properties:
@@ -752,84 +817,13 @@ components:
           - $ref: '#/components/schemas/LanguageCode'
           - description: <p>Optional language code for a synthesis task. This is only necessary if using a bilingual voice, such as Aditi, which can be used for either Indian English (en-IN) or Hindi (hi-IN). </p> <p>If a bilingual voice is used and no language code is specified, Amazon Polly uses the default language of the bilingual voice. The default language for any voice is the one returned by the <a href="https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html">DescribeVoices</a> operation for the <code>LanguageCode</code> parameter. For example, if no language code is specified, Aditi will use Indian English rather than Hindi.</p>
       description: SynthesisTask object that provides information about a speech synthesis task.
-    InvalidTaskIdException: {}
-    SpeechMarkType:
-      type: string
-      enum:
-      - sentence
-      - ssml
-      - viseme
-      - word
-    MarksNotSupportedForFormatException: {}
-    LexiconNameList:
-      type: array
-      items:
-        $ref: '#/components/schemas/LexiconName'
-      maxItems: 5
-    OutputFormat:
-      type: string
-      enum:
-      - json
-      - mp3
-      - ogg_vorbis
-      - pcm
-    NextToken:
-      type: string
-      minLength: 0
-      maxLength: 4096
-    SpeechMarkTypeList:
-      type: array
-      items:
-        $ref: '#/components/schemas/SpeechMarkType'
-      maxItems: 4
-    Engine:
-      type: string
-      enum:
-      - standard
-      - neural
-    SynthesisTasks:
-      type: array
-      items:
-        $ref: '#/components/schemas/SynthesisTask'
-    ServiceFailureException: {}
-    SnsTopicArn:
-      type: string
-      pattern: ^arn:aws(-(cn|iso(-b)?|us-gov))?:sns:[a-z0-9_-]{1,50}:\d{12}:[a-zA-Z0-9_-]{1,256}$
-    RequestCharacters:
-      type: integer
-    InvalidSampleRateException: {}
-    LexiconNotFoundException: {}
-    StartSpeechSynthesisTaskOutput:
-      type: object
-      properties:
-        SynthesisTask:
-          allOf:
-          - $ref: '#/components/schemas/SynthesisTask'
-          - description: SynthesisTask object that provides information and attributes about a newly submitted speech synthesis task.
+    InvalidSnsTopicArnException: {}
+    EngineNotSupportedException: {}
     OutputUri:
       type: string
-    ListSpeechSynthesisTasksOutput:
-      type: object
-      properties:
-        NextToken:
-          allOf:
-          - $ref: '#/components/schemas/NextToken'
-          - description: An opaque pagination token returned from the previous List operation in this request. If present, this indicates where to continue the listing.
-        SynthesisTasks:
-          allOf:
-          - $ref: '#/components/schemas/SynthesisTasks'
-          - description: List of SynthesisTask objects that provides information from the specified task in the list request, including output format, creation time, task status, and so on.
-    SynthesisTaskNotFoundException: {}
-    SsmlMarksNotSupportedForTextTypeException: {}
   parameters:
-    X-Amz-Date:
-      name: X-Amz-Date
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Signature:
-      name: X-Amz-Signature
+    X-Amz-Content-Sha256:
+      name: X-Amz-Content-Sha256
       in: header
       schema:
         type: string
@@ -840,14 +834,14 @@ components:
       schema:
         type: string
       required: false
-    X-Amz-SignedHeaders:
-      name: X-Amz-SignedHeaders
+    X-Amz-Algorithm:
+      name: X-Amz-Algorithm
       in: header
       schema:
         type: string
       required: false
-    X-Amz-Algorithm:
-      name: X-Amz-Algorithm
+    X-Amz-Signature:
+      name: X-Amz-Signature
       in: header
       schema:
         type: string
@@ -858,8 +852,14 @@ components:
       schema:
         type: string
       required: false
-    X-Amz-Content-Sha256:
-      name: X-Amz-Content-Sha256
+    X-Amz-SignedHeaders:
+      name: X-Amz-SignedHeaders
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Date:
+      name: X-Amz-Date
       in: header
       schema:
         type: string
