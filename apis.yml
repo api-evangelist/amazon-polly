@@ -166,6 +166,8 @@ apis:
   - type: Authentication
     url: https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html
 common:
+- type: Plans
+  url: plans/amazon-polly-plans-pricing.yml
 - type: Website
   url: https://aws.amazon.com/polly/
 - type: AgenticAccess
