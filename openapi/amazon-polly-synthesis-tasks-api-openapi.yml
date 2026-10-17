@@ -518,14 +518,37 @@ paths:
       - Synthesis Tasks
 components:
   schemas:
-    SynthesisTaskNotFoundException: {}
-    LexiconNameList:
-      type: array
-      items:
-        $ref: '#/components/schemas/LexiconName'
-      maxItems: 5
+    MarksNotSupportedForFormatException: {}
+    InvalidSnsTopicArnException: {}
+    LexiconNotFoundException: {}
+    RequestCharacters:
+      type: integer
+    SnsTopicArn:
+      type: string
+      pattern: ^arn:aws(-(cn|iso(-b)?|us-gov))?:sns:[a-z0-9_-]{1,50}:\d{12}:[a-zA-Z0-9_-]{1,256}$
+    TaskStatusReason:
+      type: string
+    ListSpeechSynthesisTasksOutput:
+      type: object
+      properties:
+        NextToken:
+          allOf:
+          - $ref: '#/components/schemas/NextToken'
+          - description: An opaque pagination token returned from the previous List operation in this request. If present, this indicates where to continue the listing.
+        SynthesisTasks:
+          allOf:
+          - $ref: '#/components/schemas/SynthesisTasks'
+          - description: List of SynthesisTask objects that provides information from the specified task in the list request, including output format, creation time, task status, and so on.
     InvalidNextTokenException: {}
-    LanguageNotSupportedException: {}
+    InvalidSsmlException: {}
+    StartSpeechSynthesisTaskOutput:
+      type: object
+      properties:
+        SynthesisTask:
+          allOf:
+          - $ref: '#/components/schemas/SynthesisTask'
+          - description: SynthesisTask object that provides information and attributes about a newly submitted speech synthesis task.
+    ServiceFailureException: {}
     LanguageCode:
       type: string
       enum:
@@ -565,6 +588,137 @@ components:
       - yue-CN
       - ar-AE
       - fi-FI
+    SynthesisTaskNotFoundException: {}
+    SampleRate:
+      type: string
+    InvalidSampleRateException: {}
+    InvalidTaskIdException: {}
+    Engine:
+      type: string
+      enum:
+      - standard
+      - neural
+    OutputUri:
+      type: string
+    EngineNotSupportedException: {}
+    SpeechMarkType:
+      type: string
+      enum:
+      - sentence
+      - ssml
+      - viseme
+      - word
+    TaskStatus:
+      type: string
+      enum:
+      - scheduled
+      - inProgress
+      - completed
+      - failed
+    LanguageNotSupportedException: {}
+    SsmlMarksNotSupportedForTextTypeException: {}
+    GetSpeechSynthesisTaskOutput:
+      type: object
+      properties:
+        SynthesisTask:
+          allOf:
+          - $ref: '#/components/schemas/SynthesisTask'
+          - description: SynthesisTask object that provides information from the requested task, including output format, creation time, task status, and so on.
+    OutputFormat:
+      type: string
+      enum:
+      - json
+      - mp3
+      - ogg_vorbis
+      - pcm
+    InvalidS3KeyException: {}
+    LexiconNameList:
+      type: array
+      items:
+        $ref: '#/components/schemas/LexiconName'
+      maxItems: 5
+    NextToken:
+      type: string
+      minLength: 0
+      maxLength: 4096
+    SpeechMarkTypeList:
+      type: array
+      items:
+        $ref: '#/components/schemas/SpeechMarkType'
+      maxItems: 4
+    SynthesisTasks:
+      type: array
+      items:
+        $ref: '#/components/schemas/SynthesisTask'
+    SynthesisTask:
+      type: object
+      properties:
+        Engine:
+          allOf:
+          - $ref: '#/components/schemas/Engine'
+          - description: Specifies the engine (<code>standard</code> or <code>neural</code>) for Amazon Polly to use when processing input text for speech synthesis. Using a voice that is not supported for the engine selected will result in an error.
+        TaskId:
+          allOf:
+          - $ref: '#/components/schemas/TaskId'
+          - description: The Amazon Polly generated identifier for a speech synthesis task.
+        TaskStatus:
+          allOf:
+          - $ref: '#/components/schemas/TaskStatus'
+          - description: Current status of the individual speech synthesis task.
+        TaskStatusReason:
+          allOf:
+          - $ref: '#/components/schemas/TaskStatusReason'
+          - description: Reason for the current status of a specific speech synthesis task, including errors if the task has failed.
+        OutputUri:
+          allOf:
+          - $ref: '#/components/schemas/OutputUri'
+          - description: Pathway for the output speech file.
+        CreationTime:
+          allOf:
+          - $ref: '#/components/schemas/DateTime'
+          - description: Timestamp for the time the synthesis task was started.
+        RequestCharacters:
+          allOf:
+          - $ref: '#/components/schemas/RequestCharacters'
+          - description: Number of billable characters synthesized.
+        SnsTopicArn:
+          allOf:
+          - $ref: '#/components/schemas/SnsTopicArn'
+          - description: ARN for the SNS topic optionally used for providing status notification for a speech synthesis task.
+        LexiconNames:
+          allOf:
+          - $ref: '#/components/schemas/LexiconNameList'
+          - description: 'List of one or more pronunciation lexicon names you want the service to apply during synthesis. Lexicons are applied only if the language of the lexicon is the same as the language of the voice. '
+        OutputFormat:
+          allOf:
+          - $ref: '#/components/schemas/OutputFormat'
+          - description: 'The format in which the returned output will be encoded. For audio stream, this will be mp3, ogg_vorbis, or pcm. For speech marks, this will be json. '
+        SampleRate:
+          allOf:
+          - $ref: '#/components/schemas/SampleRate'
+          - description: <p>The audio frequency specified in Hz.</p> <p>The valid values for mp3 and ogg_vorbis are "8000", "16000", "22050", and "24000". The default value for standard voices is "22050". The default value for neural voices is "24000".</p> <p>Valid values for pcm are "8000" and "16000" The default value is "16000". </p>
+        SpeechMarkTypes:
+          allOf:
+          - $ref: '#/components/schemas/SpeechMarkTypeList'
+          - description: The type of speech marks returned for the input text.
+        TextType:
+          allOf:
+          - $ref: '#/components/schemas/TextType'
+          - description: 'Specifies whether the input text is plain text or SSML. The default value is plain text. '
+        VoiceId:
+          allOf:
+          - $ref: '#/components/schemas/VoiceId'
+          - description: 'Voice ID to use for the synthesis. '
+        LanguageCode:
+          allOf:
+          - $ref: '#/components/schemas/LanguageCode'
+          - description: <p>Optional language code for a synthesis task. This is only necessary if using a bilingual voice, such as Aditi, which can be used for either Indian English (en-IN) or Hindi (hi-IN). </p> <p>If a bilingual voice is used and no language code is specified, Amazon Polly uses the default language of the bilingual voice. The default language for any voice is the one returned by the <a href="https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html">DescribeVoices</a> operation for the <code>LanguageCode</code> parameter. For example, if no language code is specified, Aditi will use Indian English rather than Hindi.</p>
+      description: SynthesisTask object that provides information about a speech synthesis task.
+    TextType:
+      type: string
+      enum:
+      - ssml
+      - text
     VoiceId:
       type: string
       enum:
@@ -656,180 +810,26 @@ components:
       - Stephen
       - Kazuha
       - Tomoko
-    TaskStatus:
-      type: string
-      enum:
-      - scheduled
-      - inProgress
-      - completed
-      - failed
-    InvalidS3KeyException: {}
     InvalidS3BucketException: {}
-    ServiceFailureException: {}
     LexiconName:
       type: string
       pattern: '[0-9A-Za-z]{1,20}'
     DateTime:
       type: string
       format: date-time
-    StartSpeechSynthesisTaskOutput:
-      type: object
-      properties:
-        SynthesisTask:
-          allOf:
-          - $ref: '#/components/schemas/SynthesisTask'
-          - description: SynthesisTask object that provides information and attributes about a newly submitted speech synthesis task.
     TextLengthExceededException: {}
-    GetSpeechSynthesisTaskOutput:
-      type: object
-      properties:
-        SynthesisTask:
-          allOf:
-          - $ref: '#/components/schemas/SynthesisTask'
-          - description: SynthesisTask object that provides information from the requested task, including output format, creation time, task status, and so on.
-    RequestCharacters:
-      type: integer
-    SsmlMarksNotSupportedForTextTypeException: {}
-    SampleRate:
-      type: string
-    SpeechMarkType:
-      type: string
-      enum:
-      - sentence
-      - ssml
-      - viseme
-      - word
-    InvalidSampleRateException: {}
-    SpeechMarkTypeList:
-      type: array
-      items:
-        $ref: '#/components/schemas/SpeechMarkType'
-      maxItems: 4
-    TextType:
-      type: string
-      enum:
-      - ssml
-      - text
-    TaskStatusReason:
-      type: string
-    Engine:
-      type: string
-      enum:
-      - standard
-      - neural
-    OutputFormat:
-      type: string
-      enum:
-      - json
-      - mp3
-      - ogg_vorbis
-      - pcm
     TaskId:
       type: string
       pattern: ^[a-zA-Z0-9_-]{1,100}$
-    ListSpeechSynthesisTasksOutput:
-      type: object
-      properties:
-        NextToken:
-          allOf:
-          - $ref: '#/components/schemas/NextToken'
-          - description: An opaque pagination token returned from the previous List operation in this request. If present, this indicates where to continue the listing.
-        SynthesisTasks:
-          allOf:
-          - $ref: '#/components/schemas/SynthesisTasks'
-          - description: List of SynthesisTask objects that provides information from the specified task in the list request, including output format, creation time, task status, and so on.
-    SnsTopicArn:
-      type: string
-      pattern: ^arn:aws(-(cn|iso(-b)?|us-gov))?:sns:[a-z0-9_-]{1,50}:\d{12}:[a-zA-Z0-9_-]{1,256}$
-    MarksNotSupportedForFormatException: {}
-    SynthesisTasks:
-      type: array
-      items:
-        $ref: '#/components/schemas/SynthesisTask'
-    LexiconNotFoundException: {}
-    InvalidSsmlException: {}
-    NextToken:
-      type: string
-      minLength: 0
-      maxLength: 4096
-    InvalidTaskIdException: {}
-    SynthesisTask:
-      type: object
-      properties:
-        Engine:
-          allOf:
-          - $ref: '#/components/schemas/Engine'
-          - description: Specifies the engine (<code>standard</code> or <code>neural</code>) for Amazon Polly to use when processing input text for speech synthesis. Using a voice that is not supported for the engine selected will result in an error.
-        TaskId:
-          allOf:
-          - $ref: '#/components/schemas/TaskId'
-          - description: The Amazon Polly generated identifier for a speech synthesis task.
-        TaskStatus:
-          allOf:
-          - $ref: '#/components/schemas/TaskStatus'
-          - description: Current status of the individual speech synthesis task.
-        TaskStatusReason:
-          allOf:
-          - $ref: '#/components/schemas/TaskStatusReason'
-          - description: Reason for the current status of a specific speech synthesis task, including errors if the task has failed.
-        OutputUri:
-          allOf:
-          - $ref: '#/components/schemas/OutputUri'
-          - description: Pathway for the output speech file.
-        CreationTime:
-          allOf:
-          - $ref: '#/components/schemas/DateTime'
-          - description: Timestamp for the time the synthesis task was started.
-        RequestCharacters:
-          allOf:
-          - $ref: '#/components/schemas/RequestCharacters'
-          - description: Number of billable characters synthesized.
-        SnsTopicArn:
-          allOf:
-          - $ref: '#/components/schemas/SnsTopicArn'
-          - description: ARN for the SNS topic optionally used for providing status notification for a speech synthesis task.
-        LexiconNames:
-          allOf:
-          - $ref: '#/components/schemas/LexiconNameList'
-          - description: 'List of one or more pronunciation lexicon names you want the service to apply during synthesis. Lexicons are applied only if the language of the lexicon is the same as the language of the voice. '
-        OutputFormat:
-          allOf:
-          - $ref: '#/components/schemas/OutputFormat'
-          - description: 'The format in which the returned output will be encoded. For audio stream, this will be mp3, ogg_vorbis, or pcm. For speech marks, this will be json. '
-        SampleRate:
-          allOf:
-          - $ref: '#/components/schemas/SampleRate'
-          - description: <p>The audio frequency specified in Hz.</p> <p>The valid values for mp3 and ogg_vorbis are "8000", "16000", "22050", and "24000". The default value for standard voices is "22050". The default value for neural voices is "24000".</p> <p>Valid values for pcm are "8000" and "16000" The default value is "16000". </p>
-        SpeechMarkTypes:
-          allOf:
-          - $ref: '#/components/schemas/SpeechMarkTypeList'
-          - description: The type of speech marks returned for the input text.
-        TextType:
-          allOf:
-          - $ref: '#/components/schemas/TextType'
-          - description: 'Specifies whether the input text is plain text or SSML. The default value is plain text. '
-        VoiceId:
-          allOf:
-          - $ref: '#/components/schemas/VoiceId'
-          - description: 'Voice ID to use for the synthesis. '
-        LanguageCode:
-          allOf:
-          - $ref: '#/components/schemas/LanguageCode'
-          - description: <p>Optional language code for a synthesis task. This is only necessary if using a bilingual voice, such as Aditi, which can be used for either Indian English (en-IN) or Hindi (hi-IN). </p> <p>If a bilingual voice is used and no language code is specified, Amazon Polly uses the default language of the bilingual voice. The default language for any voice is the one returned by the <a href="https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html">DescribeVoices</a> operation for the <code>LanguageCode</code> parameter. For example, if no language code is specified, Aditi will use Indian English rather than Hindi.</p>
-      description: SynthesisTask object that provides information about a speech synthesis task.
-    InvalidSnsTopicArnException: {}
-    EngineNotSupportedException: {}
-    OutputUri:
-      type: string
   parameters:
-    X-Amz-Content-Sha256:
-      name: X-Amz-Content-Sha256
+    X-Amz-Signature:
+      name: X-Amz-Signature
       in: header
       schema:
         type: string
       required: false
-    X-Amz-Credential:
-      name: X-Amz-Credential
+    X-Amz-SignedHeaders:
+      name: X-Amz-SignedHeaders
       in: header
       schema:
         type: string
@@ -840,8 +840,8 @@ components:
       schema:
         type: string
       required: false
-    X-Amz-Signature:
-      name: X-Amz-Signature
+    X-Amz-Credential:
+      name: X-Amz-Credential
       in: header
       schema:
         type: string
@@ -852,8 +852,8 @@ components:
       schema:
         type: string
       required: false
-    X-Amz-SignedHeaders:
-      name: X-Amz-SignedHeaders
+    X-Amz-Content-Sha256:
+      name: X-Amz-Content-Sha256
       in: header
       schema:
         type: string

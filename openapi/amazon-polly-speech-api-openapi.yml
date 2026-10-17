@@ -380,7 +380,9 @@ paths:
       - Speech
 components:
   schemas:
-    LanguageNotSupportedException: {}
+    MarksNotSupportedForFormatException: {}
+    LexiconNotFoundException: {}
+    InvalidSsmlException: {}
     SynthesizeSpeechOutput:
       type: object
       example:
@@ -393,11 +395,9 @@ components:
           - $ref: '#/components/schemas/AudioStream'
           - description: ' Stream containing the synthesized speech. '
     ServiceFailureException: {}
-    LexiconName:
+    InvalidSampleRateException: {}
+    AudioStream:
       type: string
-      pattern: '[0-9A-Za-z]{1,20}'
-    TextLengthExceededException: {}
-    SsmlMarksNotSupportedForTextTypeException: {}
     SpeechMarkType:
       type: string
       enum:
@@ -405,22 +405,22 @@ components:
       - ssml
       - viseme
       - word
-    InvalidSampleRateException: {}
-    MarksNotSupportedForFormatException: {}
-    LexiconNotFoundException: {}
-    InvalidSsmlException: {}
-    AudioStream:
-      type: string
     EngineNotSupportedException: {}
+    LanguageNotSupportedException: {}
+    SsmlMarksNotSupportedForTextTypeException: {}
+    LexiconName:
+      type: string
+      pattern: '[0-9A-Za-z]{1,20}'
+    TextLengthExceededException: {}
   parameters:
-    X-Amz-Content-Sha256:
-      name: X-Amz-Content-Sha256
+    X-Amz-Signature:
+      name: X-Amz-Signature
       in: header
       schema:
         type: string
       required: false
-    X-Amz-Credential:
-      name: X-Amz-Credential
+    X-Amz-SignedHeaders:
+      name: X-Amz-SignedHeaders
       in: header
       schema:
         type: string
@@ -431,8 +431,8 @@ components:
       schema:
         type: string
       required: false
-    X-Amz-Signature:
-      name: X-Amz-Signature
+    X-Amz-Credential:
+      name: X-Amz-Credential
       in: header
       schema:
         type: string
@@ -443,8 +443,8 @@ components:
       schema:
         type: string
       required: false
-    X-Amz-SignedHeaders:
-      name: X-Amz-SignedHeaders
+    X-Amz-Content-Sha256:
+      name: X-Amz-Content-Sha256
       in: header
       schema:
         type: string

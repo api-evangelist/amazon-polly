@@ -235,7 +235,21 @@ paths:
       - Voices
 components:
   schemas:
+    LanguageCodeList:
+      type: array
+      items:
+        $ref: '#/components/schemas/LanguageCode'
+    VoiceList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Voice'
     InvalidNextTokenException: {}
+    Gender:
+      type: string
+      enum:
+      - Female
+      - Male
+    ServiceFailureException: {}
     LanguageCode:
       type: string
       enum:
@@ -275,6 +289,45 @@ components:
       - yue-CN
       - ar-AE
       - fi-FI
+    LanguageName:
+      type: string
+    Engine:
+      type: string
+      enum:
+      - standard
+      - neural
+    DescribeVoicesOutput:
+      type: object
+      example:
+        Voices:
+        - Gender: Female
+          Id: Emma
+          LanguageCode: en-GB
+          LanguageName: British English
+          Name: Emma
+        - Gender: Male
+          Id: Brian
+          LanguageCode: en-GB
+          LanguageName: British English
+          Name: Brian
+        - Gender: Female
+          Id: Amy
+          LanguageCode: en-GB
+          LanguageName: British English
+          Name: Amy
+      properties:
+        Voices:
+          allOf:
+          - $ref: '#/components/schemas/VoiceList'
+          - description: A list of voices with their properties.
+        NextToken:
+          allOf:
+          - $ref: '#/components/schemas/NextToken'
+          - description: The pagination token to use in the next request to continue the listing of voices. <code>NextToken</code> is returned only if the response is truncated.
+    NextToken:
+      type: string
+      minLength: 0
+      maxLength: 4096
     VoiceId:
       type: string
       enum:
@@ -366,48 +419,8 @@ components:
       - Stephen
       - Kazuha
       - Tomoko
-    ServiceFailureException: {}
-    VoiceList:
-      type: array
-      items:
-        $ref: '#/components/schemas/Voice'
-    DescribeVoicesOutput:
-      type: object
-      example:
-        Voices:
-        - Gender: Female
-          Id: Emma
-          LanguageCode: en-GB
-          LanguageName: British English
-          Name: Emma
-        - Gender: Male
-          Id: Brian
-          LanguageCode: en-GB
-          LanguageName: British English
-          Name: Brian
-        - Gender: Female
-          Id: Amy
-          LanguageCode: en-GB
-          LanguageName: British English
-          Name: Amy
-      properties:
-        Voices:
-          allOf:
-          - $ref: '#/components/schemas/VoiceList'
-          - description: A list of voices with their properties.
-        NextToken:
-          allOf:
-          - $ref: '#/components/schemas/NextToken'
-          - description: The pagination token to use in the next request to continue the listing of voices. <code>NextToken</code> is returned only if the response is truncated.
-    LanguageCodeList:
-      type: array
-      items:
-        $ref: '#/components/schemas/LanguageCode'
-    Engine:
+    VoiceName:
       type: string
-      enum:
-      - standard
-      - neural
     Voice:
       type: object
       properties:
@@ -444,28 +457,15 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/Engine'
-    VoiceName:
-      type: string
-    LanguageName:
-      type: string
-    NextToken:
-      type: string
-      minLength: 0
-      maxLength: 4096
-    Gender:
-      type: string
-      enum:
-      - Female
-      - Male
   parameters:
-    X-Amz-Content-Sha256:
-      name: X-Amz-Content-Sha256
+    X-Amz-Signature:
+      name: X-Amz-Signature
       in: header
       schema:
         type: string
       required: false
-    X-Amz-Credential:
-      name: X-Amz-Credential
+    X-Amz-SignedHeaders:
+      name: X-Amz-SignedHeaders
       in: header
       schema:
         type: string
@@ -476,8 +476,8 @@ components:
       schema:
         type: string
       required: false
-    X-Amz-Signature:
-      name: X-Amz-Signature
+    X-Amz-Credential:
+      name: X-Amz-Credential
       in: header
       schema:
         type: string
@@ -488,8 +488,8 @@ components:
       schema:
         type: string
       required: false
-    X-Amz-SignedHeaders:
-      name: X-Amz-SignedHeaders
+    X-Amz-Content-Sha256:
+      name: X-Amz-Content-Sha256
       in: header
       schema:
         type: string
