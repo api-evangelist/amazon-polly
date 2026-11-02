@@ -1,0 +1,117 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-07'
+method: searched
+source: https://aws.amazon.com/polly/pricing/
+sources:
+- https://aws.amazon.com/polly/pricing/
+provenance:
+  tool: all/0-working/economics/harvest_pricing.py
+  run: 20261007T104522
+  grounding: every price_text was found verbatim in the fetched page text
+audience: developer-api
+pricing_basis: per-call
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-10-07'
+  managed_tier: Pay-as-you-go model
+published: true
+note: Pay-as-you-go character-based pricing; free tier and $200 AWS Free Tier credits mentioned.
+plan_count: 6
+currency: USD
+plans:
+- name: Standard voices
+  price_text: $4.00 per 1 million characters
+  price: 4.0
+  currency: USD
+  period: per-use
+  unit: 1 million characters
+  included_quota: free tier includes 5 million characters per month
+- name: Neural voices
+  price_text: $16.00 per 1 million characters
+  price: 16.0
+  currency: USD
+  period: per-use
+  unit: 1 million characters
+  included_quota: free tier includes 1 million characters per month, for the first 12 months
+- name: Long-Form voices
+  price_text: $100.00 per 1 million characters
+  price: 100.0
+  currency: USD
+  period: per-use
+  unit: 1 million characters
+  included_quota: 500 thousand characters per month for the first 12 months
+- name: Generative voices
+  price_text: $30 per 1 million characters
+  price: 30
+  currency: USD
+  period: per-use
+  unit: 1 million characters
+  included_quota: 100 thousand characters per month for the first 12 months
+- name: GovCloud (US) Standard voices
+  price_text: $4.80 per 1 million characters
+  price: 4.8
+  currency: USD
+  period: per-use
+  unit: 1 million characters
+- name: GovCloud (US) Neural TTS voices
+  price_text: $19.20 per 1 million characters
+  price: 19.2
+  currency: USD
+  period: per-use
+  unit: 1 million characters
+x-canonical:
+  generated: '2026-11-01'
+  vocabulary: engine/economics/plans-canonical.yml
+  models:
+  - subscription
+  units: []
+  plans:
+  - name: Standard voices
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - other
+  - name: Neural voices
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - other
+  - name: Long-Form voices
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - other
+  - name: Generative voices
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - other
+  - name: GovCloud (US) Standard voices
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - other
+  - name: GovCloud (US) Neural TTS voices
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - other
