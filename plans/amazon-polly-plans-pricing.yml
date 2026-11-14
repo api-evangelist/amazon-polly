@@ -2,6 +2,7 @@
 generated: '2026-10-07'
 method: searched
 source: https://aws.amazon.com/polly/pricing/
+name: Amazon Polly API Plans
 sources:
 - https://aws.amazon.com/polly/pricing/
 provenance:
@@ -61,7 +62,7 @@ plans:
   period: per-use
   unit: 1 million characters
 x-canonical:
-  generated: '2026-11-06'
+  generated: '2026-11-13'
   vocabulary: engine/economics/plans-canonical.yml
   models:
   - subscription

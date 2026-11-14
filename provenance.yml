@@ -38,6 +38,12 @@ artifacts:
   capabilities/amazon-polly-capability-edges.yml:
     method: unknown
     evidence: no authorship recorded
+  certification/observations-2026-11-11.jsonl:
+    method: unknown
+    evidence: no authorship recorded
+  certification/status.yml:
+    method: unknown
+    evidence: no authorship recorded
   collections/amazon-polly-lexicons-api.opencollection.json:
     method: derived
     evidence: openapi/amazon-polly-lexicons-api
@@ -74,6 +80,21 @@ artifacts:
   collections/amazon-polly.postman_collection.json:
     method: derived
     evidence: openapi/amazon-polly
+  compliance/amazon-polly-compliance.yml:
+    method: harvested
+    evidence: declared in the artifact
+  conformance/amazon-polly-conformance.yml:
+    method: derived
+    evidence: declared in the artifact
+  conventions/amazon-polly-conventions.yml:
+    method: derived
+    evidence: declared in the artifact
+  data-model/amazon-polly-data-model.yml:
+    method: derived
+    evidence: declared in the artifact
+  errors/amazon-polly-problem-types.yml:
+    method: derived
+    evidence: declared in the artifact
   examples/amazon-polly-describe-voices-output-example.json:
     method: unknown
     evidence: no authorship recorded
@@ -128,6 +149,9 @@ artifacts:
   front-door-ai/2026-09-17.yml:
     method: unknown
     evidence: no authorship recorded
+  hosts/amazon-polly-hosts.yml:
+    method: derived
+    evidence: declared in the artifact
   integrations/_index.yml:
     method: generated
     evidence: carries an API Evangelist house phrase
@@ -135,6 +159,12 @@ artifacts:
     method: searched
     evidence: declared in the artifact
   json-ld/amazon-polly-context.jsonld:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-polly-delete-lexicon-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-polly-describe-voices-input-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/amazon-polly-describe-voices-output-schema.json:
@@ -146,7 +176,13 @@ artifacts:
   json-schema/amazon-polly-gender-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/amazon-polly-get-lexicon-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/amazon-polly-get-lexicon-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-polly-get-speech-synthesis-task-input-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/amazon-polly-get-speech-synthesis-task-output-schema.json:
@@ -164,10 +200,22 @@ artifacts:
   json-schema/amazon-polly-lexicon-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/amazon-polly-list-lexicons-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/amazon-polly-list-lexicons-output-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/amazon-polly-list-speech-synthesis-tasks-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/amazon-polly-list-speech-synthesis-tasks-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-polly-list-tags-for-resource-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-polly-list-tags-for-resource-output-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/amazon-polly-output-format-schema.json:
@@ -180,6 +228,12 @@ artifacts:
     method: unknown
     evidence: no authorship recorded
   json-schema/amazon-polly-speech-mark-type-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-polly-start-speech-synthesis-stream-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-polly-start-speech-synthesis-stream-output-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/amazon-polly-start-speech-synthesis-task-input-schema.json:
@@ -197,10 +251,16 @@ artifacts:
   json-schema/amazon-polly-synthesize-speech-output-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/amazon-polly-tag-resource-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/amazon-polly-task-status-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/amazon-polly-text-type-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-polly-untag-resource-input-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/amazon-polly-voice-id-schema.json:
@@ -284,7 +344,7 @@ artifacts:
   kin/checks-2026-10-23T222754.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  kin/checks-2026-11-02T082323.yml:
+  kin/checks-2026-11-06T143934.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-23T000603.yml:
@@ -353,14 +413,18 @@ artifacts:
   kin/score-2026-11-02T082323.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  openapi/_original/amazon-polly-openapi-original.yaml:
-    method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
-  openapi/_original/amazon-polly-openapi.yml:
-    method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+  kin/score-2026-11-06T143934.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  llms/amazon-polly-llms-provenance.yml:
+    method: unknown
+    evidence: no authorship recorded
+  llms/amazon-polly-llms.txt:
+    method: unknown
+    evidence: no authorship recorded
+  mcp/amazon-polly-mcp.yml:
+    method: derived
+    evidence: declared in the artifact
   openapi/amazon-polly-lexicons-api-openapi.yml:
     method: unknown
     evidence: no authorship recorded
@@ -368,14 +432,20 @@ artifacts:
     method: unknown
     evidence: no authorship recorded
   openapi/amazon-polly-speech-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-polly-synthesis-tasks-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-polly-voices-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  packages/amazon-polly-packages.yml:
+    method: searched
+    evidence: declared in the artifact
+  patterns/amazon-polly-patterns.yml:
     method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    evidence: declared in the artifact
   plans/amazon-polly-plans-pricing.yml:
     method: searched
     evidence: declared in the artifact
@@ -403,10 +473,16 @@ artifacts:
   postman/amazon-polly.postman_collection.json:
     method: derived
     evidence: openapi/amazon-polly
+  privacy/amazon-polly-privacy-policy.yml:
+    method: harvested
+    evidence: declared in the artifact
   rate-limits/amazon-polly-rate-limits.yml:
     method: generated
     evidence: declared in the artifact
   rules/amazon-polly-jsonschema-spectral-rules.yml:
+    method: generated
+    evidence: declared in the artifact
+  rules/amazon-polly-rules.yml:
     method: generated
     evidence: declared in the artifact
   rules/amazon-polly-spectral-rules.yml:
@@ -415,6 +491,9 @@ artifacts:
   security/amazon-polly-domain-security.yml:
     method: unknown
     evidence: no authorship recorded
+  security/amazon-polly-trust-center.yml:
+    method: searched
+    evidence: declared in the artifact
   security/amazon-polly-vulnerability-disclosure.yml:
     method: searched
     evidence: declared in the artifact
@@ -422,8 +501,27 @@ artifacts:
     method: generated
     evidence: declared in the artifact
   smithy/polly-2016-06-10.json:
+    method: harvested
+    evidence: byte-identical to https://raw.githubusercontent.com/aws/api-models-aws/3cd98287b471c106254abd89279cc87308d38bfd/models/polly/service/2016-06-10/polly-2016-06-10.json
+      (sha256 a943f08a7316, fetched 2026-11-11T21:13:52+00:00)
+  terms/amazon-polly-terms-of-service.yml:
+    method: harvested
+    evidence: declared in the artifact
+  vendors/amazon-polly-vendors.yml:
     method: unknown
     evidence: no authorship recorded
   vocabulary/amazon-polly-vocabulary.yaml:
+    method: unknown
+    evidence: no authorship recorded
+  vocabulary/amazon-polly-vocabulary.yml:
+    method: derived
+    evidence: declared in the artifact
+  well-known/amazon-polly-midway-auth-openid-configuration.json:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/amazon-polly-security.txt:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/amazon-polly-well-known.yml:
     method: unknown
     evidence: no authorship recorded
