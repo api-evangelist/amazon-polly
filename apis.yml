@@ -1,3 +1,4 @@
+aid: amazon-polly
 name: Amazon Polly
 
 description: Amazon Polly is a cloud service that converts text into lifelike speech, enabling you to create applications that talk and build
@@ -35,7 +36,7 @@ accessModel:
   - plans
   - authentication
   - security
-  generated: '2026-11-13'
+  generated: '2026-11-20'
   method: derived
 image: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
 
